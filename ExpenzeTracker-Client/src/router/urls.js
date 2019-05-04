@@ -1,6 +1,7 @@
 const urls = {
     home : "/",
-    userActions : '/home/userActions'
+    userActions : '/home/userActions',
+    catagory : '/home/catagory'
 }
 
 export default urls

@@ -6,6 +6,7 @@ import React from 'react'
     return(
         <h1>404</h1>
     )
+    
 }
 
 

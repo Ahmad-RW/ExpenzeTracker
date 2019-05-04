@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('./dbConfig/dbCon')
-const Catagories = require('./dbConfig/models/Catagories')
+const User = require('./dbConfig/models/User')
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -14,7 +14,7 @@ app.use(bodyParser.json());// post request body parser
 
 
 app.get('/', function(req,res){
-    res.send('hi. In production this route will server the react app. but for now it is a friendly reminder to stay hydrated :)')
+    res.send('hi. In production this route will serve the react app. but for now it is a friendly reminder to stay hydrated :)')
 })
 
 app.get('/testingMongoDB', function(req,res){
@@ -33,7 +33,7 @@ app.get('/testingMongoDB', function(req,res){
         }]
     }
     
-    Catagories.create([obj]).then(function(record){
+    User.create([obj]).then(function(record){
         res.status(200).send(record)
     }).catch(function(err){
         res.status(500).send(err)
