@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 
-class Catagory extends Component {
+class MainHeader extends Component {
     render() {
         return (
             <React.Fragment>
@@ -12,4 +12,4 @@ class Catagory extends Component {
 }
 
 
-export default Catagory
+export default MainHeader
