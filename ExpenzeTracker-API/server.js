@@ -19,6 +19,7 @@ app.get('/', function (req, res) {
 
 app.get('/getUserData', function (req, res) {
     User.findOne({email : req.query.email}).then((record) => {
+        console.log(record)
         res.status(200).send(record)
     }).catch((err) => {
         console.log(err)

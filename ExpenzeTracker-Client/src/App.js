@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import urls from './router/urls'
 import Home from './components/Home'
 import UserActions from './components/UserActions'
-import NotFound from './components/NotFound.js';
+import LandingPage from './components/LandingPage.js';
 import Navbar from './components/Navbar';
 import Catagory from './components/Catagory'
 import {getUserData} from './store/actions'
@@ -13,11 +13,12 @@ class App extends Component {
   constructor(props){
     super(props)
     const payload ={
-      email : "dummy@dumy.com"
+      email : "dummy@dummy.com"
     }
     this.props.getUserData(payload)
   }
   render() {
+    console.log("rendering...")
     return (
 
       <BrowserRouter>
@@ -26,7 +27,7 @@ class App extends Component {
           <Route exact path={urls.home} component={Home} />
           <Route exact path={urls.userActions} component={UserActions} />
           <Route exact path={urls.catagory} component={Catagory} />
-          <Route component={NotFound} />
+          <Route component={LandingPage} />
         </Switch>
       </BrowserRouter>
     )
