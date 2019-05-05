@@ -7,7 +7,16 @@ import UserActions from './components/UserActions'
 import NotFound from './components/NotFound.js';
 import Navbar from './components/Navbar';
 import Catagory from './components/Catagory'
+import {getUserData} from './store/actions'
+import {connect} from 'react-redux'
 class App extends Component {
+  constructor(props){
+    super(props)
+    const payload ={
+      email : "dummy@dumy.com"
+    }
+    this.props.getUserData(payload)
+  }
   render() {
     return (
 
@@ -23,8 +32,12 @@ class App extends Component {
     )
   }
 }
-
-export default App;
+const mapDispatchToProps = dispatch =>{
+  return {
+    getUserData : (payload) => {dispatch(getUserData(payload))}
+  }
+}
+export default connect(null, mapDispatchToProps)(App);
 
 //some documentation:
 // switch tag will iterate over the routes until it finds a match to url. if it finds a match it'll load the component
