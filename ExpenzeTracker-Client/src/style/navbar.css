@@ -1,0 +1,49 @@
+.navbar {
+  display: flex;
+  background: #98F5C6;
+  padding: 8px;
+}
+
+.nav-left {
+  flex:1;
+}
+
+.nav-center {
+  flex:2;
+}
+
+.nav-right {
+  flex:1;  
+}
+
+.home {
+  display: block;
+  height: 30px;
+  width: 30px;
+  background: url(../img/home.svg);
+  background-size: 30px 30px;
+}
+
+.avatar {
+  display: block;
+  height: 30px;
+  width: 30px;
+  background: url(../img/avatar.svg);
+  background-size: 30px 30px;
+}
+
+.profile {
+  text-align: end;
+  list-style: none;
+  margin-top: 5.5px;
+}
+
+.profile li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+h1 {
+    text-align: center;
+}
+
