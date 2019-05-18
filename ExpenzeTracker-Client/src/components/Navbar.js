@@ -8,7 +8,9 @@ class Navbar extends Component {
                 <nav class="navbar">
 
                     <div class="nav-left">
-                        <a class="home" src="/" alt="Home"></a>
+                        <svg class="home"></svg>
+                        <svg class="categories"></svg>
+                        <svg class="settings"></svg>
                     </div>
 
                     <div class="nav-center">
@@ -16,10 +18,8 @@ class Navbar extends Component {
                     </div>
 
                     <div class="nav-right profile">
-                        <ul>
-                            <li>Welcome, Rakan Salem</li>
-                            <li><a class="avatar" src="/" alt="Avatar"></a></li>
-                        </ul>
+                        <span class="welcome">Welcome, Rakan Salem</span>
+                        <svg class="avatar"></svg>
                     </div> 
                 </nav>
             </React.Fragment>

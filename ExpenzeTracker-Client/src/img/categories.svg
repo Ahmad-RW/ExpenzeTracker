@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="70" height="58" viewBox="0 0 70 58">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        opacity: 1;
+      }
+
+      .cls-4 {
+        fill: #98f5c6;
+        stroke: #000;
+        stroke-width: 3px;
+      }
+
+      .cls-5 {
+        stroke: none;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect class="cls-1" width="70" height="58"/>
+    </clipPath>
+  </defs>
+  <g id="Component_16_1" data-name="Component 16 – 1" class="cls-2">
+    <g id="Group_1" data-name="Group 1" class="cls-3" transform="translate(-165 -16)">
+      <g id="Rectangle_133" data-name="Rectangle 133" class="cls-4" transform="translate(187 16)">
+        <rect class="cls-5" width="48" height="40"/>
+        <rect class="cls-1" x="0.9" y="0.9" width="46.2" height="38.2"/>
+      </g>
+      <g id="Rectangle_132" data-name="Rectangle 132" class="cls-4" transform="translate(165 34)">
+        <rect class="cls-5" width="48" height="40"/>
+        <rect class="cls-1" x="0.9" y="0.9" width="46.2" height="38.2"/>
+      </g>
+    </g>
+  </g>
+</svg>
