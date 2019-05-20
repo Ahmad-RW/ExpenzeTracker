@@ -1,12 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
- const LandingPage = props =>{
+ const NotFound = props =>{
      
     return(
         <div>
-        <Link to="/home">enter home</Link>
-        <h1>WELCOME</h1>
+        <h1>404</h1>
         </div>
     )
     
@@ -14,4 +13,4 @@ import {Link} from 'react-router-dom'
 
 
 
-export default LandingPage
+export default NotFound

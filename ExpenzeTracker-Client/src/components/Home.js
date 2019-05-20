@@ -27,20 +27,18 @@ class Home extends Component {
         this.props.createCatagory(payload)
     }
     renderCatagories = () => {
-        console.log(this.props)
         return <h1>{this.props.userData.email}</h1>
     }
     listUserCatagory = () =>{
-           const catagoryList = this.props.userData.catagory.map(cat=>{
+           const catagoryList = this.props.userData.catagory ? (this.props.userData.catagory.map(cat=>{
             return <li>{cat.name}</li>
-        })
+        })):(<p>Loading....</p>)
 
         return catagoryList
        
     }
     render() {
 
-        console.log(this.props, "rendering home...")
         return (
             <React.Fragment>
                 <MainHeader />

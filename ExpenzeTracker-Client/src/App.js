@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import urls from './router/urls'
 import Home from './components/Home'
 import UserActions from './components/UserActions'
-import LandingPage from './components/LandingPage.js';
+import NotFound from './components/NotFound.js';
 import Navbar from './components/Navbar';
 import Catagory from './components/Catagory'
 import {getUserData} from './store/actions'
@@ -18,7 +18,6 @@ class App extends Component {
     this.props.getUserData(payload)
   }
   render() {
-    console.log("rendering...")
     return (
 
       <BrowserRouter>
@@ -27,7 +26,7 @@ class App extends Component {
           <Route exact path={urls.home} component={Home} />
           <Route exact path={urls.userActions} component={UserActions} />
           <Route exact path={urls.catagory} component={Catagory} />
-          <Route component={LandingPage} />
+          <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
     )

@@ -1,5 +1,5 @@
 const urls = {
-    home : "/home",
+    home : "/",
     userActions : '/home/userActions',
     catagory : '/home/catagory'
 }
