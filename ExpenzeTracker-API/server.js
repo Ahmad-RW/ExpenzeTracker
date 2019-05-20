@@ -69,6 +69,15 @@ app.post('/newCatagory', function (req, res) {
     })
 })
 
+app.post('/setUserIncome', function(req,res){
+    console.log(req.body.payload)
+    User.findByIdAndUpdate({_id:req.body.payload.userData._id}, {$set:{monthlyIncome:req.body.payload.value}}, {new : true}).then(record=>{
+        res.status(200).send(record)
+    }).catch(err=>{
+        res.status(500).send(err)
+    })
+})
+
 
 
 

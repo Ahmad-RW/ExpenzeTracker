@@ -4,7 +4,11 @@ const UserSchema = new Schema({
     name: String,
     password: String,
     email: String,
-    monthlyIncome : Number,
+    monthlyIncome : {
+        type : Number,
+        default : 0
+    },
+    
     catagory: [{
         name: String,
         balance: Number,

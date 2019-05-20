@@ -20,3 +20,13 @@ export const createCatagory = (payload) => {
         })
     }
 }
+
+export const setMonthlyIncome = payload =>{
+    return dispatch =>{
+        axios.post('http://localhost:5000/setUserIncome', {payload:payload}).then(res=>{
+            dispatch({type:"CREATE_CATAGORY", res})
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+}
