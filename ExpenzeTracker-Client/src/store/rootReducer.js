@@ -12,7 +12,7 @@ const rootReducer = (state = initState, action) =>{
         return state = {
             userData : action.res.data
         }
-        case "CREATE_CATAGORY":
+        case "UPDATE_STORE":
         //modify state in an immutable way then return it.
         console.log(state, action)
         return state={

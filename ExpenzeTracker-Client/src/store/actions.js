@@ -14,7 +14,7 @@ export const getUserData = payload =>{
 export const createCatagory = (payload) => {
     return (dispatch) => {
         axios.post('http://localhost:5000/newCatagory', { payload:payload }).then((res) => {
-            dispatch({ type: "CREATE_CATAGORY", res })
+            dispatch({ type: "UPDATE_STORE", res })
         }).catch((err) => {
             console.log(err)
         })
@@ -24,7 +24,7 @@ export const createCatagory = (payload) => {
 export const setMonthlyIncome = payload =>{
     return dispatch =>{
         axios.post('http://localhost:5000/setUserIncome', {payload:payload}).then(res=>{
-            dispatch({type:"CREATE_CATAGORY", res})
+            dispatch({type:"UPDATE_STORE", res})
         }).catch(err=>{
             console.log(err)
         })
