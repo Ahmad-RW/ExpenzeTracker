@@ -1,4 +1,36 @@
 .main {
-    width: 80%;
-    margin: 0 auto;
+    padding: 12px;
+    border-bottom: 0.5px solid #6e6e6e;
+    display: flex;
+    align-items: center;
+    color: #555;
+}
+
+.main-balance {
+    flex: 1;
+    font-size: 22pt;
+}
+
+.monthly-income {
+    flex: 1;
+    font-size: 12pt;
+}
+
+.add {
+    height: 45px;
+    width: 45px;
+    margin-right: 8px;
+    padding: 4px;
+    transition: 300ms;
+}
+
+.add:hover {
+   padding: 2px;
+}
+
+.set-income {
+    margin: 12px;
+    padding: 12px;
+    border: 0.5px solid #98F5C6;
+    border-radius: 8px;
 }

@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import '../style/navbar.css'
+import home from '../img/home.png'
+import categories from '../img/categories.png'
+import settings from '../img/settings.png'
 
 class Navbar extends Component {  
     render() {
@@ -8,9 +11,9 @@ class Navbar extends Component {
                 <nav class="navbar">
 
                     <div class="nav-left">
-                        <svg class="home"></svg>
-                        <svg class="categories"></svg>
-                        <svg class="settings"></svg>
+                        <img class="home"  src={home} alt="home"/>
+                        <img class="categories"  src={categories} alt="categories"/>
+                        <img class="settings"  src={settings} alt="settings"/>
                     </div>
 
                     <div class="nav-center">

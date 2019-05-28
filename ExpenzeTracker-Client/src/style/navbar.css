@@ -1,7 +1,8 @@
 .navbar {
   display: flex;
-  background: #98F5C6;
+  background: #555;
   padding: 8px;
+  color: #f0f8ff;
 }
 
 .nav-left {
@@ -18,47 +19,56 @@
 
 .home {
   margin-left: 12px;
-  height: 40px;
-  width: 40px;
-  background: url(../img/home.svg);
-  background-size: 40px 40px;
+  height: 30px;
+  width: 30px;
+  transition: 200ms;
+}
+
+.home:hover {
+  padding: 2px;
 }
 
 .categories {
   margin-left: 32px;
-  height: 40px;
-  width: 40px;
-  background: url(../img/categories.svg);
-  background-size: 40px 40px;
+  height: 30px;
+  width: 30px;
+  transition: 200ms;
+}
+
+.categories:hover {
+  padding: 2px;
 }
 
 .settings {
   margin-left: 32px;
-  height: 40px;
-  width: 40px;
-  background: url(../img/settings.svg);
-  background-size: 40px 40px;
+  height: 30px;
+  width: 30px;
+  transition: 200ms;
+}
+
+.settings:hover {
+  padding: 2px;
 }
 
 .avatar {
   margin-left: 10px;
-  margin-right: 10px;
-  height: 30px;
-  width: 30px;
+  margin-right: 12px;
+  height: 35px;
+  width: 35px;
   background: url(../img/avatar.svg);
-  background-size: 30px 30px;
+  background-size: cover;
   vertical-align: middle;
+  border: 0.5px solid white;
+  border-radius: 15px;
 }
 
 .profile {
   text-align: end;
-  list-style: none;
-  margin-top: 5.5px;
 }
 
-h1 {
-    text-align: center;
-    font-weight: 200;
-    font-size: 28pt;
+.nav-center h1 {
+  text-align: center;
+  font-weight: 200;
+  font-size: 22pt;
 }
 
