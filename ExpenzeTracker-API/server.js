@@ -19,7 +19,6 @@ app.get('/', function (req, res) {
 
 app.get('/getUserData', function (req, res) {
     User.findOne({email : req.query.email}).then((record) => {
-        console.log(record)
         res.status(200).send(record)
     }).catch((err) => {
         console.log(err)
@@ -56,11 +55,12 @@ app.get('/testingMongoDB', function (req, res) {
 
 
 app.post('/newCatagory', function (req, res) {
-    console.log(req.body)
+    console.log("Creating New Catagory...")
     const newCatagory = {//when he creates a new catagory we only have it's name and it's balance(which is defaulted to 0)
         name: req.body.payload.catagoryName,
         balance: 0,
-        actions: []
+        actions: [],
+        share : 0
     }
     User.findOneAndUpdate({ email: req.body.payload.userData.email }, { $push: { catagory: newCatagory } }, { new: true }).then((record) => {
         res.status(200).send(record)
@@ -70,7 +70,7 @@ app.post('/newCatagory', function (req, res) {
 })
 
 app.post('/setUserIncome', function(req,res){
-    console.log(req.body.payload)
+    console.log("Setting New User Income...")
     User.findByIdAndUpdate({_id:req.body.payload.userData._id}, {$set:{monthlyIncome:req.body.payload.value}}, {new : true}).then(record=>{
         res.status(200).send(record)
     }).catch(err=>{
@@ -79,7 +79,21 @@ app.post('/setUserIncome', function(req,res){
 })
 
 
-
+app.post('/addIncome', function(req, res){
+    console.log("Adding Income...")
+    const newCatagoryList = req.body.payload.userData.catagory
+    newCatagoryList.forEach(element=>{
+        element.balance = element.balance + (req.body.payload.income * (element.share/100))
+    })
+    User.findByIdAndUpdate({_id:req.body.payload.userData._id}, {$set:{"catagory" : newCatagoryList }}, {new:true}).then(record=>{
+        console.log(record)
+        res.status(200).send(record)
+    }).catch(err=>{
+        console.log(err)
+        res.status(500).send(err)
+    })
+    
+})
 
 
 app.listen('5000', function () {

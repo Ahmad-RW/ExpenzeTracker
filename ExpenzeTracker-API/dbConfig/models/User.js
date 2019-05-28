@@ -8,10 +8,10 @@ const UserSchema = new Schema({
         type : Number,
         default : 0
     },
-    
     catagory: [{
         name: String,
         balance: Number,
+        share : Number,
         actions: [{
             Type: {
                 type: String,
