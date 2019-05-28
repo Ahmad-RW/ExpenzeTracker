@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import '../style/mainheader.css'
 import { connect } from 'react-redux'
 import {setMonthlyIncome} from '../store/actions'
+import AddIncome from './AddIncome';
+
 class MainHeader extends Component {
     state ={
-        incomeValue : 0
+        monthlyIncome : 0
     }
     handleChange = e =>{
         this.setState({
@@ -15,7 +17,7 @@ class MainHeader extends Component {
         e.preventDefault()
         const payload = {
             userData : this.props.userData,
-            value : this.state.incomeValue
+            value : this.state.monthlyIncome
         }
         this.props.setMonthlyIncome(payload)
     }
@@ -27,11 +29,11 @@ class MainHeader extends Component {
                 </div>
                 <form onSubmit={this.handleSetMonthlyInput}>
                     <label>Set Monthly Income</label>
-                    <input onChange={this.handleChange} type="number" id="incomeValue" />
+                    <input onChange={this.handleChange} type="number" id="monthlyIncome" />
                     <button type="submit">Set</button>
                 </form>
                 <p>Current Income : {this.props.userData.monthlyIncome ? (this.props.userData.monthlyIncome) : (0)}</p>
-                <button>Add Income</button>
+               <AddIncome/>
             </React.Fragment>
         )
     }
