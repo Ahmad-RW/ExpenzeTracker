@@ -1,7 +1,15 @@
 
 
 const initState = {
-    userData : {}
+    userData : {
+        name : "",
+        monthlyIncome :{
+            payrollDate : "",
+            amount : ""
+        },
+        email : "",
+        catagory: []
+    }
 }
 
 const rootReducer = (state = initState, action) =>{
@@ -18,10 +26,6 @@ const rootReducer = (state = initState, action) =>{
         return state={
             userData : action.res.data
         }
-
-        
-
-
         default:
         return state
     }

@@ -12,43 +12,43 @@ app.use(function (req, res, next) {
 
 app.use(bodyParser.json());// post request body parser
 
+function updateUserCatagories(user) {
+    const newCatagoryList = user.catagory
+    newCatagoryList.forEach(element => {
+        element.balance = element.balance + (user.monthlyIncome.amount * (element.share / 100))
+    })
+    return newCatagoryList
+}
+function getDate() {
+    var day = new Date().getDate()
+    var month = new Date().getMonth() + 1;
+    return `${day}-${month}`
+}
+setInterval(() => {//this executes every 5 mins(300000 millieseconds).
+    console.log("checking dates...")
+    var date = getDate()
+    User.find({ "monthlyIncome.payrollDate": date }).cursor().eachAsync((record) => {
+        console.log(`Adding monthly Income to ${record.name}`)
+        const newCatagoryList = updateUserCatagories(record)
+        User.findByIdAndUpdate({ _id: record._id }, { $set: { "catagory": newCatagoryList } }, { new: true }).then(() => {
+            console.log("Monthly Income Added")
+        })
+    }).then((records) => {
+    }).catch(err => {
+        throw err
+    })
+}, 300000)
+
 
 app.get('/', function (req, res) {
     res.send('hi. In production this route will serve the react app. but for now it is a friendly reminder to stay hydrated :)')
 })
 
 app.get('/getUserData', function (req, res) {
-    User.findOne({email : req.query.email}).then((record) => {
+    User.findOne({ email: req.query.email }).then((record) => {
         res.status(200).send(record)
     }).catch((err) => {
         console.log(err)
-        res.status(500).send(err)
-    })
-})
-app.get('/testingMongoDB', function (req, res) {
-    //mongoose.connect('mongodb+srv://ahmed:ahmed123456789@cluster0-kb7x7.mongodb.net/test?retryWrites=true', { useNewUrlParser: true })
-    console.log('creating dummy conllection...')
-    const obj = {
-        name: 'dummy',
-        email: 'dummy@dummy.com',
-        catagory: [{
-            name: "gas",
-            balance: 83,
-            actions: [{
-                Type: 'TRANSFER',
-                timeStamp: new Date(),
-                amount: 80,
-                in: true,
-                to: "gas",
-                from: "emergency"
-            }]
-        }]
-
-    }
-
-    User.create([obj]).then(function (record) {
-        res.status(200).send(record)
-    }).catch(function (err) {
         res.status(500).send(err)
     })
 })
@@ -60,7 +60,7 @@ app.post('/newCatagory', function (req, res) {
         name: req.body.payload.catagoryName,
         balance: 0,
         actions: [],
-        share : 0
+        share: 0
     }
     User.findOneAndUpdate({ email: req.body.payload.userData.email }, { $push: { catagory: newCatagory } }, { new: true }).then((record) => {
         res.status(200).send(record)
@@ -69,33 +69,43 @@ app.post('/newCatagory', function (req, res) {
     })
 })
 
-app.post('/setUserIncome', function(req,res){
+app.post('/setUserIncome', function (req, res) {
     console.log("Setting New User Income...")
-    User.findByIdAndUpdate({_id:req.body.payload.userData._id}, {$set:{monthlyIncome:req.body.payload.value}}, {new : true}).then(record=>{
+    const monthlyIncome = {
+        amount: req.body.payload.amount,
+        payrollDate: req.body.payload.payrollDate
+    }
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { monthlyIncome: monthlyIncome } }, { new: true }).then(record => {
         res.status(200).send(record)
-    }).catch(err=>{
+    }).catch(err => {
         res.status(500).send(err)
     })
 })
 
 
-app.post('/addIncome', function(req, res){
+app.post('/addIncome', function (req, res) {
     console.log("Adding Income...")
     const newCatagoryList = req.body.payload.userData.catagory
-    newCatagoryList.forEach(element=>{
-        element.balance = element.balance + (req.body.payload.income * (element.share/100))
+    newCatagoryList.forEach(element => {
+        element.balance = element.balance + (req.body.payload.income * (element.share / 100))
     })
-    User.findByIdAndUpdate({_id:req.body.payload.userData._id}, {$set:{"catagory" : newCatagoryList }}, {new:true}).then(record=>{
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "catagory": newCatagoryList } }, { new: true }).then(record => {
         console.log(record)
         res.status(200).send(record)
-    }).catch(err=>{
+    }).catch(err => {
         console.log(err)
         res.status(500).send(err)
     })
-    
+
 })
 
 
 app.listen('5000', function () {
     console.log('listening on port 5000')
 })
+
+app.get('/testingMongoDB', function (req, res) {
+
+})
+
+

@@ -33,7 +33,6 @@ class Home extends Component {
            const catagoryList = this.props.userData.catagory ? (this.props.userData.catagory.map(cat=>{
             return <li><b>{cat.name}</b>. precentage : {cat.share}% balance :{cat.balance}</li>
         })):(<p>Loading....</p>)
-
         return catagoryList
        
     }

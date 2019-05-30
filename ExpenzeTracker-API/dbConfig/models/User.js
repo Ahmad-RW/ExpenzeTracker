@@ -5,8 +5,8 @@ const UserSchema = new Schema({
     password: String,
     email: String,
     monthlyIncome : {
-        type : Number,
-        default : 0
+        amount : {type:Number, default:0},
+        payrollDate : String,
     },
     catagory: [{
         name: String,
