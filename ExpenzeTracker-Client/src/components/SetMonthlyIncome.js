@@ -15,7 +15,7 @@ class SetMonthlyIncome extends Component {
     }
     handleSetMonthlyInput = e => {
         e.preventDefault()
-        const date = `${this.state.payrollDay}-${this.state.payrollMonth}`
+        const date = `${this.state.payrollDay}`
         console.log(date)
         const payload = {
             userData: this.props.userData,
@@ -32,22 +32,6 @@ class SetMonthlyIncome extends Component {
                 <form onSubmit={this.handleSetMonthlyInput}>
                     <label>Set Monthly Income</label>
                     <input onChange={this.handleChange} type="number" id="amount" />
-                    <span>
-                        <select id="payrollMonth" name="month" onChange={this.handleChange}>
-                            <option value="1">January</option>
-                            <option value="2">February</option>
-                            <option value="3">March</option>
-                            <option value="4">April</option>
-                            <option value="5">May</option>
-                            <option value="6">June</option>
-                            <option value="7">July</option>
-                            <option value="8">August</option>
-                            <option value="9">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                    </span>
                     <span>
                         <select id="payrollDay" name="day" onChange={this.handleChange}>
                             <option value="1">1</option>

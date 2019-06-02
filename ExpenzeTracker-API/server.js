@@ -21,8 +21,7 @@ function updateUserCatagories(user) {
 }
 function getDate() {
     var day = new Date().getDate()
-    var month = new Date().getMonth() + 1;
-    return `${day}-${month}`
+    return `${day}`
 }
 setInterval(() => {//this executes every 5 mins(300000 millieseconds).
     console.log("checking dates...")
@@ -30,14 +29,14 @@ setInterval(() => {//this executes every 5 mins(300000 millieseconds).
     User.find({ "monthlyIncome.payrollDate": date }).cursor().eachAsync((record) => {
         console.log(`Adding monthly Income to ${record.name}`)
         const newCatagoryList = updateUserCatagories(record)
-        User.findByIdAndUpdate({ _id: record._id }, { $set: { "catagory": newCatagoryList } }, { new: true }).then(() => {
+        User.findByIdAndUpdate({ _id: record._id }, { $set: { "catagory": newCatagoryList }, $inc:{"balance" : record.monthlyIncome.amount }}, { new: true }).then(() => {
             console.log("Monthly Income Added")
         })
     }).then((records) => {
     }).catch(err => {
         throw err
     })
-}, 300000)
+}, 20000)
 
 
 app.get('/', function (req, res) {
@@ -89,7 +88,7 @@ app.post('/addIncome', function (req, res) {
     newCatagoryList.forEach(element => {
         element.balance = element.balance + (req.body.payload.income * (element.share / 100))
     })
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "catagory": newCatagoryList } }, { new: true }).then(record => {
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "catagory": newCatagoryList }, $inc:{"balance" : req.body.payload.income} }, { new: true }).then(record => {
         console.log(record)
         res.status(200).send(record)
     }).catch(err => {

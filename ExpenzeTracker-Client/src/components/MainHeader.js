@@ -14,7 +14,7 @@ class MainHeader extends Component {
                 <div class="main">
                     <div class="main-balance">
                         <span>Balance: </span>
-                        <span class="">1500</span>
+                        <span class="">{this.props.userData.balance}</span>
                     </div>
                     <div class="monthly-income">
                         <span>Monthly Income: </span>
