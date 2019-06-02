@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+
 
 class CatagoryHeader extends Component {
+    
 
 
-    listUserCatagory = () =>{
-        // const catagoryList = this.props.userData.catagory.map(cat=>{
-        //     return <h1>{cat.name}</h1>
-        // })
-        return (<h1>{this.props.userData.catagory.length}</h1>)
+    listUserCatagory = () => {
+        const catagoryList = this.props.userData.catagory ? (this.props.userData.catagory.map(cat => {
+            return <li><b>{cat.name}</b>. precentage : {cat.share}% balance :{cat.balance}</li>
+        })) : (<p>Loading....</p>)
+        return catagoryList
     }
+
+
     render() {
-        console.log(this.props.userData)
         return (
-            <div>
+            <ul>
                 {this.listUserCatagory()}
-            </div>
+            </ul>
         )
     }
 }
@@ -26,4 +29,9 @@ const mapStateToProps = state => {
         userData: state.userData
     }
 }
-export default connect(mapStateToProps)(CatagoryHeader)
+const mapDispatchToProps = dispatch => {
+    return {
+       
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CatagoryHeader)
