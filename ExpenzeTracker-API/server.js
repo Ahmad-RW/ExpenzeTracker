@@ -85,8 +85,8 @@ app.post('/setUserIncome', function (req, res) {
 app.post('/addIncome', function (req, res) {
     console.log("Adding Income...")
     const newCatagoryList = req.body.payload.userData.catagory
-    newCatagoryList.forEach(element => {
-        element.balance = element.balance + (req.body.payload.income * (element.share / 100))
+    newCatagoryList.forEach(cat => {
+        cat.balance = cat.balance + (req.body.payload.income * (cat.share / 100))
     })
     User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "catagory": newCatagoryList }, $inc:{"balance" : req.body.payload.income} }, { new: true }).then(record => {
         console.log(record)
@@ -98,7 +98,22 @@ app.post('/addIncome', function (req, res) {
 
 })
 
-
+app.post('/editCatagories', function(req, res){
+    console.log("editing catagories...")
+    const newCatagoryList = req.body.payload.userData.catagory
+    newCatagoryList.forEach(cat => {// I use javascript to update the catagores instead of mongoDB queries, it is easier since mongoDB accepts JS.
+        cat.share = req.body.payload.catagories[cat._id]
+        if(typeof cat.share ==="undefined"){//this  is for when he doesn't enter anything in the front end, it is sent as undefined rather than 0, so I set it 0 here so I dont store undefined in the DB
+            cat.share =0
+        }
+    })
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "catagory": newCatagoryList }}, { new: true }).then(record => {
+        res.status(200).send(record)
+    }).catch(err => {
+        console.log(err)
+        res.status(500).send(err)
+    })
+})
 app.listen('5000', function () {
     console.log('listening on port 5000')
 })
