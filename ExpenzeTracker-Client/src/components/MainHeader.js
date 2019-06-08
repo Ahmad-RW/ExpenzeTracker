@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { setMonthlyIncome } from '../store/actions'
 import AddIncome from './AddIncome';
 import SetMonthlyIncome from './SetMonthlyIncome';
+import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 
 class MainHeader extends Component {
 
@@ -20,11 +22,17 @@ class MainHeader extends Component {
                         <span>Monthly Income: </span>
                         <span>{this.props.userData.monthlyIncome.amount ? (this.props.userData.monthlyIncome.amount) : ("Loading...")}</span>
                     </div>
-                    <img class="add" src={add} alt="add" />
-                </div>
-                <div class="set-income">
-                    <SetMonthlyIncome />
-                    <AddIncome />
+                    <div>
+                    <Modal trigger={<img class="add" src={add} alt="add" />} centered={false}>
+                        <Modal.Header>Add</Modal.Header>
+                        <Modal.Content>
+                            <div class="set-income">
+                                <SetMonthlyIncome />
+                                <AddIncome />
+                            </div>
+                        </Modal.Content>
+                    </Modal>
+                    </div>
                 </div>
             </React.Fragment>
         )
