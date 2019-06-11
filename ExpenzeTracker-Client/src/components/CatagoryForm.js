@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createCatagory, editCatagories } from '../store/actions'
-class CatagoryForm extends Component {
+class CatagoryForm extends Component { //this component lookin extra thicc
 
     state = {
         catagoryName: "",
         editingMode: false,
         total: 100,
-        renderSuccessMessage : false
+        renderSuccessMessage: false
     }
 
 
@@ -48,17 +48,43 @@ class CatagoryForm extends Component {
     }
 
 
+    handleTotalOutOfBounds = number => {
+        if (number < 0) {
+            return 0
+        }
+        if (number > 100) {
+            return 100
+        }
+        return number
+    }
+
+
+    checkRemainingShare = e => {
+        if (this.state.total === 0) {
+            e.target.value = 0;
+        }
+    }
+
+    checkIfInputIsNotNumber = e => {
+        if (isNaN(e.target.value)) {
+            e.target.value = 0
+        }
+    }
 
     //some documentation as clear as I can:
     //I implemented this solution, but I think I have another one i'll try it might be simpler but i'll finish this use case end-to-end first then refactor
     //this function is called whenever a change in one of the input fields occurs. 
     handelShareChange = e => {//this algorithm is one of my children. 
+        this.checkRemainingShare(e)//if he enters a value but the total is 0;
+        this.checkIfInputIsNotNumber(e)//if he enters a characters;
         const newShare = e.target.value//this line takes the new value
         const oldShare = this.state[e.target.id]//this line takes the old value at first it might be undefined becasue the first time he inputs values there is no old share.
         if (typeof oldShare !== "undefined" && oldShare > newShare) {//this code block checks if he for example enters at first 15 then enters 10. the lost 5 needs to go back to total share. 
             const difference = oldShare - newShare
+            let newTotal = this.state.total + difference
+            newTotal = this.handleTotalOutOfBounds(newTotal)
             this.setState({
-                total: this.state.total + difference,//the field total is the where we store the total un-assigned shares
+                total: newTotal,//the field total is the where we store the total un-assigned shares
                 [e.target.id]: newShare,//we also keep up, in the state obj, each catagory and the share it currently has (by currently I mean the value last entered in the input field, not the value in the db)
             })
         }
@@ -67,8 +93,10 @@ class CatagoryForm extends Component {
             if (typeof oldShare === "undefined") {//this covers the case for the first number entered in the whole process
                 difference = newShare - 0
             }
+            let newTotal = this.state.total - difference
+            newTotal = this.handleTotalOutOfBounds(newTotal)
             this.setState({
-                total: this.state.total - difference,//subtract from the total
+                total: newTotal,//subtract from the total
                 [e.target.id]: newShare//update the catagory current share
             })
         }
@@ -76,9 +104,9 @@ class CatagoryForm extends Component {
 
 
 
-    renderSuccessMessage = () =>{
-        if(this.state.renderSuccessMessage){
-            return(
+    renderSuccessMessage = () => {
+        if (this.state.renderSuccessMessage) {
+            return (
                 <h4>Changes Saved</h4>
             )
         }
@@ -93,8 +121,7 @@ class CatagoryForm extends Component {
                 {this.props.userData.catagory.map(cat => {//iteratre over catagories
                     return (
                         <div>
-                            <label><b>{cat.name}</b></label>
-                            <input onChange={this.handelShareChange} type="number" max="100" min="0" className="inputField" id={cat._id} />
+                            <b>{cat.name}</b>. precentage : <input onChange={this.handelShareChange} className="inputField" id={cat._id} defaultValue="0" size="1"/>% balance :{cat.balance}
                         </div>
                     )
 
@@ -122,7 +149,7 @@ class CatagoryForm extends Component {
 
 
 
-    
+
     render() {
         return (
             <React.Fragment>

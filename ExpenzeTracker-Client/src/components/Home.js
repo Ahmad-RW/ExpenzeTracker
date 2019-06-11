@@ -12,8 +12,6 @@ class Home extends Component {
             <React.Fragment>
                 <MainHeader />
                 <h1>Home Page</h1>
-                <CatagoryForm />
-                <hr />
                 <CatagoryList />
             </React.Fragment>
         )
