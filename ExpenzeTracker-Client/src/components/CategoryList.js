@@ -1,35 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Image, Segment, Dimmer, Loader } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
+import '../style/categorylist.css'
+import { Segment } from 'semantic-ui-react'
+
 
 class CategoryList extends Component {
 
 
 
     listUserCategory = () => {
-        const categoryList = this.props.userData.category.length ? (this.props.userData.category.map(cat => {
-            return <li><b>{cat.name}</b>. precentage : {cat.share}% balance :{cat.balance}</li>
-        })) : (
-                <Segment>
-                    <Dimmer active>
-                        <Loader size='massive'>Loading</Loader>
-                    </Dimmer>
-
-                    <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-                    <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-                    <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-                </Segment>
-            )
+        const categoryList = this.props.userData.category ? (this.props.userData.category.map(cat => {
+            return <Segment class="cat"><b>{cat.name}</b> <div>{cat.share}%</div> {cat.balance}</Segment>
+        })) : (<p>Loading....</p>)
         return categoryList
     }
 
 
     render() {
         return (
-            <ul>
+            <div class="cat-container">
                 {this.listUserCategory()}
-            </ul>
+            </div>
         )
     }
 }

@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addIncome } from '../store/actions';
+import { addIncome } from '../store/actions'
+import { Button, Message } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
+import '../style/forms.css'
 
 class AddIncome extends Component {
     state = {
@@ -33,14 +36,14 @@ class AddIncome extends Component {
     }
     renderSuccessMessage = () =>{
         if(this.state.renderSuccessMessage){
-            return(<h4>Income Added! :D</h4>)
+            return (<Message success header='Income Added' content="Income has been added to your balance." />)
         }
         
     }
     renderWarningMessage = () => {
         if (this.state.renderWarningMessage) {
             return (
-                <h3>error</h3>
+                <Message error header='Error' content="Please enter numbers only." />
             )
         }
     }
@@ -48,7 +51,7 @@ class AddIncome extends Component {
         return (
             <React.Fragment>
                 <input type="text" id="incomeValue" onChange={this.handleChange} />
-                <a href="javascript:void(0)" onClick={this.handleAddIncome}>Add Income</a>
+                <Button onClick={this.handleAddIncome}>Add</Button>
                 {this.renderWarningMessage()}
                 {this.renderSuccessMessage()}
             </React.Fragment>

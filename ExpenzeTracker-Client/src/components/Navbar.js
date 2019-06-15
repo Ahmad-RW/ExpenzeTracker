@@ -17,7 +17,7 @@ class Navbar extends Component {
                     <div class="nav-left">
                         <img class="home" src={home} alt="home" />
                         <Modal trigger={<img class="categories" src={categories} alt="categories" />} centered={false}>
-                                <Modal.Header>Add</Modal.Header>
+                                <Modal.Header>Categories</Modal.Header>
                                 <Modal.Content>
                                     <div class="set-income">
                                       <CategoryForm />

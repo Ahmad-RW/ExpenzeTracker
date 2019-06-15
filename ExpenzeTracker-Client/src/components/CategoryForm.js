@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createCategory, editCategories } from '../store/actions'
-class CategoryForm extends Component { //this component lookin extra thicc
+import { Input, Form, Button, Icon, Progress } from 'semantic-ui-react'
+import '../style/forms.css'
+class CategoryForm extends Component {
 
     state = {
         categoryName: "",
@@ -85,7 +87,7 @@ class CategoryForm extends Component { //this component lookin extra thicc
             newTotal = this.handleTotalOutOfBounds(newTotal)
             this.setState({
                 total: newTotal,//the field total is the where we store the total un-assigned shares
-                [e.target.id]: newShare,//we also keep up, in the state obj, each catagory and the share it currently has (by currently I mean the value last entered in the input field, not the value in the db)
+                [e.target.id]: newShare,//we also keep up, in the state obj, each category and the share it currently has (by currently I mean the value last entered in the input field, not the value in the db)
             })
         }
         else {//this case is the default case, it fires when the user inputs a number. the first case is when he reduces the number
@@ -97,7 +99,7 @@ class CategoryForm extends Component { //this component lookin extra thicc
             newTotal = this.handleTotalOutOfBounds(newTotal)
             this.setState({
                 total: newTotal,//subtract from the total
-                [e.target.id]: newShare//update the catagory current share
+                [e.target.id]: newShare//update the category current share
             })
         }
     }
@@ -116,27 +118,28 @@ class CategoryForm extends Component { //this component lookin extra thicc
 
     listCategories = () => {
         if (this.state.editingMode) {
-            return <form id="editForm" onSubmit={this.saveChanges} >
-                {this.state.total}
-                {this.props.userData.category.map(cat => {//iteratre over catagories
+            return <Form inline id="editForm" onSubmit={this.saveChanges} >
+                <Progress percent={this.state.total} progress />
+                {this.props.userData.category.map(cat => {//iteratre over categories
                     return (
                         <div>
-                            <b>{cat.name}</b>. precentage : <input onChange={this.handelShareChange} className="inputField" id={cat._id} defaultValue="0" size="1"/>% balance :{cat.balance}
+                            <label><b>{cat.name}</b></label>
+                            <Input onChange={this.handelShareChange} type="number" max="100" min="0" className="inputField" id={cat._id} />
                         </div>
                     )
 
                 })}
-                <button href="javascript:void(0)" type="submit">Save</button>
-                <a href="javascript:void(0)" onClick={this.cancelEditMode}>Cancel</a>
+                <Button type="submit">Save</Button>
+                <button class="ui inverted red button" onClick={this.cancelEditMode}>Cancel</button>
 
-            </form>
+            </Form>
         }
         else {
             return (
                 <div>
                     {this.renderSuccessMessage()}
-                    <ul>
-                        {this.props.userData.category.map(cat => {//iterate over catagories
+                    <ul class="">
+                        {this.props.userData.category.map(cat => {//iterate over categories
                             return (
                                 <li><b>{cat.name}</b>. precentage : {cat.share}% balance :{cat.balance}</li>
                             )
@@ -154,9 +157,9 @@ class CategoryForm extends Component { //this component lookin extra thicc
         return (
             <React.Fragment>
                 <label for="category-name">Create new category</label>
-                <input type="text" placeholder="category name" id="categoryName" onChange={this.handleNameChange} />
-                <button onClick={this.createCategory}>Create</button>
-                <a href="javascript:void(0)" onClick={() => { this.setState({ editingMode: true }) }}>Edit Shares</a>
+                <Input type="text" placeholder="category name" id="categoryName" onChange={this.handleNameChange} />
+                <Button icon onClick={this.createCategory}><Icon name="plus"></Icon></Button>
+                <Button icon onClick={() => { this.setState({ editingMode: true }) }}><Icon name="edit"></Icon></Button>
                 {this.listCategories()}
             </React.Fragment>
         )
