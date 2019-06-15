@@ -9,7 +9,7 @@ const UserSchema = new Schema({
         payrollDate : String,
     },
     balance : Number,
-    catagory: [{
+    category: [{
         name: String,
         balance: Number,
         share : Number,

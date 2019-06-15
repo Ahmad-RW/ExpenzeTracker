@@ -5,7 +5,7 @@ import categories from '../img/categories.png'
 import settings from '../img/settings.png'
 import { Modal } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
-import CatagoryForm from './CatagoryForm';
+import CategoryForm from './CategoryForm';
 
 
 class Navbar extends Component {
@@ -20,7 +20,7 @@ class Navbar extends Component {
                                 <Modal.Header>Add</Modal.Header>
                                 <Modal.Content>
                                     <div class="set-income">
-                                      <CatagoryForm />
+                                      <CategoryForm />
                                     </div>
                                 </Modal.Content>
                         </Modal>

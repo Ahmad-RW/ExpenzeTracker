@@ -6,7 +6,7 @@ import Home from './components/Home'
 import UserActions from './components/UserActions'
 import NotFound from './components/NotFound.js';
 import Navbar from './components/Navbar';
-import Catagory from './components/Catagory'
+import Category from './components/Category'
 import {getUserData} from './store/actions'
 import {connect} from 'react-redux'
 class App extends Component {
@@ -25,7 +25,7 @@ class App extends Component {
         <Switch>
           <Route exact path={urls.home} component={Home} />
           <Route exact path={urls.userActions} component={UserActions} />
-          <Route exact path={urls.catagory} component={Catagory} />
+          <Route exact path={urls.category} component={Category} />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>

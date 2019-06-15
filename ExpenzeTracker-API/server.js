@@ -12,12 +12,12 @@ app.use(function (req, res, next) {
 
 app.use(bodyParser.json());// post request body parser
 
-function updateUserCatagories(user) {
-    const newCatagoryList = user.catagory
-    newCatagoryList.forEach(element => {
+function updateUserCategories(user) {
+    const newCategoryList = user.category
+    newCategoryList.forEach(element => {
         element.balance = element.balance + (user.monthlyIncome.amount * (element.share / 100))
     })
-    return newCatagoryList
+    return newCategoryList
 }
 function getDate() {
     var day = new Date().getDate()
@@ -28,8 +28,8 @@ setInterval(() => {//this executes every 5 mins(300000 millieseconds).
     var date = getDate()
     User.find({ "monthlyIncome.payrollDate": date }).cursor().eachAsync((record) => {
         console.log(`Adding monthly Income to ${record.name}`)
-        const newCatagoryList = updateUserCatagories(record)
-        User.findByIdAndUpdate({ _id: record._id }, { $set: { "catagory": newCatagoryList }, $inc:{"balance" : record.monthlyIncome.amount }}, { new: true }).then(() => {
+        const newCategoryList = updateUserCategories(record)
+        User.findByIdAndUpdate({ _id: record._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : record.monthlyIncome.amount }}, { new: true }).then(() => {
             console.log("Monthly Income Added")
         })
     }).then((records) => {
@@ -53,15 +53,15 @@ app.get('/getUserData', function (req, res) {
 })
 
 
-app.post('/newCatagory', function (req, res) {
-    console.log("Creating New Catagory...")
-    const newCatagory = {//when he creates a new catagory we only have it's name and it's balance(which is defaulted to 0)
-        name: req.body.payload.catagoryName,
+app.post('/newCategory', function (req, res) {
+    console.log("Creating New Category...")
+    const newCategory = {//when he creates a new category we only have it's name and it's balance(which is defaulted to 0)
+        name: req.body.payload.categoryName,
         balance: 0,
         actions: [],
         share: 0
     }
-    User.findOneAndUpdate({ email: req.body.payload.userData.email }, { $push: { catagory: newCatagory } }, { new: true }).then((record) => {
+    User.findOneAndUpdate({ email: req.body.payload.userData.email }, { $push: { category: newCategory } }, { new: true }).then((record) => {
         res.status(200).send(record)
     }).catch((err) => {
         res.status(500).send(err)
@@ -84,11 +84,11 @@ app.post('/setUserIncome', function (req, res) {
 
 app.post('/addIncome', function (req, res) {
     console.log("Adding Income...")
-    const newCatagoryList = req.body.payload.userData.catagory
-    newCatagoryList.forEach(cat => {
+    const newCategoryList = req.body.payload.userData.category
+    newCategoryList.forEach(cat => {
         cat.balance = cat.balance + (req.body.payload.income * (cat.share / 100))
     })
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "catagory": newCatagoryList }, $inc:{"balance" : req.body.payload.income} }, { new: true }).then(record => {
+    User.findByIdAndUpdate({ _id: req.body.payload.userDate._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : req.body.payload.income} }, { new: true }).then(record => {
         console.log(record)
         res.status(200).send(record)
     }).catch(err => {
@@ -98,16 +98,16 @@ app.post('/addIncome', function (req, res) {
 
 })
 
-app.post('/editCatagories', function(req, res){
-    console.log("editing catagories...")
-    const newCatagoryList = req.body.payload.userData.catagory
-    newCatagoryList.forEach(cat => {// I use javascript to update the catagores instead of mongoDB queries, it is easier since mongoDB accepts JS.
-        cat.share = req.body.payload.catagories[cat._id]
+app.post('/editCategories', function(req, res){
+    console.log("editing categories...")
+    const newCategoryList = req.body.payload.userData.category
+    newCategoryList.forEach(cat => {// I use javascript to update the categores instead of mongoDB queries, it is easier since mongoDB accepts JS.
+        cat.share = req.body.payload.categories[cat._id]
         if(typeof cat.share ==="undefined"){//this  is for when he doesn't enter anything in the front end, it is sent as undefined rather than 0, so I set it 0 here so I dont store undefined in the DB
             cat.share =0
         }
     })
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "catagory": newCatagoryList }}, { new: true }).then(record => {
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }}, { new: true }).then(record => {
         res.status(200).send(record)
     }).catch(err => {
         console.log(err)

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MainHeader from './MainHeader'
-import CatagoryList from './CatagoryList'
-import CatagoryForm from './CatagoryForm';
+import CategoryList from './CategoryList'
+import CategoryForm from './CategoryForm';
 
 class Home extends Component {
 
@@ -12,7 +12,7 @@ class Home extends Component {
             <React.Fragment>
                 <MainHeader />
                 <h1>Home Page</h1>
-                <CatagoryList />
+                <CategoryList />
             </React.Fragment>
         )
     }

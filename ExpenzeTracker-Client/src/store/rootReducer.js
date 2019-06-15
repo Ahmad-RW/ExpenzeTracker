@@ -8,7 +8,7 @@ const initState = {
             amount : ""
         },
         email : "",
-        catagory: []
+        category: []
     }
 }
 

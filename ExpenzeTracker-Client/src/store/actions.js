@@ -11,9 +11,9 @@ export const getUserData = payload => {
         })
     }
 }
-export const createCatagory = (payload) => {
+export const createCategory = (payload) => {
     return (dispatch) => {
-        axios.post('http://localhost:5000/newCatagory', { payload: payload }).then((res) => {
+        axios.post('http://localhost:5000/newCategory', { payload: payload }).then((res) => {
             dispatch({ type: "UPDATE_STORE", res })
         }).catch((err) => {
             console.log(err)
@@ -42,9 +42,9 @@ export const addIncome = (payload, component) => {
     }
 }
 
-export const editCatagories = (payload, component) =>{
+export const editCategories = (payload, component) =>{
     return dispatch =>{
-        axios.post('http://localhost:5000/editCatagories', {payload}).then(res=>{
+        axios.post('http://localhost:5000/editCategories', {payload}).then(res=>{
             dispatch({type:"UPDATE_STORE", res})
             component.setState({
                 editingMode : false,

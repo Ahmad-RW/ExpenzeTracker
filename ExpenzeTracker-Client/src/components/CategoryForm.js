@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createCatagory, editCatagories } from '../store/actions'
-class CatagoryForm extends Component { //this component lookin extra thicc
+import { createCategory, editCategories } from '../store/actions'
+class CategoryForm extends Component { //this component lookin extra thicc
 
     state = {
-        catagoryName: "",
+        categoryName: "",
         editingMode: false,
         total: 100,
         renderSuccessMessage: false
@@ -19,12 +19,12 @@ class CatagoryForm extends Component { //this component lookin extra thicc
     }
 
 
-    createCatagory = e => {
+    createCategory = e => {
         const payload = {
-            catagoryName: this.state.catagoryName,
+            categoryName: this.state.categoryName,
             userData: this.props.userData
         }
-        this.props.createCatagory(payload)
+        this.props.createCategory(payload)
     }
 
 
@@ -39,12 +39,12 @@ class CatagoryForm extends Component { //this component lookin extra thicc
 
     saveChanges = e => {
         e.preventDefault()
-        const { catagoryName, editingMode, total, renderSuccessMessage, ...catagories } = this.state//destructuring
+        const { categoryName: categoryName, editingMode, total, renderSuccessMessage, ...categories } = this.state//destructuring
         const payload = {
-            catagories,
+            categories,
             userData: this.props.userData
         }
-        this.props.editCatagories(payload, this)
+        this.props.editCategories(payload, this)
     }
 
 
@@ -114,11 +114,11 @@ class CatagoryForm extends Component { //this component lookin extra thicc
 
 
 
-    listCatagories = () => {
+    listCategories = () => {
         if (this.state.editingMode) {
             return <form id="editForm" onSubmit={this.saveChanges} >
                 {this.state.total}
-                {this.props.userData.catagory.map(cat => {//iteratre over catagories
+                {this.props.userData.category.map(cat => {//iteratre over catagories
                     return (
                         <div>
                             <b>{cat.name}</b>. precentage : <input onChange={this.handelShareChange} className="inputField" id={cat._id} defaultValue="0" size="1"/>% balance :{cat.balance}
@@ -136,7 +136,7 @@ class CatagoryForm extends Component { //this component lookin extra thicc
                 <div>
                     {this.renderSuccessMessage()}
                     <ul>
-                        {this.props.userData.catagory.map(cat => {//iterate over catagories
+                        {this.props.userData.category.map(cat => {//iterate over catagories
                             return (
                                 <li><b>{cat.name}</b>. precentage : {cat.share}% balance :{cat.balance}</li>
                             )
@@ -153,11 +153,11 @@ class CatagoryForm extends Component { //this component lookin extra thicc
     render() {
         return (
             <React.Fragment>
-                <label for="catagory-name">Create new catagory</label>
-                <input type="text" placeholder="catagory name" id="catagoryName" onChange={this.handleNameChange} />
-                <button onClick={this.createCatagory}>Create</button>
+                <label for="category-name">Create new category</label>
+                <input type="text" placeholder="category name" id="categoryName" onChange={this.handleNameChange} />
+                <button onClick={this.createCategory}>Create</button>
                 <a href="javascript:void(0)" onClick={() => { this.setState({ editingMode: true }) }}>Edit Shares</a>
-                {this.listCatagories()}
+                {this.listCategories()}
             </React.Fragment>
         )
     }
@@ -170,8 +170,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        createCatagory: (payload) => { dispatch(createCatagory(payload)) },
-        editCatagories: (payload, component) => { dispatch(editCatagories(payload, component)) }
+        createCategory: (payload) => { dispatch(createCategory(payload)) },
+        editCategories: (payload, component) => { dispatch(editCategories(payload, component)) }
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(CatagoryForm)
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryForm)

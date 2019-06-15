@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { Image, Segment, Dimmer, Loader } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
-class CatagoryHeader extends Component {
+class CategoryList extends Component {
 
 
 
-    listUserCatagory = () => {
-        const catagoryList = this.props.userData.catagory.length ? (this.props.userData.catagory.map(cat => {
+    listUserCategory = () => {
+        const categoryList = this.props.userData.category.length ? (this.props.userData.category.map(cat => {
             return <li><b>{cat.name}</b>. precentage : {cat.share}% balance :{cat.balance}</li>
         })) : (
                 <Segment>
@@ -21,14 +21,14 @@ class CatagoryHeader extends Component {
                     <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
                 </Segment>
             )
-        return catagoryList
+        return categoryList
     }
 
 
     render() {
         return (
             <ul>
-                {this.listUserCatagory()}
+                {this.listUserCategory()}
             </ul>
         )
     }
@@ -45,4 +45,4 @@ const mapDispatchToProps = dispatch => {
 
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(CatagoryHeader)
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryList)
