@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import '../style/categorylist.css'
+import { Segment } from 'semantic-ui-react'
 
 
 class CatagoryHeader extends Component {
@@ -8,7 +10,7 @@ class CatagoryHeader extends Component {
 
     listUserCatagory = () => {
         const catagoryList = this.props.userData.catagory ? (this.props.userData.catagory.map(cat => {
-            return <li><b>{cat.name}</b>. precentage : {cat.share}% balance :{cat.balance}</li>
+            return <Segment class="cat"><b>{cat.name}</b> <div>{cat.share}%</div> {cat.balance}</Segment>
         })) : (<p>Loading....</p>)
         return catagoryList
     }
@@ -16,9 +18,9 @@ class CatagoryHeader extends Component {
 
     render() {
         return (
-            <ul>
+            <div class="cat-container">
                 {this.listUserCatagory()}
-            </ul>
+            </div>
         )
     }
 }

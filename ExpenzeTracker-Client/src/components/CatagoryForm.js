@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createCatagory, editCatagories } from '../store/actions'
+import { Input, Form, Button, Icon, Progress } from 'semantic-ui-react'
+import '../style/forms.css'
 class CatagoryForm extends Component {
 
     state = {
@@ -88,27 +90,27 @@ class CatagoryForm extends Component {
 
     listCatagories = () => {
         if (this.state.editingMode) {
-            return <form id="editForm" onSubmit={this.saveChanges} >
-                {this.state.total}
+            return <Form inline id="editForm" onSubmit={this.saveChanges} >
+                <Progress percent={this.state.total} progress />
                 {this.props.userData.catagory.map(cat => {//iteratre over catagories
                     return (
                         <div>
                             <label><b>{cat.name}</b></label>
-                            <input onChange={this.handelShareChange} type="number" max="100" min="0" className="inputField" id={cat._id} />
+                            <Input onChange={this.handelShareChange} type="number" max="100" min="0" className="inputField" id={cat._id} />
                         </div>
                     )
 
                 })}
-                <button href="javascript:void(0)" type="submit">Save</button>
-                <a href="javascript:void(0)" onClick={this.cancelEditMode}>Cancel</a>
+                <Button type="submit">Save</Button>
+                <button class="ui inverted red button" onClick={this.cancelEditMode}>Cancel</button>
 
-            </form>
+            </Form>
         }
         else {
             return (
                 <div>
                     {this.renderSuccessMessage()}
-                    <ul>
+                    <ul class="">
                         {this.props.userData.catagory.map(cat => {//iterate over catagories
                             return (
                                 <li><b>{cat.name}</b>. precentage : {cat.share}% balance :{cat.balance}</li>
@@ -127,9 +129,9 @@ class CatagoryForm extends Component {
         return (
             <React.Fragment>
                 <label for="catagory-name">Create new catagory</label>
-                <input type="text" placeholder="catagory name" id="catagoryName" onChange={this.handleNameChange} />
-                <button onClick={this.createCatagory}>Create</button>
-                <a href="javascript:void(0)" onClick={() => { this.setState({ editingMode: true }) }}>Edit Shares</a>
+                <Input type="text" placeholder="catagory name" id="catagoryName" onChange={this.handleNameChange} />
+                <Button icon onClick={this.createCatagory}><Icon name="plus"></Icon></Button>
+                <Button icon onClick={() => { this.setState({ editingMode: true }) }}><Icon name="edit"></Icon></Button>
                 {this.listCatagories()}
             </React.Fragment>
         )

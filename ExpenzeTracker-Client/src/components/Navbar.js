@@ -3,7 +3,7 @@ import '../style/navbar.css'
 import home from '../img/home.png'
 import categories from '../img/categories.png'
 import settings from '../img/settings.png'
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Modal } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import CatagoryForm from './CatagoryForm';
 
@@ -17,7 +17,7 @@ class Navbar extends Component {
                     <div class="nav-left">
                         <img class="home" src={home} alt="home" />
                         <Modal trigger={<img class="categories" src={categories} alt="categories" />} centered={false}>
-                                <Modal.Header>Add</Modal.Header>
+                                <Modal.Header>Categories</Modal.Header>
                                 <Modal.Content>
                                     <div class="set-income">
                                       <CatagoryForm />

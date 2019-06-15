@@ -1,0 +1,19 @@
+.cat-container {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: auto;
+    margin: 16px;
+    grid-row-gap: 16px;
+    justify-items: center;
+    align-items: center;
+}
+
+div.ui.segment {
+    background: #eeeeee;
+    width: 200px;
+    height: 140px;
+}
+
+div.ui.segment:first-child, div.ui.segment:last-child {
+    margin: 1rem 0;
+}

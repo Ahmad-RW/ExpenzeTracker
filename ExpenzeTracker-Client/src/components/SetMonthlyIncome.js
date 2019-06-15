@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { setMonthlyIncome } from '../store/actions'
 import { connect } from 'react-redux'
+import { Button } from 'semantic-ui-react'
+
+import '../style/forms.css'
 class SetMonthlyIncome extends Component {
     state = {
         amount: 0,
@@ -33,6 +36,7 @@ class SetMonthlyIncome extends Component {
                     <label>Set Monthly Income</label>
                     <input onChange={this.handleChange} type="number" id="amount" />
                     <span>
+                        <label>Payroll Day</label>
                         <select id="payrollDay" name="day" onChange={this.handleChange}>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -67,7 +71,7 @@ class SetMonthlyIncome extends Component {
                             <option value="31">31</option>
                         </select>
                     </span>
-                    <a href="javascript:void(0)" onClick={this.handleSetMonthlyInput}>Set</a>
+                    <Button onClick={this.handleSetMonthlyInput}>Set</Button>
                 </form>
 
             </React.Fragment>

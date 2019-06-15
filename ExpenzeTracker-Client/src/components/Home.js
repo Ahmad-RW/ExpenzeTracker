@@ -11,9 +11,7 @@ class Home extends Component {
         return (
             <React.Fragment>
                 <MainHeader />
-                <h1>Home Page</h1>
-                <CatagoryForm />
-                <hr />
+                {/* <CatagoryForm /> */}
                 <CatagoryList />
             </React.Fragment>
         )
