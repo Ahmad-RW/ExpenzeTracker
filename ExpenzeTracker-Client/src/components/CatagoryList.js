@@ -5,7 +5,7 @@ import { Segment } from 'semantic-ui-react'
 
 
 class CatagoryHeader extends Component {
-    
+
 
 
     listUserCatagory = () => {
@@ -33,7 +33,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-       
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CatagoryHeader)
