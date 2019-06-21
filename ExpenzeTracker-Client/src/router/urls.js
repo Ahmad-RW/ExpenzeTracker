@@ -1,7 +1,7 @@
 const urls = {
     home : "/",
     userActions : '/home/userActions',
-    category : '/home/category'
+    category : '/category/:cat_id'
 }
 
 export default urls
