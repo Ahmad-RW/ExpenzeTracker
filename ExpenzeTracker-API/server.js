@@ -114,6 +114,21 @@ app.post('/editCategories', function(req, res){
         res.status(500).send(err)
     })
 })
+
+
+app.post('/deleteCategory', function(req, res){
+    console.log("editing categories...")
+    const newCategoryList = req.body.payload.userData.category.filter(element=>{
+        return element._id !== req.body.payload.category._id
+    })
+   
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }}, { new: true }).then(record => {
+        res.status(200).send(record)
+    }).catch(err => {
+        console.log(err)
+        res.status(500).send(err)
+    })
+})
 app.listen('5000', function () {
     console.log('listening on port 5000')
 })

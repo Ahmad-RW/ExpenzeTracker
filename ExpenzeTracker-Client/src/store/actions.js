@@ -56,3 +56,14 @@ export const editCategories = (payload, component) =>{
         })
     }
 }
+
+export const deleteCategory = (payload, component) =>{
+    return dispatch=>{
+        axios.post("http://localhost:5000/deleteCategory", {payload}).then(res=>{
+            dispatch({type:"UPDATE_STORE", res})
+            triggerSuccessMessage(component)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+}

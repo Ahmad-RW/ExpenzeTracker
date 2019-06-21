@@ -6,7 +6,7 @@ class Category extends Component {
     constructor(props) {
         super(props)
         console.log(props)
-
+       
     }
     catDoesNotExist = (cat_id) =>{
         let result = true
@@ -18,6 +18,9 @@ class Category extends Component {
         return result
     }
     render() {
+        if(typeof this.props.location.state ==="undefined"){
+            this.props.history.push("/NotFound")
+        }
         const categoryinContext = this.props.location.state.category
         return (
             <React.Fragment>
