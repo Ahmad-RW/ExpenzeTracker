@@ -1,7 +1,47 @@
 button.ui.button {
-    margin: 8px;
+    margin: 8px 0 0 8px;
 }
 
 label {
     margin-right: 8px;
+}
+
+/* ---- Category Form ---- */
+#editForm {
+    padding-top: 8px;
+}
+
+.cat-form {
+    width: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    list-style: none;
+    justify-content: center;
+}
+
+.cat-form > li {
+    height: 100px;
+    width: 160px;
+    margin: 12px;
+    display: inline-grid;
+}
+
+.cat-form-header {
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(34,36,38,.15);
+}
+
+.edit-cat {
+    margin-bottom: 12px;
+}
+
+.edit-cat .ui.basic.label {
+    width: 120px;
+}
+
+.ui.inverted.red.button, .ui.inverted.red.buttons .button {
+    background-color: transparent;
+    box-shadow: 0 0 0 1px #ff695e inset!important;
+    color: #ff695e;
 }

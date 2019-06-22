@@ -1,6 +1,6 @@
 .main {
     padding: 12px;
-    border-bottom: 0.5px solid #6e6e6e;
+    border-bottom: 1px solid rgba(34,36,38,.15);
     display: flex;
     align-items: center;
     color: #555;
@@ -8,7 +8,7 @@
 
 .main-balance {
     flex: 1;
-    font-size: 22pt;
+    font-size: 18pt;
 }
 
 .monthly-income {
@@ -17,15 +17,15 @@
 }
 
 .add {
-    height: 45px;
-    width: 45px;
+    height: 40px;
+    width: 40px;
     margin-right: 8px;
-    padding: 4px;
-    transition: 300ms;
+    padding: 3px;
+    transition: 200ms;
 }
 
 .add:hover {
-   padding: 2px;
+   padding: 1px;
 }
 
 .set-income {
