@@ -9,7 +9,8 @@ class CategoryForm extends Component {
         categoryName: "",
         editingMode: false,
         total: 100,
-        renderSuccessMessage: false
+        renderSuccessMessage: false,
+        renderNameErrorMessage : null
     }
 
 
@@ -26,6 +27,26 @@ class CategoryForm extends Component {
             categoryName: this.state.categoryName,
             userData: this.props.userData
         }
+        if(this.checkEmptyName(payload.categoryName)){//validation begin
+            this.setState({
+                renderNameErrorMessage : "Category name cannot be empty"
+            }, ()=>{setTimeout(() => {
+                this.setState({
+                    renderNameErrorMessage : null
+                })
+            }, 5000)})
+            return//return from submission
+        }
+        if(this.checkCharLimit(payload.categoryName)){
+            this.setState({
+                renderNameErrorMessage : "Category name is too long"
+            }, ()=>{setTimeout(() => {
+                this.setState({
+                    renderNameErrorMessage : null
+                })
+            }, 5000)})
+            return
+        }// validation end
         this.props.createCategory(payload)
     }
 
@@ -38,10 +59,16 @@ class CategoryForm extends Component {
 
     }
 
-
+    checkEmptyName = (categoryName) => {
+        return categoryName.length === 0
+    }
+    checkCharLimit = (categoryName) =>{
+        return categoryName.length >= 13
+    }
     saveChanges = e => {
         e.preventDefault()
         const { categoryName: categoryName, editingMode, total, renderSuccessMessage, ...categories } = this.state//destructuring
+        console.log(categories)
         const payload = {
             categories,
             userData: this.props.userData
@@ -114,6 +141,9 @@ class CategoryForm extends Component {
         }
     }
 
+    renderNameErrorMessage = () =>{
+        return this.state.renderNameErrorMessage ? ( <h4>{this.state.renderNameErrorMessage}</h4>) : (<React.Fragment></React.Fragment>)
+    }
 
 
     listCategories = () => {
@@ -138,6 +168,7 @@ class CategoryForm extends Component {
             return (
                 <div>
                     {this.renderSuccessMessage()}
+                    {this.renderNameErrorMessage()}
                     <ul class="">
                         {this.props.userData.category.map(cat => {//iterate over categories
                             return (
