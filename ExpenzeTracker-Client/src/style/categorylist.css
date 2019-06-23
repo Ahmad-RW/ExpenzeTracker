@@ -6,14 +6,27 @@
     grid-row-gap: 16px;
     justify-items: center;
     align-items: center;
+    color: #555;
 }
 
+a {
+    color: #555;
+}
+
+
 div.ui.segment {
-    background: #eeeeee;
+    background: #fff;
     width: 200px;
     height: 140px;
+    text-align: center;
+    transition: 200ms;
 }
 
 div.ui.segment:first-child, div.ui.segment:last-child {
     margin: 1rem 0;
+}
+
+div.ui.segment:hover {
+    margin-top: 0;
+     box-shadow: 3px 5px #eee;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createCategory, editCategories } from '../store/actions'
-import { Input, Form, Button, Icon, Progress } from 'semantic-ui-react'
+import { Input, Form, Button, Icon, Progress, Label } from 'semantic-ui-react'
 import '../style/forms.css'
 class CategoryForm extends Component {
 
@@ -152,11 +152,24 @@ class CategoryForm extends Component {
                 <Progress percent={this.state.total} progress />
                 {this.props.userData.category.map(cat => {//iteratre over categories
                     return (
-                        <div>
-                            <label><b>{cat.name}</b></label>
-                            <Input onChange={this.handelShareChange} type="number" max="100" min="0" className="inputField" id={cat._id} />
-                        </div>
-                    )
+                      <div class="edit-cat">
+                        <Input
+                          onChange={this.handelShareChange}
+                          type="number"
+                          max="100"
+                          min="0"
+                          className="inputField"
+                          id={cat._id}
+                          labelPosition="right"
+                        >
+                          <Label basic>
+                            {cat.name}
+                          </Label>
+                          <input />
+                          <Label>%</Label>
+                        </Input>
+                      </div>
+                    );
 
                 })}
                 <Button type="submit">Save</Button>
@@ -169,11 +182,17 @@ class CategoryForm extends Component {
                 <div>
                     {this.renderSuccessMessage()}
                     {this.renderNameErrorMessage()}
-                    <ul class="">
+                    
+                    <ul class="cat-form">
                         {this.props.userData.category.map(cat => {//iterate over categories
                             return (
-                                <li><b>{cat.name}</b>. precentage : {cat.share}% balance :{cat.balance}</li>
-                            )
+                              <li>
+                                <b>{cat.name}</b>.
+                                precentage :{" "}
+                                {cat.share}% balance
+                                :{cat.balance}
+                              </li>
+                            );
                         })}
                     </ul>
                 </div>
@@ -186,14 +205,33 @@ class CategoryForm extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <label for="category-name">Create new category</label>
-                <Input type="text" placeholder="category name" id="categoryName" onChange={this.handleNameChange} />
-                <Button icon onClick={this.createCategory}><Icon name="plus"></Icon></Button>
-                <Button icon onClick={() => { this.setState({ editingMode: true }) }}><Icon name="edit"></Icon></Button>
-                {this.listCategories()}
-            </React.Fragment>
-        )
+          <React.Fragment>
+            <div class="cat-form-header">
+              <Input
+                type="text"
+                placeholder="category name"
+                id="categoryName"
+                onChange={this.handleNameChange}
+                labelPosition="left"
+              >
+                <Label basic for="category-name">Create new category</Label>
+                <input/>
+              </Input>
+              <Button icon onClick={this.createCategory}>
+                <Icon name="plus" />
+              </Button>
+              <Button
+                icon
+                onClick={() => {
+                  this.setState({ editingMode: true });
+                }}
+              >
+                <Icon name="edit" />
+              </Button>
+            </div>
+            {this.listCategories()}
+          </React.Fragment>
+        );
     }
 }
 

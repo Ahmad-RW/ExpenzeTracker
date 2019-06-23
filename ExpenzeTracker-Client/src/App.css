@@ -8,3 +8,8 @@ body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   line-height: 1.4;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
