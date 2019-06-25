@@ -88,7 +88,7 @@ app.post('/addIncome', function (req, res) {
     newCategoryList.forEach(cat => {
         cat.balance = cat.balance + (req.body.payload.income * (cat.share / 100))
     })
-    User.findByIdAndUpdate({ _id: req.body.payload.userDate._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : req.body.payload.income} }, { new: true }).then(record => {
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : req.body.payload.income} }, { new: true }).then(record => {
         console.log(record)
         res.status(200).send(record)
     }).catch(err => {

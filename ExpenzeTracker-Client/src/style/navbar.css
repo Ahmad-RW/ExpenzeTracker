@@ -1,8 +1,8 @@
 .navbar {
   display: flex;
-  background: #555;
-  padding: 8px;
-  color: #f0f8ff;
+  background: #98F5C6;
+  padding: 4px;
+  color: #555;
 }
 
 .nav-left {
@@ -21,7 +21,7 @@
   margin-left: 12px;
   height: 30px;
   width: 30px;
-  transition: 200ms;
+  transition: 100ms;
 }
 
 .home:hover {
@@ -32,7 +32,7 @@
   margin-left: 32px;
   height: 30px;
   width: 30px;
-  transition: 200ms;
+  transition: 100ms;
 }
 
 .categories:hover {
@@ -43,7 +43,7 @@
   margin-left: 32px;
   height: 30px;
   width: 30px;
-  transition: 200ms;
+  transition: 100ms;
 }
 
 .settings:hover {

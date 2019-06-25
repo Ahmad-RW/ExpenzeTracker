@@ -25,29 +25,28 @@ class MainHeader extends Component {
                 : "Loading..."}
             </span>
           </div>
-          <div>
-            <Modal
-              trigger={<img class="add" src={add} alt="add" />}
-              centered={false}
-            >
-              <Modal.Content>
-                <Grid columns={2} relaxed="very" stackable>
-                  <Grid.Column>
-                    <Form success error>
-                      <SetMonthlyIncome />
-                    </Form>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Form success error>
-                      <label>Add Income</label>
-                      <AddIncome />
-                    </Form>
-                  </Grid.Column>
-                </Grid>
-                <Divider vertical>Or</Divider>
-              </Modal.Content>
-            </Modal>
-          </div>
+
+          <Modal
+            trigger={<img class="add" src={add} alt="add" />}
+            centered={false}
+          >
+            <Modal.Content>
+              <Grid columns={2} relaxed="very" stackable>
+                <Grid.Column>
+                  <Form success error>
+                    <SetMonthlyIncome />
+                  </Form>
+                </Grid.Column>
+                <Grid.Column>
+                  <Form success error>
+                    <label>Add Income</label>
+                    <AddIncome />
+                  </Form>
+                </Grid.Column>
+              </Grid>
+              <Divider vertical>Or</Divider>
+            </Modal.Content>
+          </Modal>
         </div>
       </React.Fragment>
     );
