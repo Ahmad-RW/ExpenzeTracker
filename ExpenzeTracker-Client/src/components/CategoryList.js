@@ -12,11 +12,14 @@ class CategoryList extends Component {
     }
     listUserCategory = () => {
         const categoryList = this.props.userData.category ? (this.props.userData.category.map(cat => {
-            return (<Segment class="cat">
+            return (<div class="cat">
+                <div class="cat-color">
+                    
+                </div>
                 <b><Link to={{ pathname: `/category/${cat._id}`, state: { category: cat } }}>{cat.name}</Link>  <a onClick={() => { this.handleDelete(cat) }}>Delete </a>   </b>
                 <div>{cat.share}%</div> {cat.balance}
 
-            </Segment>
+            </div>
             )
         })) : (<p>Loading....</p>)
         return categoryList
@@ -36,13 +39,13 @@ class CategoryList extends Component {
     }
     render() {
         return (
-            <React.Fragment>
-                {this.renderSuccessMessage()}
-                <div class="cat-container">
-                    {this.listUserCategory()}
-                </div>
-            </React.Fragment>
-        )
+          <React.Fragment>
+            <div class="cat-container">
+              {this.renderSuccessMessage()}
+              {this.listUserCategory()}
+            </div>
+          </React.Fragment>
+        );
     }
 }
 

@@ -7,6 +7,7 @@ import avatar from '../img/avatar.png'
 import { Modal } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import CategoryForm from './CategoryForm';
+import { Link } from "react-router-dom";
 
 
 class Navbar extends Component {
@@ -15,7 +16,9 @@ class Navbar extends Component {
           <React.Fragment>
             <nav class="navbar">
               <div class="nav-left">
-                <img class="home" src={home} alt="home" />
+                <Link to={{ pathname: `/` }}>
+                  <img class="home" src={home} alt="home" />
+                </Link>
                 <Modal
                   trigger={
                     <img
@@ -28,7 +31,7 @@ class Navbar extends Component {
                 >
                   <Modal.Header>Categories</Modal.Header>
                   <Modal.Content>
-                    <div class="">
+                    <div>
                       <CategoryForm />
                     </div>
                   </Modal.Content>
@@ -37,7 +40,7 @@ class Navbar extends Component {
               </div>
 
               <div class="nav-center">
-                <h1>Expenze</h1>
+                {/* <h1>Expenze</h1> */}
               </div>
 
               <div class="nav-right profile">

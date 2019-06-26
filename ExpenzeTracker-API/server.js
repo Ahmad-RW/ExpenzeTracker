@@ -83,8 +83,15 @@ app.post('/setUserIncome', function (req, res) {
 app.post('/addIncome', function (req, res) {
     console.log("Adding Income...")
     const newCategoryList = req.body.payload.userData.category
+<<<<<<< HEAD
     addIncomeToCategories(newCategoryList, req);
     User.findByIdAndUpdate({ _id: req.body.payload.userDate._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : req.body.payload.income} }, { new: true }).then(record => {
+=======
+    newCategoryList.forEach(cat => {
+        cat.balance = cat.balance + (req.body.payload.income * (cat.share / 100))
+    })
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : req.body.payload.income} }, { new: true }).then(record => {
+>>>>>>> e56905ed46e5047631f981216d5dbc3d3fa674fd
         console.log(record)
         res.status(200).send(record)
     }).catch(err => {
