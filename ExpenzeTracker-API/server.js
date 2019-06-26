@@ -14,9 +14,7 @@ app.use(bodyParser.json());// post request body parser
 
 function updateUserCategories(user) {
     const newCategoryList = user.category
-    newCategoryList.forEach(element => {
-        element.balance = element.balance + (user.monthlyIncome.amount * (element.share / 100))
-    })
+    newCategoryList = addIncomeToCategories(newCategoryList, user.monthlyIncome.amount)
     return newCategoryList
 }
 function getDate() {
@@ -85,9 +83,7 @@ app.post('/setUserIncome', function (req, res) {
 app.post('/addIncome', function (req, res) {
     console.log("Adding Income...")
     const newCategoryList = req.body.payload.userData.category
-    newCategoryList.forEach(cat => {
-        cat.balance = cat.balance + (req.body.payload.income * (cat.share / 100))
-    })
+    addIncomeToCategories(newCategoryList, req);
     User.findByIdAndUpdate({ _id: req.body.payload.userDate._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : req.body.payload.income} }, { new: true }).then(record => {
         console.log(record)
         res.status(200).send(record)
@@ -137,4 +133,11 @@ app.get('/testingMongoDB', function (req, res) {
 
 })
 
+
+function addIncomeToCategories(newCategoryList, amount) {
+    newCategoryList.forEach(cat => {
+        cat.balance = cat.balance + (amount * (cat.share / 100));
+    });
+    return newCategoryList
+}
 
