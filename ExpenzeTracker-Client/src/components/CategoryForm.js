@@ -96,6 +96,7 @@ class CategoryForm extends Component {
 
     checkIfInputIsNotNumber = e => {
         if (isNaN(e.target.value)) {
+
             e.target.value = 0
         }
     }
@@ -162,9 +163,7 @@ class CategoryForm extends Component {
                       <div class="edit-cat">
                         <Input
                           onChange={this.handelShareChange}
-                          type="number"
-                          max="100"
-                          min="0"
+                        
                           className="inputField"
                           id={cat._id}
                           labelPosition="right"
