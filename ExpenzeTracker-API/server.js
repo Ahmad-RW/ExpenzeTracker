@@ -110,9 +110,11 @@ app.post('/editCategories', function(req, res){
 
 app.post('/deleteCategory', function(req, res){
     console.log("editing categories...")
-    const newCategoryList = req.body.payload.userData.category.filter(element=>{
+    let newCategoryList = req.body.payload.userData.category.filter(element=>{
         return element._id !== req.body.payload.category._id
     })
+
+    newCategoryList = addIncomeToCategories(newCategoryList, req.body.payload.category.balance)
    
     User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }}, { new: true }).then(record => {
         res.status(200).send(record)
