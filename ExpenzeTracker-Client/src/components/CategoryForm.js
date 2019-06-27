@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createCategory, editCategories } from '../store/actions'
+import { createCategory, editCategories, deleteCategory } from '../store/actions'
 import { Input, Form, Button, Icon, Progress, Label } from 'semantic-ui-react'
 import '../style/forms.css'
 class CategoryForm extends Component {
@@ -145,6 +145,13 @@ class CategoryForm extends Component {
         return this.state.renderNameErrorMessage ? ( <h4>{this.state.renderNameErrorMessage}</h4>) : (<React.Fragment></React.Fragment>)
     }
 
+    handleDelete = category => {
+        const payload = {
+            userData: this.props.userData,
+            category
+        }
+        this.props.deleteCategory(payload, this)
+    }
 
     listCategories = () => {
         if (this.state.editingMode) {
@@ -167,7 +174,9 @@ class CategoryForm extends Component {
                           </Label>
                           <input />
                           <Label>%</Label>
+                          <a onClick={() => { this.handleDelete(cat) }}>Delete </a>
                         </Input>
+                       
                       </div>
                     );
 
@@ -243,7 +252,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         createCategory: (payload) => { dispatch(createCategory(payload)) },
-        editCategories: (payload, component) => { dispatch(editCategories(payload, component)) }
+        editCategories: (payload, component) => { dispatch(editCategories(payload, component)) },
+        deleteCategory: (category, component) => { dispatch(deleteCategory(category, component)) }
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryForm)
