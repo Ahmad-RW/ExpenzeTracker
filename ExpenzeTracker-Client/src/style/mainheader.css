@@ -5,9 +5,11 @@
   border-right: 1px solid rgba(34, 36, 38, 0.15);
   border-bottom: 1px solid rgba(34, 36, 38, 0.15);
   border-bottom-right-radius: 8px;
+  /* border-top-right-radius: 8px; */
   display: flex;
   align-items: center;
   color: #555;
+  background: rgba(152, 245, 198, 0.5);
 }
 
 .main-balance {
@@ -24,6 +26,7 @@
 }
 
 .add {
+  align-self: flex-end;
   height: 30px;
   width: 30px;
   padding: 2px;

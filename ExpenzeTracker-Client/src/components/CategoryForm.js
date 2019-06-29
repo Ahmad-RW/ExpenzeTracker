@@ -163,7 +163,7 @@ class CategoryForm extends Component {
                       <div class="edit-cat">
                         <Input
                           onChange={this.handelShareChange}
-                        
+
                           className="inputField"
                           id={cat._id}
                           labelPosition="right"

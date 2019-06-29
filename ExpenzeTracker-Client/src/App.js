@@ -26,6 +26,7 @@ class App extends Component {
           <Route exact path={urls.home} component={Home} />
           <Route exact path={urls.userActions} component={UserActions} />
           <Route exact path={urls.category} component={Category} />
+          {/* settings */}
           <Route  component={NotFound} />
         </Switch>
       </BrowserRouter>
