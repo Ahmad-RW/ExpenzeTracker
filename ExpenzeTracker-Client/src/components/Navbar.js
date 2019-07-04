@@ -36,12 +36,12 @@ class Navbar extends Component {
                     </div>
                   </Modal.Content>
                 </Modal>
-                <img class="settings" src={settings} alt="settings" />
+                <Link to={{ pathname: `/settings` }}>
+                  <img class="settings" src={settings} alt="settings" />
+                </Link>
               </div>
 
-              <div class="nav-center">
-                {/* <h1>Expenze</h1> */}
-              </div>
+              <div class="nav-center">{/* <h1>Expenze</h1> */}</div>
 
               <div class="nav-right profile">
                 <span class="welcome">Welcome, Rakan Salem</span>

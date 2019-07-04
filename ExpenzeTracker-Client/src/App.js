@@ -4,9 +4,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import urls from './router/urls'
 import Home from './components/Home'
 import UserActions from './components/UserActions'
-import NotFound from './components/NotFound.js';
-import Navbar from './components/Navbar';
+import NotFound from './components/NotFound.js'
+import Navbar from './components/Navbar'
 import Category from './components/Category'
+import Settings from './components/Settings'
 import {getUserData} from './store/actions'
 import {connect} from 'react-redux'
 class App extends Component {
@@ -26,7 +27,7 @@ class App extends Component {
           <Route exact path={urls.home} component={Home} />
           <Route exact path={urls.userActions} component={UserActions} />
           <Route exact path={urls.category} component={Category} />
-          {/* settings */}
+          <Route exact path={urls.settings} component={Settings} />
           <Route  component={NotFound} />
         </Switch>
       </BrowserRouter>
