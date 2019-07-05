@@ -7,6 +7,7 @@ import AddIncome from "./AddIncome";
 import SetMonthlyIncome from "./SetMonthlyIncome";
 import { Modal, Divider, Form, Grid } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import RegisterExpense from "./RegisterExpense";
 
 class MainHeader extends Component {
   render() {
@@ -34,6 +35,7 @@ class MainHeader extends Component {
                   <Form success error>
                     <label>Add Income</label>
                     <AddIncome />
+                    <RegisterExpense />
                   </Form>
             </Modal.Content>
           </Modal>

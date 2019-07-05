@@ -1,10 +1,11 @@
 import axios from 'axios'
-import { triggerSuccessMessage } from '../components/helpers';
+import { triggerSuccessMessage, triggerSuccessMessageV2 } from '../components/helpers';
 
 
 export const getUserData = payload => {
     return dispatch => {
         axios.get(`http://localhost:5000/getUserData?email=${payload.email}`).then(res => {
+            console.log("setting user data to reducer...")
             dispatch({ type: "SET_USER_DATA", res })
         }).catch(err => {
             console.log(err)
@@ -62,6 +63,17 @@ export const deleteCategory = (payload, component) =>{
         axios.post("http://localhost:5000/deleteCategory", {payload}).then(res=>{
             dispatch({type:"UPDATE_STORE", res})
             triggerSuccessMessage(component)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+}
+
+export const submitExpense = (payload, component) =>{
+    return dispatch =>{
+        axios.post("http://localhost:5000/submitExpense", {payload}).then(res=>{
+            dispatch({type:"UPDATE_STORE", res})
+            triggerSuccessMessageV2(component, "Expense submitted!")
         }).catch(err=>{
             console.log(err)
         })

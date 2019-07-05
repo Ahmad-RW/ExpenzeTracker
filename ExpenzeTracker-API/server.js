@@ -38,6 +38,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/getUserData', function (req, res) {
+    console.log("getting user data....")
     User.findOne({ email: req.query.email }).then((record) => {
         res.status(200).send(record)
     }).catch((err) => {
@@ -110,6 +111,7 @@ app.post('/editCategories', function(req, res){
 
 app.post('/deleteCategory', function(req, res){
     console.log("editing categories...")
+    console.log(req.body)
     let newCategoryList = req.body.payload.userData.category.filter(element=>{
         return element._id !== req.body.payload.category._id
     })
@@ -127,8 +129,29 @@ app.listen('5000', function () {
     console.log('listening on port 5000')
 })
 
-app.get('/testingMongoDB', function (req, res) {
+app.post('/submitExpense', function(req, res){
+   console.log("submiting eexpense.....")
+    let newCategoryList = req.body.payload.userData.category.map(element=>{
+        if(element._id === req.body.payload.category_id){
+            element.balance = element.balance - req.body.payload.amount
+        }
+        return (element)
+    })
 
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }}, { new: true }).then(record => {
+        res.status(200).send(record)
+    }).catch(err => {
+        res.status(500).send(err)
+    })
+})
+
+
+app.get('/testingMongoDB', function (req, res) {
+//5ccd6cebb0e9f55fe072991e
+//5cedcad01c9d440000a39592
+User.findByIdAndUpdate({_id:"5cedcad01c9d440000a39592"}, {$set:{"category" : []}}).then(record=>{
+    res.status(200).send("efefwef")
+})
 })
 
 

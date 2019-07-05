@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { createCategory, editCategories, deleteCategory } from '../store/actions'
 import { Input, Form, Button, Icon, Progress, Label, Modal } from 'semantic-ui-react'
 import '../style/forms.css'
+import {checkEmptyName, checkIfInputIsNotNumber} from './helpers'
 class CategoryForm extends Component {
 
     state = {
@@ -27,7 +28,7 @@ class CategoryForm extends Component {
             categoryName: this.state.categoryName,
             userData: this.props.userData
         }
-        if(this.checkEmptyName(payload.categoryName)){//validation begin
+        if(checkEmptyName(payload.categoryName)){//validation begin
             this.setState({
                 renderNameErrorMessage : "Category name cannot be empty"
             }, ()=>{setTimeout(() => {
@@ -58,7 +59,7 @@ class CategoryForm extends Component {
             }, 5000)})
             return 
             
-        }// validation end refactory these calidation into external function !!importants
+        }// validation end. refactor these validation routines into external function !!importants
 
 
         this.props.createCategory(payload)
@@ -73,9 +74,7 @@ class CategoryForm extends Component {
 
     }
 
-    checkEmptyName = (categoryName) => {
-        return categoryName.length === 0
-    }
+    
     checkCharLimit = (categoryName) =>{
         return categoryName.length >= 13
     }
@@ -118,19 +117,14 @@ class CategoryForm extends Component {
         }
     }
 
-    checkIfInputIsNotNumber = e => {
-        if (isNaN(e.target.value)) {
-
-            e.target.value = 0
-        }
-    }
+  
 
     //some documentation as clear as I can:
     //I implemented this solution, but I think I have another one i'll try it might be simpler but i'll finish this use case end-to-end first then refactor
     //this function is called whenever a change in one of the input fields occurs. 
     handelShareChange = e => {//this algorithm is one of my children. 
         this.checkRemainingShare(e)//if he enters a value but the total is 0;
-        this.checkIfInputIsNotNumber(e)//if he enters a characters;
+        checkIfInputIsNotNumber(e)//if he enters a characters;
         const newShare = e.target.value//this line takes the new value
         const oldShare = this.state[e.target.id]//this line takes the old value at first it might be undefined becasue the first time he inputs values there is no old share.
         if (typeof oldShare !== "undefined" && oldShare > newShare) {//this code block checks if he for example enters at first 15 then enters 10. the lost 5 needs to go back to total share. 
