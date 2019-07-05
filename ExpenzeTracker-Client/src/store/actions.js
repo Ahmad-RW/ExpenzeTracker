@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { triggerSuccessMessage, triggerSuccessMessageV2 } from '../components/helpers';
+import { triggerSuccessMessage, triggerSuccessMessageV2, getMessage } from '../components/helpers';
 
 
 export const getUserData = payload => {
@@ -36,7 +36,7 @@ export const addIncome = (payload, component) => {
     return dispatch =>{
         axios.post('http://localhost:5000/addIncome', {payload}).then(res=>{
             dispatch({ type: "UPDATE_STORE", res })
-            triggerSuccessMessage(component);//this will set state to feedbackMessage : true which will render the actual message to the view.
+            getMessage(component, "yay", "income added", "success");//this will set state to feedbackMessage : true which will render the actual message to the view.
         }).catch(err=>{
             console.log(err)
         })

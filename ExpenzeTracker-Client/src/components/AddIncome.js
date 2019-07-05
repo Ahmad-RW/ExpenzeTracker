@@ -35,9 +35,9 @@ class AddIncome extends Component {
         this.props.addIncome(payload, this)
     }
     renderSuccessMessage = () =>{
-        if(this.state.renderSuccessMessage){
-            return (<Message success header='Income Added' content="Income has been added to your balance." />)
-        }
+        // if(this.state.renderSuccessMessage){
+            return (this.state.successMessage)
+        // }
         
     }
     renderWarningMessage = () => {

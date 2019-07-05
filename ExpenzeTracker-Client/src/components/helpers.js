@@ -1,3 +1,6 @@
+import React from 'react'
+import { Message } from 'semantic-ui-react'
+
 export const triggerSuccessMessage = (component) => {
     component.setState({
         renderSuccessMessage: true
@@ -18,6 +21,28 @@ export const triggerSuccessMessageV2 = (component, messageContent) => {
         }, 5000)
     })
 }
+export const getMessage = (component, header, content, status) => {
+    let success = status.success;
+    component.setState(
+      {
+        successMessage: (
+          <div class={`ui ${status} message`}>
+            <div class="content">
+              <div class="header">
+                {header}
+              </div>
+              <p>{content}</p>
+            </div>
+          </div>
+        )
+      },
+      () => {
+        setTimeout(() => {
+          component.setState({ successMessage: null });
+        }, 5000);
+      }
+    );
+};
 export const checkIfInputIsNotNumber = e => {
     if (isNaN(e.target.value)) {
         e.target.value = 0
