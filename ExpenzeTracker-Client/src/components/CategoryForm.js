@@ -46,7 +46,21 @@ class CategoryForm extends Component {
                 })
             }, 5000)})
             return
-        }// validation end
+        }
+
+        if(!this.isNameUnique(payload.categoryName)){
+            this.setState({
+                renderNameErrorMessage : "Category name must be unique"
+            }, ()=>{setTimeout(() => {
+                this.setState({
+                    renderNameErrorMessage : null
+                })
+            }, 5000)})
+            return 
+            
+        }// validation end refactory these calidation into external function !!importants
+
+
         this.props.createCategory(payload)
     }
 
@@ -64,6 +78,16 @@ class CategoryForm extends Component {
     }
     checkCharLimit = (categoryName) =>{
         return categoryName.length >= 13
+    }
+
+    isNameUnique = categoryName =>{
+       let result = true
+        this.props.userData.category.forEach(elem=>{
+            if(elem.name === categoryName){
+                result = false
+            }
+        })
+        return result
     }
     saveChanges = e => {
         e.preventDefault()
