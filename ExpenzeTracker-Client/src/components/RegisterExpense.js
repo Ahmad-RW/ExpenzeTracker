@@ -23,12 +23,12 @@ class RegisterExpense extends Component {
     renderDropDownListForCats = () => {
         const list = this.props.userData.category.map(elem => {
             return (
-                <option onClick={this.setSelectedCategory} value={elem._id} id={elem._id}>{elem.name}</option>
+                <option  value={elem._id} id={elem._id}>{elem.name}</option>
             )
         })
 
         return (
-        <select>
+        <select onChange={this.setSelectedCategory}>
             <option id={null}>select category</option>
             {list}
         </select>)
