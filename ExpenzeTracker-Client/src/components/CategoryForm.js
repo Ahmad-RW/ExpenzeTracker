@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createCategory, editCategories, deleteCategory } from '../store/actions'
-import { Input, Form, Button, Icon, Progress, Label } from 'semantic-ui-react'
+import { Input, Form, Button, Icon, Progress, Label, Modal } from 'semantic-ui-react'
 import '../style/forms.css'
 class CategoryForm extends Component {
 
@@ -156,34 +156,50 @@ class CategoryForm extends Component {
 
     listCategories = () => {
         if (this.state.editingMode) {
-            return <Form inline id="editForm" onSubmit={this.saveChanges} >
+            return (
+              <Form
+                inline
+                id="editForm"
+                onSubmit={this.saveChanges}
+              >
                 <Progress percent={this.state.total} progress />
-                {this.props.userData.category.map(cat => {//iteratre over categories
-                    return (
-                      <div class="edit-cat">
-                        <Input
-                          onChange={this.handelShareChange}
-
-                          className="inputField"
-                          id={cat._id}
-                          labelPosition="right"
-                        >
-                          <Label basic>
-                            {cat.name}
-                          </Label>
-                          <input />
-                          <Label>%</Label>
-                          <a onClick={() => { this.handleDelete(cat) }}>Delete </a>
-                        </Input>
-                       
-                      </div>
-                    );
-
+                {this.props.userData.category.map(cat => {
+                  //iteratre over categories
+                  return (
+                    <div class="edit-cat">
+                      <button
+                        icon
+                        class="ui red button icon"
+                        onClick={() => {
+                          this.handleDelete(cat);
+                        }}
+                      >
+                        <Icon name="minus square outline" />
+                      </button>
+                      <Input
+                        onChange={this.handelShareChange}
+                        className="inputField"
+                        id={cat._id}
+                        labelPosition="right"
+                      >
+                        <Label basic>{cat.name}</Label>
+                        <input />
+                        <Label>%</Label>
+                      </Input>
+                    </div>
+                  );
                 })}
-                <Button type="submit">Save</Button>
-                <button class="ui inverted red button" onClick={this.cancelEditMode}>Cancel</button>
-
-            </Form>
+                <Modal.Actions>
+                  <Button type="submit">Save</Button>
+                  <button
+                    class="ui inverted red button"
+                    onClick={this.cancelEditMode}
+                  >
+                    Cancel
+                  </button>
+                </Modal.Actions>
+              </Form>
+            );
         }
         else {
             return (
@@ -195,10 +211,13 @@ class CategoryForm extends Component {
                         {this.props.userData.category.map(cat => {//iterate over categories
                             return (
                               <li>
-                                <b>{cat.name}</b>.
-                                precentage :{" "}
-                                {cat.share}% balance
-                                :{cat.balance}
+                                <div>{cat.name}</div>{" "}
+                                <div>
+                                  {cat.share}%{" "}
+                                </div>
+                                <div>
+                                  {cat.balance.toFixed(2)}
+                                </div>
                               </li>
                             );
                         })}
@@ -214,30 +233,34 @@ class CategoryForm extends Component {
     render() {
         return (
           <React.Fragment>
-            <div class="cat-form-header">
-              <Input
-                type="text"
-                placeholder="category name"
-                id="categoryName"
-                onChange={this.handleNameChange}
-                labelPosition="left"
-              >
-                <Label basic for="category-name">Create new category</Label>
-                <input/>
-              </Input>
-              <Button icon onClick={this.createCategory}>
-                <Icon name="plus" />
-              </Button>
-              <Button
-                icon
-                onClick={() => {
-                  this.setState({ editingMode: true });
-                }}
-              >
-                <Icon name="edit" />
-              </Button>
-            </div>
-            {this.listCategories()}
+            <Modal.Header>
+              <div class="cat-form-header">
+                <Input
+                  type="text"
+                  placeholder="category name"
+                  id="categoryName"
+                  onChange={this.handleNameChange}
+                  labelPosition="left"
+                >
+                  <Label basic for="category-name">
+                    Create new category
+                  </Label>
+                  <input />
+                </Input>
+                <Button icon onClick={this.createCategory}>
+                  <Icon name="plus" />
+                </Button>
+                <Button
+                  icon
+                  onClick={() => {
+                    this.setState({ editingMode: true });
+                  }}
+                >
+                  <Icon name="edit" />
+                </Button>
+              </div>
+            </Modal.Header>
+            <Modal.Content scrolling>{this.listCategories()}</Modal.Content>
           </React.Fragment>
         );
     }

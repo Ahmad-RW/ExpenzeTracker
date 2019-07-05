@@ -29,12 +29,9 @@ class Navbar extends Component {
                   }
                   centered={false}
                 >
-                  <Modal.Header>Categories</Modal.Header>
-                  <Modal.Content>
                     <div>
                       <CategoryForm />
                     </div>
-                  </Modal.Content>
                 </Modal>
                 <Link to={{ pathname: `/settings` }}>
                   <img class="settings" src={settings} alt="settings" />
