@@ -21,11 +21,10 @@ export const triggerSuccessMessageV2 = (component, messageContent) => {
         }, 5000)
     })
 }
-export const getMessage = (component, header, content, status) => {
-    let success = status.success;
+export const getFeedbackMessage = (component, header, content, status) => {
     component.setState(
       {
-        successMessage: (
+        feedbackMessage: (
           <div class={`ui ${status} message`}>
             <div class="content">
               <div class="header">
@@ -38,7 +37,7 @@ export const getMessage = (component, header, content, status) => {
       },
       () => {
         setTimeout(() => {
-          component.setState({ successMessage: null });
+          component.setState({ feedbackMessage: null });
         }, 5000);
       }
     );

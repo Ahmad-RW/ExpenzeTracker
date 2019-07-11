@@ -4,12 +4,11 @@ import { addIncome } from '../store/actions'
 import { Button, Message } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import '../style/forms.css'
-
+import {getFeedbackMessage} from './helpers'
 class AddIncome extends Component {
     state = {
         incomeValue: 0,
-        renderWarningMessage: false,
-        renderSuccessMessage : false
+      
     }
 
     handleChange = e => {
@@ -23,23 +22,19 @@ class AddIncome extends Component {
     }
     handleAddIncome = e => {
         if(!this.isOnlyDigits()){
-            this.setState({
-                renderWarningMessage : true
-            }) 
+            // this.setState({
+            //     renderWarningMessage : true
+            // }) 
+            getFeedbackMessage(this, "Error", "Please enter numbers only", "Error")
             return
         }
         const payload = {
             userData: this.props.userData,
             income: this.state.incomeValue
         }
-        this.props.addIncome(payload, this)
+        this.props.addIncome(payload )
     }
-    renderSuccessMessage = () =>{
-        // if(this.state.renderSuccessMessage){
-            return (this.state.successMessage)
-        // }
-        
-    }
+ 
     renderWarningMessage = () => {
         if (this.state.renderWarningMessage) {
             return (
@@ -52,8 +47,7 @@ class AddIncome extends Component {
             <React.Fragment>
                 <input type="text" id="incomeValue" onChange={this.handleChange} />
                 <Button onClick={this.handleAddIncome}>Add</Button>
-                {this.renderWarningMessage()}
-                {this.renderSuccessMessage()}
+                {this.state.feedbackMessage}
             </React.Fragment>
         )
     }
@@ -68,7 +62,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addIncome: (payload, component) => dispatch(addIncome(payload, component))
+        addIncome: (payload) => dispatch(addIncome(payload))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddIncome)
