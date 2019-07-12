@@ -25,7 +25,7 @@ const panes = [
       </Tab.Pane>
     )
   },
-  // { menuItem: "Tab 3", render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> }
+  { menuItem: "Transfer", render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> }
 ];
 
 class MainHeader extends Component {
@@ -49,6 +49,7 @@ class MainHeader extends Component {
           <Modal
             trigger={<img class="add" src={add} alt="add" />}
             centered={false}
+            size="tiny"
           >
             <Modal.Content>
               <Form success error>

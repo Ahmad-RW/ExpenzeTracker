@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
 import { checkIfInputIsNotNumber } from "./helpers";
-import { Input } from "semantic-ui-react";
+import { Input, Button } from "semantic-ui-react";
 import { submitExpense } from "../store/actions";
 import { getFeedbackMessage } from './helpers'
 class RegisterExpense extends Component {
@@ -41,7 +41,7 @@ class RegisterExpense extends Component {
         if (this.state.selectedCategoryId === null) {
             return
         }
-        const submitButton = this.state.amount === 0 ? (<button disabled onClick={this.submitExpense}>Submit</button>) : (<button onClick={this.submitExpense}>Submit</button>)
+        const submitButton = this.state.amount === 0 ? (<Button disabled onClick={this.submitExpense}>Submit</Button>) : (<Button onClick={this.submitExpense}>Submit</Button>)
         return (
             <React.Fragment>
                 <h5>Enter amount</h5>
@@ -79,15 +79,12 @@ class RegisterExpense extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <div>
-                    {this.state.feedbackMessage}
-                </div>
-                {this.renderDropDownListForCats()}
-                {this.renderForm()}
-            </React.Fragment>
-
-        )
+          <React.Fragment>
+            {this.renderDropDownListForCats()}
+            {this.renderForm()}
+            {this.state.feedbackMessage}
+          </React.Fragment>
+        );
     }
 }
 

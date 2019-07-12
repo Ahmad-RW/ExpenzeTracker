@@ -271,7 +271,7 @@ const mapDispatchToProps = dispatch => {
   return {
     createCategory: (payload) => { dispatch(createCategory(payload)) },
     editCategories: (payload, component) => { dispatch(editCategories(payload, component)) },
-    deleteCategory: (category, component) => { dispatch(deleteCategory(category, component)) }
+    deleteCategory: (payload, component) => { dispatch(deleteCategory(payload, component)) }
 
   }
 }
