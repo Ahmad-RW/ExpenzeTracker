@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { triggerSuccessMessage, triggerSuccessMessageV2, getFeedbackMessage } from '../components/helpers';
-
+import {getFeedbackMessage } from '../components/helpers';
 
 export const getUserData = payload => {
     return dispatch => {
@@ -47,12 +46,9 @@ export const editCategories = (payload, component) =>{
     return dispatch =>{
         axios.post('http://localhost:5000/editCategories', {payload}).then(res=>{
             dispatch({type:"UPDATE_STORE", res})
-            component.setState({
-                editingMode : false,
-                total : 100
-            })
             getFeedbackMessage(component, "Changes saved", "changes were saved successfully", "success")
         }).catch(err=>{
+            getFeedbackMessage(component, "Error", "an error occured please try again later", "error")
             console.log(err)
         })
     }

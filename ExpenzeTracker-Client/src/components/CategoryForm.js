@@ -134,19 +134,8 @@ class CategoryForm extends Component {
 
 
 
-  renderSuccessMessage = () => {
-    if (this.state.renderSuccessMessage) {
-      return (
-        <h4>Changes Saved</h4>
-      )
-    }
-  }
-
-  renderNameErrorMessage = () => {
-    return this.state.renderNameErrorMessage ? (<h4>{this.state.renderNameErrorMessage}</h4>) : (<React.Fragment></React.Fragment>)
-  }
-
   handleDelete = category => {
+    console.log(category)
     const payload = {
       userData: this.props.userData,
       category
@@ -227,13 +216,11 @@ class CategoryForm extends Component {
 
 
 
-
   render() {
     return (
       <React.Fragment>
         <Modal.Header>
-        {this.state.feedbackMessage}
-
+          {this.state.feedbackMessage}
           <div class="cat-form-header">
             <Input
               type="text"
@@ -241,15 +228,24 @@ class CategoryForm extends Component {
               id="categoryName"
               onChange={this.handleNameChange}
               labelPosition="left"
+
             >
               <Label basic for="category-name">
                 Create new category
                   </Label>
               <input />
             </Input>
-            <Button icon onClick={this.createCategory}>
-              <Icon name="plus" />
-            </Button>
+            {
+              this.state.categoryName === "" ? //disabled button if category name === ""
+
+                (<Button disabled icon onClick={this.createCategory}>
+                  <Icon name="plus" />
+                </Button>)
+                :
+                (<Button icon onClick={this.createCategory}>
+                  <Icon name="plus" />
+                </Button>)
+            }
             <Button
               icon
               onClick={() => {

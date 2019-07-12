@@ -46,7 +46,9 @@ class AddIncome extends Component {
         return (
             <React.Fragment>
                 <input type="text" id="incomeValue" onChange={this.handleChange} />
-                <Button onClick={this.handleAddIncome}>Add</Button>
+               {
+                   this.state.incomeValue === 0? ( <Button disabled onClick={this.handleAddIncome}>Add</Button>) :( <Button onClick={this.handleAddIncome}>Add</Button>)
+               }
                 {this.state.feedbackMessage}
             </React.Fragment>
         )
