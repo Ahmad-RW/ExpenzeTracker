@@ -1,0 +1,23 @@
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.settings-profile{
+    flex: 1;
+    /* border-bottom: 1px solid black; */
+    margin-bottom: 8px;
+    width: 40%;
+    text-align: center;
+
+}
+
+.settings-list {
+    flex: 3;
+    width: 40%;
+}
+

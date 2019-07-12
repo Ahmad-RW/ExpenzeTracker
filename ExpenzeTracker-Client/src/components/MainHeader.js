@@ -4,10 +4,29 @@ import add from "../img/add.png";
 import { connect } from "react-redux";
 import { setMonthlyIncome } from "../store/actions";
 import AddIncome from "./AddIncome";
-import SetMonthlyIncome from "./SetMonthlyIncome";
-import { Modal, Divider, Form, Grid } from "semantic-ui-react";
+import { Modal, Form, Tab } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import RegisterExpense from "./RegisterExpense";
+
+const panes = [
+  {
+    menuItem: "Income",
+    render: () => (
+      <Tab.Pane>
+        <AddIncome />
+      </Tab.Pane>
+    )
+  },
+  {
+    menuItem: "Expense",
+    render: () => (
+      <Tab.Pane>
+        <RegisterExpense />
+      </Tab.Pane>
+    )
+  },
+  // { menuItem: "Tab 3", render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> }
+];
 
 class MainHeader extends Component {
   render() {
@@ -32,11 +51,9 @@ class MainHeader extends Component {
             centered={false}
           >
             <Modal.Content>
-                  <Form success error>
-                    <label>Add Income</label>
-                    <AddIncome />
-                    <RegisterExpense />
-                  </Form>
+              <Form success error>
+                <Tab panes={panes} />
+              </Form>
             </Modal.Content>
           </Modal>
         </div>
