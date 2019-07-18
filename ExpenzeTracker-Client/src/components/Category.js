@@ -1,30 +1,48 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { handleRename } from '../store/actions'
 class Category extends Component {
  
     constructor(props) {
         super(props)
         console.log(props)
-       
+       this.state={
+           newName : "",
+          
+       }
+      
     }
-    catDoesNotExist = (cat_id) =>{
-        let result = true
-        this.props.userData.category.forEach(element => {
-            if(element._id === cat_id){
-                result = false
-            }
-        });
-        return result
+
+    handleNewName = (e) =>{
+        this.setState({
+            newName : e.target.value
+        })
+    }
+  
+
+    handleRename = () =>{
+        const payload={
+            userData : this.props.userData,
+            newName : this.state.newName,
+            categoryId : this.props.context._id
+        }
+        this.props.handleRename(payload, this)
+
     }
     render() {
-        if(typeof this.props.location.state ==="undefined"){
-            this.props.history.push("/NotFound")
-        }
-        const categoryinContext = this.props.location.state.category
+        
+        // if(typeof this.props.location.state ==="undefined"){
+        //     this.props.history.push("/NotFound")
+        // }
+        // const categoryinContext = this.props.location.state.category
+       
         return (
             <React.Fragment>
-                <h1 >this cat's name is {categoryinContext.name}</h1>
+            {this.state.feedbackMessage}
+                <h1 >this cat's name is {this.props.context.name}</h1>
+                <label>Rename category</label>
+                <input type="text" id="categoryName" onChange={this.handleNewName} placeholder="new category name" />
+                <button onClick={this.handleRename} >Rename</button>
             </React.Fragment>
         )
     }
@@ -32,13 +50,14 @@ class Category extends Component {
 
 const mapStateToProps = state => {
     return {
-        userData: state.userData
+        userData: state.userData,
+        context : state.context
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        handleRename : (payload,Component) =>{dispatch(handleRename(payload, Component))}
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

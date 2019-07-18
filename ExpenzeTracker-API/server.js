@@ -125,9 +125,17 @@ app.post('/deleteCategory', function(req, res){
         res.status(500).send(err)
     })
 })
-app.listen('5000', function () {
-    console.log('listening on port 5000')
-})
+
+app.post('/handleRename', function(req, res){
+   console.log(req.body)
+   User.findByIdAndUpdate({_id:req.body.payload.userData._id}, {$set:{"category.$[elem].name" : req.body.payload.newName}}, {new:true, arrayFilters:[{"elem._id" : mongoose.Types.ObjectId(req.body.payload.categoryId)}]}).then(function(record){
+       console.log(record)
+       res.status(200).send(record)
+   }).catch(function(err){
+       res.status(500).send(err)
+   })
+}) 
+
 
 app.post('/submitExpense', function(req, res){
    console.log("submiting eexpense.....")
@@ -145,6 +153,9 @@ app.post('/submitExpense', function(req, res){
     })
 })
 
+app.listen('5000', function () {
+    console.log('listening on port 5000')
+})
 
 app.get('/testingMongoDB', function (req, res) {
 //5ccd6cebb0e9f55fe072991e

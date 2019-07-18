@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import "../style/categorylist.css";
 import { Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import {setContext} from '../store/actions'
 class CategoryList extends Component {
   state = {
     renderSuccessMessage: false
@@ -14,8 +15,9 @@ class CategoryList extends Component {
           <div class="cat">
             <div class="cat-name">
               <Link
+              onClick={()=>{this.props.setContext(cat)}}
                 to={{
-                  pathname: `/category/${cat._id}`,
+                  pathname: `/category/categoryDetails`,
                   state: { category: cat }
                 }}
               >
@@ -58,7 +60,9 @@ const mapStateToProps = state => {
   };
 };
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    setContext : (context) => {dispatch(setContext(context))}
+  };
 };
 export default connect(
   mapStateToProps,

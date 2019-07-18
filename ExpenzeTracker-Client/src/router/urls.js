@@ -1,7 +1,7 @@
 const urls = {
     home : "/",
     userActions : '/home/userActions',
-    category : '/category/:cat_id',
+    category : '/category/categoryDetails',
     settings : '/settings'
 }
 

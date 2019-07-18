@@ -76,3 +76,20 @@ export const submitExpense = (payload, component) =>{
         })
     }
 }
+
+export const handleRename = (payload, component) =>{
+    return dispatch =>{
+        axios.post("http://localhost:5000/handleRename", {payload}).then(res=>{
+            dispatch({type:"UPDATE_STORE", res})
+            getFeedbackMessage(component, "Category Renamed", "Category Renamed", "success")
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+}
+
+export const setContext = context =>{
+    return dispatch =>{
+        dispatch({type:"SET_CONTEXT", context})
+    }
+}

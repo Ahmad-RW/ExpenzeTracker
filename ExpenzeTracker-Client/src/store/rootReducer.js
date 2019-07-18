@@ -9,7 +9,8 @@ const initState = {
         },
         email : "",
         category: []
-    }
+    },
+    context : {}
 }
 
 const rootReducer = (state = initState, action) =>{
@@ -26,6 +27,12 @@ const rootReducer = (state = initState, action) =>{
         return state={
             userData : action.res.data
         }
+        case "SET_CONTEXT":
+            console.log(action)
+            return state={
+                ...state,
+                context : action.context
+            }
         default:
         return state
     }
