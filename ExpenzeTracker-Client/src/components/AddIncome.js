@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addIncome } from '../store/actions'
-import { Button, Message } from 'semantic-ui-react'
+import { Input, Button, Message, Form } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import '../style/forms.css'
 import {getFeedbackMessage} from './helpers'
@@ -45,10 +45,12 @@ class AddIncome extends Component {
     render() {
         return (
             <React.Fragment>
-                <input type="text" id="incomeValue" onChange={this.handleChange} />
+                <Form.Group widths="equal">
+                <Input type="text" id="incomeValue" onChange={this.handleChange} />
                {
                    this.state.incomeValue === 0? ( <Button disabled onClick={this.handleAddIncome}>Add</Button>) :( <Button onClick={this.handleAddIncome}>Add</Button>)
                }
+               </Form.Group>
                 {this.state.feedbackMessage}
             </React.Fragment>
         )

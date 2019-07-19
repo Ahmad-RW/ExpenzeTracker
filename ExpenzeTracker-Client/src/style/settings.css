@@ -9,10 +9,11 @@
 
 .settings-profile{
     flex: 1;
-    /* border-bottom: 1px solid black; */
     margin-bottom: 8px;
     width: 40%;
     text-align: center;
+    padding: 12px;
+    margin-top: 18px;
 
 }
 

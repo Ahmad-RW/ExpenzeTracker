@@ -41,7 +41,7 @@ class Navbar extends Component {
               <div class="nav-center">{/* <h1>Expenze</h1> */}</div>
 
               <div class="nav-right profile">
-                <span class="welcome">Welcome, Rakan Salem</span>
+                <span class="welcome">Welcome, John Doe</span>
                 <img class="avatar" src={avatar} alt="avatar" />
               </div>
             </nav>
