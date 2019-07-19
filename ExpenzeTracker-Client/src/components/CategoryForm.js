@@ -9,10 +9,18 @@ class CategoryForm extends Component {
 
   state = {
     categoryName: "",
+    editingMode: false,
   }
 
 
+     
+  cancelEditMode = () => {
+    this.setState({
+      editingMode: false,
+    
+    })
 
+  }
   handleNameChange = e => {
     this.setState({
       [e.target.id]: e.target.value
@@ -64,7 +72,7 @@ class CategoryForm extends Component {
   listCategories = () => {
     if (this.state.editingMode) {
       return (
-       <EditMode />
+       <EditMode  cancelEditMode={this.cancelEditMode} />
       );
     }
     else {

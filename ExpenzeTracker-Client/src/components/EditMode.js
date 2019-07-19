@@ -8,16 +8,16 @@ import { checkEmptyName, checkIfInputIsNotNumber, getFeedbackMessage } from './h
 class EditMode extends Component{
     
     state = {
-        editingMode : false,
+        
         total : 100
     }
 
     
   cancelEditMode = () => {
     this.setState({
-      editingMode: false,
       total: 100
     })
+    this.props.cancelEditMode()//so that the parent returns his view 
 
   }
 
@@ -108,6 +108,7 @@ class EditMode extends Component{
             return (
               <div class="edit-cat">
                 <button
+                type="button"
                   icon
                   class="ui red button icon"
                   onClick={() => {
@@ -132,6 +133,7 @@ class EditMode extends Component{
           <Modal.Actions>
             <Button type="submit">Save</Button>
             <button
+            type="button"
               class="ui inverted red button"
               onClick={this.cancelEditMode}
             >
