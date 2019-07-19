@@ -72,7 +72,7 @@ class CategoryForm extends Component {
   listCategories = () => {
     if (this.state.editingMode) {
       return (
-       <EditMode  cancelEditMode={this.cancelEditMode} />
+          <EditMode cancelEditMode={this.cancelEditMode} />
       );
     }
     else {

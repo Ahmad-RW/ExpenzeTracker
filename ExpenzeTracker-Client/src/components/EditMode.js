@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { createCategory, editCategories, deleteCategory } from '../store/actions'
 import { Input, Form, Button, Icon, Progress, Label, Modal } from 'semantic-ui-react'
 import '../style/forms.css'
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import { checkEmptyName, checkIfInputIsNotNumber, getFeedbackMessage } from './helpers'
 
 class EditMode extends Component{
@@ -97,18 +99,14 @@ class EditMode extends Component{
 
   render() {
     return (
-      <Form
-          inline
-          id="editForm"
-          onSubmit={this.saveChanges}
-        >
-          <Progress percent={this.state.total} progress />
+      <div class="edit-mode">
+        <Form id="editForm" onSubmit={this.saveChanges}>
           {this.props.userData.category.map(cat => {
             //iteratre over categories
             return (
               <div class="edit-cat">
                 <button
-                type="button"
+                  type="button"
                   icon
                   class="ui red button icon"
                   onClick={() => {
@@ -133,14 +131,22 @@ class EditMode extends Component{
           <Modal.Actions>
             <Button type="submit">Save</Button>
             <button
-            type="button"
+              type="button"
               class="ui inverted red button"
               onClick={this.cancelEditMode}
             >
               Cancel
-                  </button>
+            </button>
           </Modal.Actions>
         </Form>
+        <div class="progress">
+          <CircularProgressbar
+            value={100 - this.state.total}
+            maxValue={100}
+            text={`${100 - this.state.total}%`}
+          />
+        </div>
+      </div>
     );
   }
 }

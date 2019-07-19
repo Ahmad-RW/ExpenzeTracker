@@ -32,7 +32,7 @@ class AddIncome extends Component {
             userData: this.props.userData,
             income: this.state.incomeValue
         }
-        this.props.addIncome(payload )
+        this.props.addIncome(payload)
     }
  
     renderWarningMessage = () => {

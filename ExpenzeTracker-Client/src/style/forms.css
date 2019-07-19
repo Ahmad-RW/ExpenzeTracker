@@ -8,6 +8,8 @@ label {
 
 /* ---- Category Form ---- */
 #editForm {
+
+  flex: 1;
   padding-top: 8px;
   margin: 18px;
 }
@@ -39,12 +41,16 @@ label {
   border-bottom: 1px solid rgba(34, 36, 38, 0.15);
 }
 
-.edit-cat {
+.edit-mode {
+  display: flex;
+}
+
+.edit-cat { 
   margin-bottom: 12px;
 }
 
 .edit-cat .ui.basic.label {
-  width: 120px;
+  width: 80px;
 }
 
 .ui.inverted.red.button,
@@ -52,4 +58,10 @@ label {
   background-color: transparent;
   box-shadow: 0 0 0 1px #ff695e inset !important;
   color: #ff695e;
+}
+
+.progress { 
+  width: 25%;
+  height: 25%;
+  margin: 0 30px 30px 12px;
 }
