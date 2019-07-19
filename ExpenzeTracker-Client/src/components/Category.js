@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import CategoryHeader from './CategoryHeader'
 import { connect } from 'react-redux'
 import { handleRename } from '../store/actions'
 class Category extends Component {
@@ -38,6 +39,7 @@ class Category extends Component {
        
         return (
             <React.Fragment>
+                <CategoryHeader />
             {this.state.feedbackMessage}
                 <h1 >this cat's name is {this.props.context.name}</h1>
                 <label>Rename category</label>

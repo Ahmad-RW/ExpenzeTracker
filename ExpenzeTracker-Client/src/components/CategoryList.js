@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../style/categorylist.css";
-import { Card } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import {setContext} from '../store/actions'
+import { setContext } from "../store/actions";
 class CategoryList extends Component {
   state = {
     renderSuccessMessage: false
@@ -12,29 +12,25 @@ class CategoryList extends Component {
     const categoryList = this.props.userData.category ? (
       this.props.userData.category.map(cat => {
         return (
-          <Card  color="red">
-            <Card.Header>
-              <div class="cat-name">
-                <Link
-                  onClick={() => {
-                    this.props.setContext(cat);
-                  }}
-                  to={{
-                    pathname: `/category/categoryDetails`,
-                    state: { category: cat }
-                  }}
-                >
-                  {cat.name}
-                </Link>
-              </div>
-            </Card.Header>
-            <Card.Content>
-              <div calss="cat-balance" style={{ "font-size": "16pt" }}>
-                {cat.balance.toFixed(2)}
-              </div>
-              <div class="cat-share">{cat.share}%</div>
-            </Card.Content>
-          </Card>
+          <div class="cat">
+            <div class="cat-name">
+              <Link
+                onClick={() => {
+                  this.props.setContext(cat);
+                }}
+                to={{
+                  pathname: `/category/categoryDetails`,
+                  state: { category: cat }
+                }}
+              >
+                {cat.name}
+              </Link>{" "}
+            </div>
+            <div calss="cat-balance" style={{ "font-size": "16pt" }}>
+              {cat.balance.toFixed(2)}
+            </div>
+            <div class="cat-share">{cat.share}%</div>
+          </div>
         );
       })
     ) : (
@@ -67,7 +63,9 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    setContext : (context) => {dispatch(setContext(context))}
+    setContext: context => {
+      dispatch(setContext(context));
+    }
   };
 };
 export default connect(
