@@ -32,7 +32,7 @@ class AddIncome extends Component {
             userData: this.props.userData,
             income: this.state.incomeValue
         }
-        this.props.addIncome(payload)
+        this.props.addIncome(payload,this)
     }
  
     renderWarningMessage = () => {
@@ -66,7 +66,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addIncome: (payload) => dispatch(addIncome(payload))
+        addIncome: (payload, component) => dispatch(addIncome(payload,component))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddIncome)
