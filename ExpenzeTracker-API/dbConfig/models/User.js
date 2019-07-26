@@ -9,6 +9,7 @@ const UserSchema = new Schema({
         payrollDate : String,
     },
     balance : Number,
+
     category: [{
         name: String,
         balance: Number,
@@ -24,6 +25,13 @@ const UserSchema = new Schema({
             to: String,
             from: String
         }]
+    }],
+    logs:[{
+        action : {type: String,
+            enum: ['TRANSFER', 'INCOME', 'EXPENSE']},
+        category_id: mongoose.Schema.Types.ObjectId,
+        amount : Number,
+        timeStamp : Date
     }]
 })
 

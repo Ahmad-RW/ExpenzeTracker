@@ -23,7 +23,7 @@ setInterval(() => {//this executes every 5 mins(300000 millieseconds).
     User.find({ "monthlyIncome.payrollDate": date }).cursor().eachAsync((record) => {
         console.log(`Adding monthly Income to ${record.name}`)
         let newCategoryList = addIncomeToCategories(record.category, record.monthlyIncome.amount )
-        User.findByIdAndUpdate({ _id: record._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : record.monthlyIncome.amount }}, { new: true }).then(() => {
+        User.findByIdAndUpdate({ _id: record._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : record.monthlyIncome.amount }, $push:{"logs":getLog("INCOME",null,record.monthlyIncome.amount)}  }, { new: true, runValidators:true }).then(() => {
             console.log("Monthly Income Added")
         })
     }).then((records) => {
@@ -81,7 +81,7 @@ app.post('/addIncome', function (req, res) {
     console.log("Adding Income...")
     let newCategoryList = req.body.payload.userData.category
     newCategoryList = addIncomeToCategories(newCategoryList, req.body.payload.income);
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : req.body.payload.income} }, { new: true }).then(record => {
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : req.body.payload.income}, $push:{"logs":getLog("INCOME",null,req.body.payload.income)} }, { new: true, runValidators:true }).then(record => {
         console.log(record)
         res.status(200).send(record)
     }).catch(err => {
@@ -146,7 +146,7 @@ app.post('/submitExpense', function(req, res){
         return (element)
     })
 
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }}, { new: true }).then(record => {
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $push:{"logs":getLog("EXPENSE",req.body.payload.category_id,req.body.payload.amount)}}, { new: true, runValidators:true }).then(record => {
         res.status(200).send(record)
     }).catch(err => {
         res.status(500).send(err)
@@ -173,3 +173,13 @@ function addIncomeToCategories(newCategoryList, amount) {
     return newCategoryList
 }
 
+
+function getLog(action, category_id, amount){
+    const log = {
+        action,
+        category_id, 
+        amount,
+        timeStamp : new Date()
+    }
+    return log
+}
