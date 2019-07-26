@@ -45,7 +45,15 @@ class SetMonthlyIncome extends Component {
         payrollDay : "",
         payrollMonth : ""
     }
+    handleDayInput = e => {
+        console.log(e.target)
+        this.setState({
+           payrollDay: e.target.innerText
+        })
+        console.log(this.state)
+    }
     handleChange = e => {
+        console.log(e.target)
         this.setState({
             [e.target.id]: e.target.value
         })
@@ -70,7 +78,7 @@ class SetMonthlyIncome extends Component {
                 <Form onSubmit={this.handleSetMonthlyInput}>
                     <Form.Group widths='equal'>
                         <Form.Input fluid onChange={this.handleChange} type="number" id="amount" />
-                        <Form.Select fluid placeholder='Payroll Day' selection id="payrollDay" name="day" options={days} onChange={this.handleChange}/>
+                        <Form.Select fluid placeholder='Payroll Day' selection id="payrollDay" name="day" options={days} onChange={this.handleDayInput}/>
                         <Button onClick={this.handleSetMonthlyInput}>Set</Button>
                     </Form.Group>
                 </Form>
