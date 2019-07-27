@@ -26,7 +26,7 @@ class CategoryList extends Component {
                 {cat.name}
               </Link>{" "}
             </div>
-            <div calss="cat-balance" style={{ "font-size": "16pt" }}>
+            <div class="cat-balance">
               {cat.balance.toFixed(2)}
             </div>
             <div class="cat-share">{cat.share}%</div>

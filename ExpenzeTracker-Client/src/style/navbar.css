@@ -77,3 +77,13 @@
   font-size: 22pt;
 }
 
+@media only screen and (max-width: 683px){
+  .welcome {
+    display: none;
+  }
+
+  .nav-left{
+    flex: 2;
+  }
+}
+
