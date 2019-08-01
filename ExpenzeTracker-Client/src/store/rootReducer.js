@@ -18,12 +18,31 @@ const rootReducer = (state = initState, action) =>{
 
         case "SET_USER_DATA": 
         console.log(action)
-        return state = {
+        if(state.context!==null){
+            action.res.data.category.forEach(elem=>{
+                if(elem._id === state.context._id)
+                state= {
+                     userData: action.res.data,
+                     context : {...elem}
+                }
+            })
+            return state
+        }
+        return state={
             userData : action.res.data
         }
         case "UPDATE_STORE":
-        //modify state in an immutable way then return it.
         console.log(state, action)
+        if(state.context!==null){
+            action.res.data.category.forEach(elem=>{
+                if(elem._id === state.context._id)
+                state= {
+                     userData: action.res.data,
+                     context : {...elem}
+                }
+            })
+            return state
+        }
         return state={
             userData : action.res.data
         }
