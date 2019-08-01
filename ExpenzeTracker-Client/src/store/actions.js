@@ -87,6 +87,16 @@ export const handleRename = (payload, component) =>{
         })
     }
 }
+export const transfer = (payload, component)=>{
+    return dispatch =>{
+        axios.post("http://localhost:5000/handleTransfer", {payload}).then(res=>{
+            dispatch({type:"UPDATE_STORE", res})
+            getFeedbackMessage(component, "Operation successful", "amount transferred successfully", "success")
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+}
 
 export const setContext = context =>{
     return dispatch =>{

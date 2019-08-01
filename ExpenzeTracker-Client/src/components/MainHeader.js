@@ -7,7 +7,7 @@ import AddIncome from "./AddIncome";
 import { Modal, Form, Tab } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import RegisterExpense from "./RegisterExpense";
-
+import Transfer from './Transfer'
 const panes = [
   {
     menuItem: "Income",
@@ -25,7 +25,7 @@ const panes = [
       </Tab.Pane>
     )
   },
-  { menuItem: "Transfer", render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> }
+  { menuItem: "Transfer", render: () => <Tab.Pane><Transfer /></Tab.Pane> }
 ];
 
 class MainHeader extends Component {

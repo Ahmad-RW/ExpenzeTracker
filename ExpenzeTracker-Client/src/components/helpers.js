@@ -60,6 +60,6 @@ export const getCategory = (id, categories) => {
       result = {...elem}
     }
   })
-  console.log(result)
+
   return result
 }
