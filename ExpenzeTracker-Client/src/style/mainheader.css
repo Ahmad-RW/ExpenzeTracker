@@ -41,3 +41,21 @@
   margin: 12px;
   padding: 12px;
 }
+
+@media only screen and (max-width: 836px){
+  .main {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 567px){
+  .main {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 411px){
+  .main {
+    width: 100%;
+  }
+}

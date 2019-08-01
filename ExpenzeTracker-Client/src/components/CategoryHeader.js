@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import {} from "semantic-ui-react";
+import "../style/categoryheader.css";
 
 import { connect } from 'react-redux'
 import { handleRename } from '../store/actions'
