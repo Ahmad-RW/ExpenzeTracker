@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import SetMonthlyIncome from './SetMonthlyIncome'
 import '../style/settings.css'
 import { Accordion, Header, Icon, Form, Segment, Modal } from "semantic-ui-react"
+import {connect} from 'react-redux'
 
+import {getCategory } from './helpers'
 
 
 
@@ -16,7 +18,15 @@ class Settings extends Component {
 
     this.setState({ activeIndex: newIndex });
   };
-
+  listLogs = () => {
+    return this.props.logs.map(log => {
+        return(
+            <div>
+            action :  { log.action} ,, amount : {log.amount},, category : {log.category_id === null ? (<span>all categories</span>) :(getCategory(log.category_id, this.props.userData.category).name)}
+            </div>
+        )
+    })
+}
   render() {
     const { activeIndex } = this.state;
 
@@ -63,9 +73,23 @@ class Settings extends Component {
             </Accordion>
           </div>
         </div>
+        {this.listLogs()}
       </React.Fragment>
     );
   }
 }
 
-export default Settings;
+const mapStateToProps = state => {
+  return {
+      userData: state.userData,
+      context: state.context,
+      logs: state.logs
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+

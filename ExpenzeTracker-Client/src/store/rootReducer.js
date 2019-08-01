@@ -10,7 +10,13 @@ const initState = {
         email : "",
         category: []
     },
-    context : {}
+    context : {},
+    logs : [{
+        action : "",
+        category_id : "",
+        amount : "",
+        timestamp : ""
+    }]
 }
 
 const rootReducer = (state = initState, action) =>{
@@ -23,13 +29,16 @@ const rootReducer = (state = initState, action) =>{
                 if(elem._id === state.context._id)
                 state= {
                      userData: action.res.data,
+                     logs: action.res.data.logs,
+
                      context : {...elem}
                 }
             })
             return state
         }
         return state={
-            userData : action.res.data
+            userData : action.res.data,
+            logs: action.res.data.logs,
         }
         case "UPDATE_STORE":
         console.log(state, action)
@@ -38,13 +47,15 @@ const rootReducer = (state = initState, action) =>{
                 if(elem._id === state.context._id)
                 state= {
                      userData: action.res.data,
+                     logs: action.res.data.logs,
                      context : {...elem}
                 }
             })
             return state
         }
         return state={
-            userData : action.res.data
+            userData : action.res.data,
+            logs: action.res.data.logs,
         }
         case "SET_CONTEXT":
             console.log(action)
