@@ -1,104 +1,101 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createCategory, editCategories, deleteCategory } from '../store/actions'
-import { Input, Form, Button, Icon, Progress, Label, Modal } from 'semantic-ui-react'
+import { createCategory } from '../store/actions'
+import { Input, Button, Icon, Label, Modal } from 'semantic-ui-react'
 import '../style/forms.css'
-import { checkEmptyName, checkIfInputIsNotNumber, getFeedbackMessage } from './helpers'
+import { checkEmptyName, getFeedbackMessage } from './helpers'
 import EditMode from './EditMode';
 class CategoryForm extends Component {
-
   state = {
     categoryName: "",
-    editingMode: false,
-  }
+    editingMode: false
+  };
 
-
-     
   cancelEditMode = () => {
     this.setState({
-      editingMode: false,
-    
-    })
-
-  }
+      editingMode: false
+    });
+  };
   handleNameChange = e => {
     this.setState({
       [e.target.id]: e.target.value
-    })
-  }
-
+    });
+  };
 
   createCategory = e => {
     const payload = {
       categoryName: this.state.categoryName,
       userData: this.props.userData
-    }
-    if (checkEmptyName(payload.categoryName)) {//validation begin
-      getFeedbackMessage(this, "Category name Error", "Category name cannot be empty", "error")//god bless refactoring :)
+    };
+    if (checkEmptyName(payload.categoryName)) {
+      //validation begin
+      getFeedbackMessage(
+        this,
+        "Category name Error",
+        "Category name cannot be empty",
+        "error"
+      ); //god bless refactoring :)
 
-      return//return from submission
+      return; //return from submission
     }
     if (this.checkCharLimit(payload.categoryName)) {
-      getFeedbackMessage(this, "Category name Error", "Category name is too long", "error")
-      return
+      getFeedbackMessage(
+        this,
+        "Category name Error",
+        "Category name is too long",
+        "error"
+      );
+      return;
     }
 
     if (!this.isNameUnique(payload.categoryName)) {
-      getFeedbackMessage(this, "Category name Error", "Category name must be unique", "error")
-      return
+      getFeedbackMessage(
+        this,
+        "Category name Error",
+        "Category name must be unique",
+        "error"
+      );
+      return;
+    } // validation end. refactor these validation routines into external function !!importants
 
-    }// validation end. refactor these validation routines into external function !!importants
+    this.props.createCategory(payload);
+  };
 
-
-    this.props.createCategory(payload)
-  }
-
-
-
-  checkCharLimit = (categoryName) => {
-    return categoryName.length >= 13
-  }
+  checkCharLimit = categoryName => {
+    return categoryName.length >= 13;
+  };
 
   isNameUnique = categoryName => {
-    let result = true
+    let result = true;
     this.props.userData.category.forEach(elem => {
       if (elem.name === categoryName) {
-        result = false
+        result = false;
       }
-    })
-    return result
-  }
+    });
+    return result;
+  };
 
   listCategories = () => {
     if (this.state.editingMode) {
-      return (
-          <EditMode cancelEditMode={this.cancelEditMode} />
-      );
-    }
-    else {
+      return <EditMode cancelEditMode={this.cancelEditMode} />;
+    } else {
       return (
         <div>
-          <ul class="cat-form">
-            {this.props.userData.category.map(cat => {//iterate over categories
+          <ul class="cat-form-list">
+            {this.props.userData.category.map(cat => {
+              //iterate over categories
               return (
                 <li>
-                  <div>{cat.name}</div>{" "}
-                  <div>
-                    {cat.share}%{" "}
-                  </div>
-                  <div>
-                    {cat.balance.toFixed(2)}
-                  </div>
+                  <div>{cat.name}</div> <div>{cat.share}% </div>
+                  <div>{cat.balance.toFixed(2)}</div>
                 </li>
               );
             })}
           </ul>
         </div>
-      )
+      );
     }
-  }
-
-
+  };
 
   render() {
     return (
@@ -112,29 +109,23 @@ class CategoryForm extends Component {
               id="categoryName"
               onChange={this.handleNameChange}
               labelPosition="left"
-
             >
               <Label basic for="category-name">
                 Create new category
-                  </Label>
+              </Label>
               <input />
             </Input>
-            {
-              this.state.categoryName === "" ? //disabled button if category name === ""
-
-                (<Button disabled icon onClick={this.createCategory}>
-                  <Icon name="plus" />
-                </Button>)
-                :
-                (<Button icon onClick={this.createCategory}>
-                  <Icon name="plus" />
-                </Button>)
-            }
-            <Button
-              icon
-              onClick={() => {
-                this.setState({ editingMode: true });
-              }}
+            {this.state.categoryName === "" ? ( //disabled button if category name === ""
+              <Button disabled icon onClick={this.createCategory}>
+                <Icon name="plus" />
+              </Button>
+            ) : (
+              <Button icon onClick={this.createCategory}>
+                <Icon name="plus" />
+              </Button>
+            )}
+            <Button icon
+              onClick={() => {this.setState({ editingMode: true });}}
             >
               <Icon name="edit" />
             </Button>
@@ -149,13 +140,13 @@ class CategoryForm extends Component {
 const mapStateToProps = state => {
   return {
     userData: state.userData
-  }
-}
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
-    createCategory: (payload) => { dispatch(createCategory(payload)) },
-
-
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryForm)
+    createCategory: payload => {
+      dispatch(createCategory(payload));
+    }
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryForm);

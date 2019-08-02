@@ -7,25 +7,26 @@ import AddIncome from "./AddIncome";
 import { Modal, Form, Tab } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import RegisterExpense from "./RegisterExpense";
-import Transfer from './Transfer'
+import Transfer from "./Transfer";
 const panes = [
-  {
-    menuItem: "Income",
+  {menuItem: "Income",
     render: () => (
       <Tab.Pane>
         <AddIncome />
       </Tab.Pane>
-    )
-  },
-  {
-    menuItem: "Expense",
+    )},
+  {menuItem: "Expense",
     render: () => (
       <Tab.Pane>
         <RegisterExpense />
       </Tab.Pane>
-    )
-  },
-  { menuItem: "Transfer", render: () => <Tab.Pane><Transfer /></Tab.Pane> }
+    )},
+  {menuItem: "Transfer",
+    render: () => (
+      <Tab.Pane>
+        <Transfer />
+      </Tab.Pane>
+    )}
 ];
 
 class MainHeader extends Component {
@@ -73,7 +74,4 @@ const mapDispatchToProps = dispatch => {
     setMonthlyIncome: payload => dispatch(setMonthlyIncome(payload))
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MainHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(MainHeader);

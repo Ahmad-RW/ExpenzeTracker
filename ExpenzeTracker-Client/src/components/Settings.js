@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SetMonthlyIncome from './SetMonthlyIncome'
 import '../style/settings.css'
-import { Accordion, Header, Icon, Form, Segment, Modal } from "semantic-ui-react"
+import { Accordion, Header, Icon } from "semantic-ui-react"
 import {connect} from 'react-redux'
 
 import {getCategory } from './helpers'

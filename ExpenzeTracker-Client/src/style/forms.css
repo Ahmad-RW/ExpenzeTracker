@@ -1,27 +1,21 @@
-button.ui.button {
-  margin: 0 4px 0 8px;
-}
+/* ---- Form Header ---- */
 
-label {
-  margin-right: 8px;
-}
-
-/* ---- Category Form ---- */
-#editForm {
-
-  flex: 1;
-  padding-top: 8px;
+.cat-form-header {
   margin: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
 }
 
-.cat-form {
+/* ---- Categories display ---- */
+
+.cat-form-list {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   justify-content: center;
 }
 
-.cat-form > li {
+.cat-form-list > li {
   height: 80px;
   width: 120px;
   margin: 12px;
@@ -35,33 +29,49 @@ label {
   justify-content: space-around;
 }
 
-.cat-form-header {
-  margin: 18px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
-}
+/* ---- Edit Mode ---- */
 
 .edit-mode {
-  display: flex;
+  margin: 14px;
+}
+
+.input-fields {
+  flex: 1;
+  padding-top: 8px;
+  margin: 18px;
 }
 
 .edit-cat { 
+  flex: 1;
   margin-bottom: 12px;
 }
 
-.edit-cat .ui.basic.label {
-  width: 80px;
+/* ---- Semantic component ---- */
+
+button.ui.button {
+  margin: 0 4px 0 8px;
+}
+
+label {
+  margin-right: 8px;
 }
 
 .ui.inverted.red.button,
 .ui.inverted.red.buttons .button {
-  background-color: transparent;
   box-shadow: 0 0 0 1px #ff695e inset !important;
-  color: #ff695e;
 }
 
-.progress { 
-  width: 25%;
-  height: 25%;
-  margin: 0 30px 30px 12px;
+.ui.progress:first-child { 
+  margin: 0 0 1.5em;
 }
+
+.edit-cat .ui.basic.label {
+  width: 40%;
+}
+
+.edit-cat .ui.labeled.input {
+  width: 40%;
+}
+
+
+

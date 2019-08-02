@@ -1,3 +1,5 @@
+/* -----  Containers  ----- */
+
 .navbar {
   display: flex;
   background: rgb(99, 216, 158);
@@ -16,7 +18,10 @@
 
 .nav-right {
   flex:1;  
+  text-align: end;
 }
+
+/* -----  Actions  ----- */
 
 .home {
   margin-left: 8px;
@@ -24,10 +29,6 @@
   width: 26px;
   padding: 2px;
   transition: 100ms;
-}
-
-.home:hover {
-  padding: 0;
 }
 
 .categories {
@@ -38,10 +39,6 @@
   transition: 100ms;
 }
 
-.categories:hover {
-  padding: 0;
-}
-
 .settings {
   margin-left: 18px;
   height: 26px;
@@ -50,9 +47,21 @@
   transition: 100ms;
 }
 
+/* -----  Hover  ----- */
+
+.home:hover {
+  padding: 0;
+}
+
+.categories:hover {
+  padding: 0;
+}
+
 .settings:hover {
   padding: 0;
 }
+
+/* -----  User  ----- */
 
 .avatar {
   margin-left: 10px;
@@ -63,13 +72,11 @@
   vertical-align: middle;
 }
 
-.profile {
-  text-align: end;
-}
-
 .welcome {
   vertical-align: middle;
 }
+
+/* -----  Logo  ----- */
 
 .nav-center h1 {
   text-align: center;
@@ -77,8 +84,14 @@
   font-size: 22pt;
 }
 
+/* -----  Media Queries  ----- */
+
 @media only screen and (max-width: 683px){
   .welcome {
+    display: none;
+  }
+
+  .nav-center h1 {
     display: none;
   }
 

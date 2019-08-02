@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../style/categorylist.css";
-import { Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { setContext } from "../store/actions";
 class CategoryList extends Component {
@@ -24,7 +23,7 @@ class CategoryList extends Component {
                 }}
               >
                 {cat.name}
-              </Link>{" "}
+              </Link>
             </div>
             <div class="cat-balance">
               {cat.balance.toFixed(2)}

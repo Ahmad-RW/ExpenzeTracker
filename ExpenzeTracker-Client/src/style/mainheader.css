@@ -1,16 +1,18 @@
+/* -----  Container  ----- */
+
 .main {
   width: 40%;
-  /* margin: auto; */
   padding: 4px;
   border-right: 1px solid rgba(34, 36, 38, 0.15);
   border-bottom: 1px solid rgba(34, 36, 38, 0.15);
   border-bottom-right-radius: 8px;
-  /* border-top-right-radius: 8px; */
   display: flex;
   align-items: center;
   color: #555;
   background: rgba(152, 245, 198, 0.5);
 }
+
+/* -----  balance-income display  ----- */
 
 .main-balance {
   flex: 1;
@@ -25,6 +27,8 @@
   border-right: 1px solid rgba(34, 36, 38, 0.15);
 }
 
+/* -----  Icon  ----- */
+
 .add {
   align-self: flex-end;
   height: 30px;
@@ -37,10 +41,7 @@
   padding: 0;
 }
 
-.set-income {
-  margin: 12px;
-  padding: 12px;
-}
+/* -----  Media Queries  ----- */
 
 @media only screen and (max-width: 836px){
   .main {
