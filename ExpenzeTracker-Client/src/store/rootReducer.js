@@ -1,3 +1,4 @@
+import { stat } from "fs";
 
 
 const initState = {
@@ -23,11 +24,12 @@ const rootReducer = (state = initState, action) => {
     switch (action.type) {
 
         case "SET_USER_DATA":
-            console.log(state.context)
+            console.log(state)
             if (state.context === null) {
                 
                 return state = {
                     userData: action.res.data,
+                    context : null,
                     logs: action.res.data.logs,
                 }
             }
@@ -49,10 +51,12 @@ const rootReducer = (state = initState, action) => {
             if (state.context === null) {
                 return state = {
                     userData: action.res.data,
+                    context : null,
                     logs: action.res.data.logs,
                 }
             }
             else{//this is to handel update to the caterogry that is the context.
+                console.log(state.context)
                 action.res.data.category.forEach(elem => {
                     if (elem._id === state.context._id) {
                         state = {
@@ -65,11 +69,13 @@ const rootReducer = (state = initState, action) => {
                 return state
             }
         case "DELETE_CATEGORY":
-            return state = {
+             state = {
                 userData: action.res.data,
                 logs: action.res.data.logs,
                 context: null
             }
+            console.log(state)
+            return state
         case "SET_CONTEXT":
             console.log(state, action)
             state = {
