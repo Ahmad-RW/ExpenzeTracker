@@ -1,70 +1,85 @@
 
 
 const initState = {
-    userData : {
-        name : "",
-        monthlyIncome :{
-            payrollDate : "",
-            amount : ""
+    userData: {
+        name: "",
+        monthlyIncome: {
+            payrollDate: "",
+            amount: ""
         },
-        email : "",
+        email: "",
         category: []
     },
-    context : {},
-    logs : [{
-        action : "",
-        category_id : "",
-        amount : "",
-        timestamp : ""
+    context: null,
+    logs: [{
+        action: "",
+        category_id: "",
+        amount: "",
+        timestamp: ""
     }]
 }
 
-const rootReducer = (state = initState, action) =>{
-    switch(action.type){
+const rootReducer = (state = initState, action) => {
+    switch (action.type) {
 
-        case "SET_USER_DATA": 
-        console.log(action)
-        if(state.context!==null){
-            action.res.data.category.forEach(elem=>{
-                if(elem._id === state.context._id)
-                state= {
-                     userData: action.res.data,
-                     logs: action.res.data.logs,
-
-                     context : {...elem}
+        case "SET_USER_DATA":
+            console.log(state.context)
+            if (state.context === null) {
+                
+                return state = {
+                    userData: action.res.data,
+                    logs: action.res.data.logs,
                 }
-            })
-            return state
-        }
-        return state={
-            userData : action.res.data,
-            logs: action.res.data.logs,
-        }
-        case "UPDATE_STORE":
-        console.log(state, action)
-        if(state.context!==null){
-            action.res.data.category.forEach(elem=>{
-                if(elem._id === state.context._id)
-                state= {
-                     userData: action.res.data,
-                     logs: action.res.data.logs,
-                     context : {...elem}
-                }
-            })
-            return state
-        }
-        return state={
-            userData : action.res.data,
-            logs: action.res.data.logs,
-        }
-        case "SET_CONTEXT":
-            console.log(action)
-            return state={
-                ...state,
-                context : action.context
             }
+            else {//dont lose the context.
+                action.res.data.category.forEach(elem => {
+                    if (elem._id === state.context._id) {
+                        state = {
+                            userData: action.res.data,
+                            logs: action.res.data.logs,
+                            context: { ...elem }
+                        }
+                    }
+                })
+           
+                return state
+            }
+        case "UPDATE_STORE":
+            console.log(state)
+            if (state.context === null) {
+                return state = {
+                    userData: action.res.data,
+                    logs: action.res.data.logs,
+                }
+            }
+            else{//this is to handel update to the caterogry that is the context.
+                action.res.data.category.forEach(elem => {
+                    if (elem._id === state.context._id) {
+                        state = {
+                            userData: action.res.data,
+                            logs: action.res.data.logs,
+                            context: { ...elem }
+                        }
+                    }
+                })
+                return state
+            }
+        case "DELETE_CATEGORY":
+            return state = {
+                userData: action.res.data,
+                logs: action.res.data.logs,
+                context: null
+            }
+        case "SET_CONTEXT":
+            console.log(state, action)
+            state = {
+                ...state,
+                context: action.context
+            }
+            console.log(state)
+            return state
         default:
-        return state
+            return state
     }
 }
 

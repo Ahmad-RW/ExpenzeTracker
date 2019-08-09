@@ -97,6 +97,7 @@ class EditMode extends Component{
             return (
               <div class="edit-cat">
                 <Button icon negative
+                type="button"
                   onClick={() => { this.handleDelete(cat);}}>
                   <Icon name="minus square outline" />
                 </Button>
@@ -114,7 +115,7 @@ class EditMode extends Component{
             );
           })}
           <Button type="submit">Save</Button>
-          <Button inverted color="red" onClick={this.cancelEditMode}>
+          <Button type="button" inverted color="red" onClick={this.cancelEditMode}>
             Cancel
           </Button>
         </Form>
