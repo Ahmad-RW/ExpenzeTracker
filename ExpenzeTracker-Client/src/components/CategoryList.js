@@ -10,6 +10,9 @@ class CategoryList extends Component {
   listUserCategory = () => {
     const categoryList = this.props.userData.category ? (
       this.props.userData.category.map(cat => {
+        if(cat.deleted){
+          return
+        }
         return (
           <div class="cat">
             <div class="cat-name">

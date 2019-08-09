@@ -94,6 +94,9 @@ class EditMode extends Component{
         <Form id="editForm" class="input-fields" onSubmit={this.saveChanges}>
           {this.props.userData.category.map(cat => {
             //iteratre over categories
+            if(cat.deleted){
+              return 
+            }
             return (
               <div class="edit-cat">
                 <Button icon negative

@@ -51,6 +51,9 @@ class Transfer extends Component {
     }
     render() {
         const optionList = this.props.userData.category.map(elem => {
+            if(elem.deleted){
+                return
+            }
             return (<option value={elem._id}>{elem.name}</option>)
         })
         return (

@@ -79,11 +79,14 @@ class CategoryForm extends Component {
     if (this.state.editingMode) {
       return <EditMode cancelEditMode={this.cancelEditMode} />;
     } else {
+      
       return (
         <div>
           <ul class="cat-form-list">
             {this.props.userData.category.map(cat => {
-              //iterate over categories
+              if(cat.deleted){
+                return
+              }
               return (
                 <li>
                   <div>{cat.name}</div> <div>{cat.share}% </div>

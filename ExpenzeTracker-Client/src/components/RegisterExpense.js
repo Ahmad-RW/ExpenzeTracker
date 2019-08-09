@@ -24,6 +24,9 @@ class RegisterExpense extends Component {
 
     renderDropDownListForCats = () => {
         const list = this.props.userData.category.map(elem => {
+            if(elem.deleted){
+                return
+            }
             return (
                 <option value={elem._id} id={elem._id}>{elem.name}</option>
             )

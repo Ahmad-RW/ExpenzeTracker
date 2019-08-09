@@ -12,6 +12,7 @@ const UserSchema = new Schema({
 
     category: [{
         name: String,
+        deleted : {type:Boolean, default:false},
         balance: Number,
         share : Number,
         actions: [{

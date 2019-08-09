@@ -22,8 +22,8 @@ setInterval(() => {//this executes every 5 mins(300000 millieseconds).
     var date = getDate()
     User.find({ "monthlyIncome.payrollDate": date }).cursor().eachAsync((record) => {
         console.log(`Adding monthly Income to ${record.name}`)
-        let newCategoryList = addIncomeToCategories(record.category, record.monthlyIncome.amount )
-        User.findByIdAndUpdate({ _id: record._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : record.monthlyIncome.amount }, $push:{"logs":getLog("INCOME",null,record.monthlyIncome.amount)}  }, { new: true, runValidators:true }).then(() => {
+        let newCategoryList = addIncomeToCategories(record.category, record.monthlyIncome.amount)
+        User.findByIdAndUpdate({ _id: record._id }, { $set: { "category": newCategoryList }, $inc: { "balance": record.monthlyIncome.amount }, $push: { "logs": getLog("INCOME", null, record.monthlyIncome.amount) } }, { new: true, runValidators: true }).then(() => {
             console.log("Monthly Income Added")
         })
     }).then((records) => {
@@ -81,7 +81,7 @@ app.post('/addIncome', function (req, res) {
     console.log("Adding Income...")
     let newCategoryList = req.body.payload.userData.category
     newCategoryList = addIncomeToCategories(newCategoryList, req.body.payload.income);
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : req.body.payload.income}, $push:{"logs":getLog("INCOME",null,req.body.payload.income)} }, { new: true, runValidators:true }).then(record => {
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $inc: { "balance": req.body.payload.income }, $push: { "logs": getLog("INCOME", null, req.body.payload.income) } }, { new: true, runValidators: true }).then(record => {
         console.log(record)
         res.status(200).send(record)
     }).catch(err => {
@@ -91,16 +91,16 @@ app.post('/addIncome', function (req, res) {
 
 })
 
-app.post('/editCategories', function(req, res){
+app.post('/editCategories', function (req, res) {
     console.log("editing categories...")
     const newCategoryList = req.body.payload.userData.category
     newCategoryList.forEach(cat => {// I use javascript to update the categores instead of mongoDB queries, it is easier since mongoDB accepts JS.
         cat.share = req.body.payload.categories[cat._id]
-        if(typeof cat.share ==="undefined"){//this  is for when he doesn't enter anything in the front end, it is sent as undefined rather than 0, so I set it 0 here so I dont store undefined in the DB
-            cat.share =0
+        if (typeof cat.share === "undefined") {//this  is for when he doesn't enter anything in the front end, it is sent as undefined rather than 0, so I set it 0 here so I dont store undefined in the DB
+            cat.share = 0
         }
     })
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }}, { new: true }).then(record => {
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList } }, { new: true }).then(record => {
         res.status(200).send(record)
     }).catch(err => {
         console.log(err)
@@ -109,16 +109,20 @@ app.post('/editCategories', function(req, res){
 })
 
 
-app.post('/deleteCategory', function(req, res){
+app.post('/deleteCategory', function (req, res) {
     console.log("editing categories...")
     console.log(req.body)
-    let newCategoryList = req.body.payload.userData.category.filter(element=>{
-        return element._id !== req.body.payload.category._id
+    let newCategoryList = req.body.payload.userData.category.map(element => {
+        if (element._id === req.body.payload.category._id) {
+            element.deleted = true;
+        }
+        return element
     })
+    console.log(newCategoryList)
 
     newCategoryList = addIncomeToCategories(newCategoryList, req.body.payload.category.balance)
-   
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }}, { new: true }).then(record => {
+
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList } }, { new: true }).then(record => {
         res.status(200).send(record)
     }).catch(err => {
         console.log(err)
@@ -126,37 +130,37 @@ app.post('/deleteCategory', function(req, res){
     })
 })
 
-app.post('/handleRename', function(req, res){
-   console.log(req.body)
-   User.findByIdAndUpdate({_id:req.body.payload.userData._id}, {$set:{"category.$[elem].name" : req.body.payload.newName}}, {new:true, arrayFilters:[{"elem._id" : mongoose.Types.ObjectId(req.body.payload.categoryId)}]}).then(function(record){
-       console.log(record)
-       res.status(200).send(record)
-   }).catch(function(err){
-       res.status(500).send(err)
-   })
-}) 
+app.post('/handleRename', function (req, res) {
+    console.log(req.body)
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category.$[elem].name": req.body.payload.newName } }, { new: true, arrayFilters: [{ "elem._id": mongoose.Types.ObjectId(req.body.payload.categoryId) }] }).then(function (record) {
+        console.log(record)
+        res.status(200).send(record)
+    }).catch(function (err) {
+        res.status(500).send(err)
+    })
+})
 
 
-app.post('/submitExpense', function(req, res){
-   console.log("submiting eexpense.....")
-    let newCategoryList = req.body.payload.userData.category.map(element=>{
-        if(element._id === req.body.payload.category_id){
+app.post('/submitExpense', function (req, res) {
+    console.log("submiting eexpense.....")
+    let newCategoryList = req.body.payload.userData.category.map(element => {
+        if (element._id === req.body.payload.category_id) {
             element.balance = element.balance - req.body.payload.amount
         }
         return (element)
     })
 
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $push:{"logs":getLog("EXPENSE",req.body.payload.category_id,req.body.payload.amount)}}, { new: true, runValidators:true }).then(record => {
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $push: { "logs": getLog("EXPENSE", req.body.payload.category_id, req.body.payload.amount) } }, { new: true, runValidators: true }).then(record => {
         res.status(200).send(record)
     }).catch(err => {
         res.status(500).send(err)
     })
 })
 
-app.post('/handleTransfer', function(req,res){
-    User.findByIdAndUpdate({_id : req.body.payload.userData._id}, {$inc:{"category.$[to].balance" : req.body.payload.amount,"category.$[from].balance":-req.body.payload.amount},$push:{"logs":getLog("TRANSFER",req.body.payload.to,req.body.payload.amount)}}, {new:true, arrayFilters :[{"to._id" : mongoose.Types.ObjectId(req.body.payload.to) }, {"from._id":mongoose.Types.ObjectId(req.body.payload.from)}]}).then(function(record){
+app.post('/handleTransfer', function (req, res) {
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $inc: { "category.$[to].balance": req.body.payload.amount, "category.$[from].balance": -req.body.payload.amount }, $push: { "logs": getLog("TRANSFER", req.body.payload.to, req.body.payload.amount) } }, { new: true, arrayFilters: [{ "to._id": mongoose.Types.ObjectId(req.body.payload.to) }, { "from._id": mongoose.Types.ObjectId(req.body.payload.from) }] }).then(function (record) {
         res.status(200).send(record)
-    }).catch(function(err){
+    }).catch(function (err) {
         res.status(500).send(err)
     })
 })
@@ -166,28 +170,28 @@ app.listen('5000', function () {
 })
 
 app.get('/testingMongoDB', function (req, res) {
-//5ccd6cebb0e9f55fe072991e
-//5cedcad01c9d440000a39592
-User.findByIdAndUpdate({_id:"5cedcad01c9d440000a39592"}, {$set:{"category" : []}}).then(record=>{
-    res.status(200).send("efefwef")
-})
+    //5ccd6cebb0e9f55fe072991e
+    //5cedcad01c9d440000a39592
+    User.findByIdAndUpdate({ _id: "5cedcad01c9d440000a39592" }, { $set: { "category": [] } }).then(record => {
+        res.status(200).send("efefwef")
+    })
 })
 
 
 function addIncomeToCategories(newCategoryList, amount) {
-    newCategoryList.forEach(cat => {
+     newCategoryList.forEach(cat => {
         cat.balance = cat.balance + (amount * (cat.share / 100));
     });
     return newCategoryList
 }
 
 
-function getLog(action, category_id, amount){
+function getLog(action, category_id, amount) {
     const log = {
         action,
-        category_id, 
+        category_id,
         amount,
-        timeStamp : new Date()
+        timeStamp: new Date()
     }
     return log
 }
