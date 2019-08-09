@@ -9,28 +9,20 @@ const UserSchema = new Schema({
         payrollDate : String,
     },
     balance : Number,
-
     category: [{
         name: String,
         deleted : {type:Boolean, default:false},
         balance: Number,
         share : Number,
-        actions: [{
-            Type: {
-                type: String,
-                enum: ['TRANSFER', 'INCOME', 'EXPENSE']
-            },
-            timeStamp: Date,
-            amount: Number,
-            in: Boolean,
-            to: String,
-            from: String
-        }]
     }],
     logs:[{
-        action : {type: String,
-            enum: ['TRANSFER', 'INCOME', 'EXPENSE']},
-        category_id: mongoose.Schema.Types.ObjectId,
+        action : {
+            type: String,
+            enum: ['TRANSFER', 'INCOME', 'EXPENSE']
+        },
+        to:{type: mongoose.Schema.Types.ObjectId, default : null},
+        from : {type: mongoose.Schema.Types.ObjectId, default : null},
+        category_id: {type: mongoose.Schema.Types.ObjectId, default : null},
         amount : Number,
         timeStamp : Date
     }]

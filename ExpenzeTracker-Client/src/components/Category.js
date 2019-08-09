@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CategoryHeader from './CategoryHeader'
 import { connect } from 'react-redux'
+import Logs from './Logs';
 
 class Category extends Component {
 
@@ -21,9 +22,8 @@ class Category extends Component {
         return (
             <React.Fragment>
                 <CategoryHeader />
-                {this.state.feedbackMessage}
                 <h1 >this cat's name is {this.props.context.name}</h1>
-                
+                <Logs category_id={this.props.context._id} />
             </React.Fragment>
         )
     }

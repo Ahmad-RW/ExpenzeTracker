@@ -33,6 +33,7 @@ class MainHeader extends Component {
   render() {
     return (
       <React.Fragment>
+        <div>
         <div class="main">
           <div class="main-balance">
             <span>Balance: </span>
@@ -58,6 +59,8 @@ class MainHeader extends Component {
               </Form>
             </Modal.Content>
           </Modal>
+        </div>
+        <button onClick={this.props.changeView} >change it </button>
         </div>
       </React.Fragment>
     );

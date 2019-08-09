@@ -3,8 +3,8 @@ import SetMonthlyIncome from './SetMonthlyIncome'
 import '../style/settings.css'
 import { Accordion, Header, Icon } from "semantic-ui-react"
 import {connect} from 'react-redux'
+import Logs from './Logs'
 
-import {getCategory } from './helpers'
 
 
 
@@ -18,15 +18,7 @@ class Settings extends Component {
 
     this.setState({ activeIndex: newIndex });
   };
-  listLogs = () => {
-    return this.props.logs.map(log => {
-        return(
-            <div>
-            action :  { log.action} ,, amount : {log.amount},, category : {log.category_id === null ? (<span>all categories</span>) :(getCategory(log.category_id, this.props.userData.category).name)}
-            </div>
-        )
-    })
-}
+
   render() {
     const { activeIndex } = this.state;
 
@@ -40,40 +32,9 @@ class Settings extends Component {
             </Header>
           </div>
           <div class="settings-list">
-            <Accordion fluid styled>
-              <Accordion.Title
-                active={activeIndex === 0}
-                index={0}
-                onClick={this.handleClick}
-              >
-                <Icon name="dropdown" />
-                Set monthly income
-              </Accordion.Title>
-              <Accordion.Content active={activeIndex === 0}>
                 <SetMonthlyIncome />
-              </Accordion.Content>
-              <Accordion.Title
-                active={activeIndex === 1}
-                index={1}
-                onClick={this.handleClick}
-              >
-                <Icon name="dropdown" />
-                What kinds of dogs are there?
-              </Accordion.Title>
-              <Accordion.Content active={activeIndex === 1} />
-              <Accordion.Title
-                active={activeIndex === 2}
-                index={2}
-                onClick={this.handleClick}
-              >
-                <Icon name="dropdown" />
-                How do you acquire a dog?
-              </Accordion.Title>
-              <Accordion.Content active={activeIndex === 2} />
-            </Accordion>
           </div>
         </div>
-        {this.listLogs()}
       </React.Fragment>
     );
   }
@@ -83,7 +44,6 @@ const mapStateToProps = state => {
   return {
       userData: state.userData,
       context: state.context,
-      logs: state.logs
   }
 }
 

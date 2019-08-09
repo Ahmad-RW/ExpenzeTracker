@@ -30,7 +30,7 @@ setInterval(() => {//this executes every 5 mins(300000 millieseconds).
     }).catch(err => {
         throw err
     })
-}, 20000)
+}, 86400000)
 
 
 app.get('/', function (req, res) {
@@ -81,8 +81,19 @@ app.post('/addIncome', function (req, res) {
     console.log("Adding Income...")
     let newCategoryList = req.body.payload.userData.category
     newCategoryList = addIncomeToCategories(newCategoryList, req.body.payload.income);
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $inc: { "balance": req.body.payload.income }, $push: { "logs": getLog("INCOME", null, req.body.payload.income) } }, { new: true, runValidators: true }).then(record => {
-        console.log(record)
+    let logs = []
+    newCategoryList.forEach(elem=>{
+        if(elem.deleted){return}
+        let log = getLog("INCOME", elem._id, ((req.body.payload.income*elem.share)/100))
+        console.log(log)
+        logs.push(log)
+
+
+    })
+
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $inc: { "balance": req.body.payload.income }, $push: { "logs":{$each:logs} }}, { new: true, runValidators: true }).then(record => {
+        //{ $push: { scores: { $each: [ 90, 92, 85 ] } } }
+      //  console.log(record)
         res.status(200).send(record)
     }).catch(err => {
         console.log(err)

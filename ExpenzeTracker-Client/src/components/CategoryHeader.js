@@ -33,6 +33,8 @@ class CategoryHeader extends Component {
         return (
             <React.Fragment>
             <label>Rename category</label>
+            {this.state.feedbackMessage}
+
                 <input type="text" id="categoryName" onBlur={this.handleRename} onChange={this.handleNewName} placeholder="new category name" />
                 <button onClick={this.handleRename} >Rename</button>
                 <h1>This is a component for a header of a category</h1>

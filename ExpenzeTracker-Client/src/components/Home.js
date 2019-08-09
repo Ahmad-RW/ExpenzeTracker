@@ -3,15 +3,22 @@ import { connect } from 'react-redux'
 import MainHeader from './MainHeader'
 import CategoryList from './CategoryList'
 import CategoryForm from './CategoryForm';
-
+import Logs from './Logs'
 class Home extends Component {
 
-
+    state = {
+        logView : false
+    }
+    changeView = () =>{
+        this.setState({logView:!this.state.logView})
+    }
     render() {
         return (
             <React.Fragment>
-                <MainHeader />
-                <CategoryList />
+                <MainHeader changeView = {this.changeView} />
+                
+
+                {this.state.logView ? (<Logs />) : (<CategoryList />)}
             </React.Fragment>
         )
     }
