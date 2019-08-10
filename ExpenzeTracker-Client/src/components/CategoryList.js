@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import "../style/categorylist.css";
 import { Link } from "react-router-dom";
 import { setContext } from "../store/actions";
+import Category from "./Category";
+import { Modal } from 'semantic-ui-react'
 class CategoryList extends Component {
   state = {
     renderSuccessMessage: false
@@ -10,23 +12,25 @@ class CategoryList extends Component {
   listUserCategory = () => {
     const categoryList = this.props.userData.category ? (
       this.props.userData.category.map(cat => {
-        if(cat.deleted){
+        if (cat.deleted) {
           return
         }
         return (
           <div class="cat">
             <div class="cat-name">
-              <Link
-                onClick={() => {
-                  this.props.setContext(cat);
-                }}
-                to={{
-                  pathname: `/category/categoryDetails`,
-                  state: { category: cat }
-                }}
-              >
-                {cat.name}
-              </Link>
+              <Modal trigger={
+                <Link
+                  onClick={() => {
+                    this.props.setContext(cat);
+                  }}
+                >
+                  {cat.name}
+                </Link>}>
+                <Modal.Header>cateogry</Modal.Header>
+                <Modal.Content >
+                  <Category />
+                </Modal.Content>
+              </Modal>
             </div>
             <div class="cat-balance">
               {cat.balance.toFixed(2)}
@@ -36,8 +40,8 @@ class CategoryList extends Component {
         );
       })
     ) : (
-      <p>Loading....</p>
-    );
+        <p>Loading....</p>
+      );
     return categoryList;
   };
 
