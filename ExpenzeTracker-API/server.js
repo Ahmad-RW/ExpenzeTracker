@@ -169,7 +169,11 @@ app.post('/submitExpense', function (req, res) {
 })
 
 app.post('/handleTransfer', function (req, res) {
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $inc: { "category.$[to].balance": req.body.payload.amount, "category.$[from].balance": -req.body.payload.amount }, $push: { "logs": getLog("TRANSFER", req.body.payload.to, req.body.payload.amount) } }, { new: true, arrayFilters: [{ "to._id": mongoose.Types.ObjectId(req.body.payload.to) }, { "from._id": mongoose.Types.ObjectId(req.body.payload.from) }] }).then(function (record) {
+    let log = getLog("TRANSFER", null, req.body.payload.amount)
+    log.to = req.body.payload.to
+    log.from = req.body.payload.from
+    console.log(log)
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $inc: { "category.$[to].balance": req.body.payload.amount, "category.$[from].balance": -req.body.payload.amount }, $push: { "logs": log } }, { new: true, arrayFilters: [{ "to._id": mongoose.Types.ObjectId(req.body.payload.to) }, { "from._id": mongoose.Types.ObjectId(req.body.payload.from) }] }).then(function (record) {
         res.status(200).send(record)
     }).catch(function (err) {
         res.status(500).send(err)
