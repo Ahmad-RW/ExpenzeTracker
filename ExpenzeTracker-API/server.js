@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('./dbConfig/dbCon')
 const User = require('./dbConfig/models/User')
+const account = require('./account')
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -11,7 +12,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(bodyParser.json());// post request body parser
-
+app.use("/account", account)
 
 function getDate() {
     var day = new Date().getDate()
@@ -210,3 +211,4 @@ function getLog(action, category_id, amount) {
     }
     return log
 }
+

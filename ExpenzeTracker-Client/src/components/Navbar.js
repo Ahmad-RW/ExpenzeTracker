@@ -8,6 +8,7 @@ import { Modal, Icon } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import CategoryForm from "./CategoryForm";
 import { Link } from "react-router-dom";
+import urls from "../router/urls";
 
 class Navbar extends Component {
   render() {
@@ -15,7 +16,7 @@ class Navbar extends Component {
       <React.Fragment>
         <nav class="navbar">
           <div class="nav-left">
-            <Link to={{ pathname: `/` }}>
+            <Link to={{ pathname: urls.home  }}>
               {/* <img class="home" src={home} alt="home" /> */}
               <Icon name="home" />
             </Link>
