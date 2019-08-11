@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import {} from "semantic-ui-react";
+import { Input, Button, Icon } from "semantic-ui-react";
 import "../style/categoryheader.css";
-
+import "../style/forms.css"
 import { connect } from 'react-redux'
 import { handleRename } from '../store/actions'
 class CategoryHeader extends Component {
@@ -25,19 +25,17 @@ class CategoryHeader extends Component {
             newName : this.state.newName,
             categoryId : this.props.context._id
         }
-        this.props.handleRename(payload, this)
+        this.props.handleRename(payload, this);
+        document.getElementById('categoryName').value = '';
 
     }
 
     render() {
         return (
             <React.Fragment>
-            <label>Rename category</label>
-            {this.state.feedbackMessage}
-
-                <input type="text" id="categoryName" onBlur={this.handleRename} onChange={this.handleNewName} placeholder="new category name" />
-                <button onClick={this.handleRename} >Rename</button>
-                <h1>This is a component for a header of a category</h1>
+                {this.state.feedbackMessage}
+                <Input type="text" id="categoryName" onBlur={this.handleRename} onChange={this.handleNewName} placeholder={this.props.categoryName}  disabled />
+                <Button icon onClick={this.handleRename}><Icon name="edit" /></Button>
             </React.Fragment>
         )
     }

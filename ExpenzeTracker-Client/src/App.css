@@ -9,6 +9,10 @@
   background: rgba(248, 248, 248, 0.5);
 }
 
+/* @font-face {
+
+} */
+
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   line-height: 1.4;
@@ -16,5 +20,11 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
+  color: #ccc;
+}
+
+/* -----  Modal  ----- */
+
+.header {
+  padding: 16px;
 }

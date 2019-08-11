@@ -1,10 +1,14 @@
 /* -----  Container  ----- */
-
 .main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-left {
   width: 40%;
   padding: 4px;
-  border-right: 1px solid rgba(34, 36, 38, 0.15);
-  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+  /* border-right: 1px solid rgba(34, 36, 38, 0.15); */
+  /* border-bottom: 1px solid rgba(34, 36, 38, 0.15); */
   border-bottom-right-radius: 8px;
   display: flex;
   align-items: center;
@@ -29,34 +33,44 @@
 
 /* -----  Icon  ----- */
 
-.add {
+.add.icon {
+  font-size: 1.8em;
+  margin: 4px;
   align-self: flex-end;
-  height: 30px;
-  width: 30px;
-  padding: 2px;
-  transition: 100ms;
 }
 
-.add:hover {
-  padding: 0;
+
+/* -----  buttons  ----- */
+
+.text-activity {
+  color: rgba(85, 85, 85, 0.6);
+  text-decoration: underline;
+  margin: 8px;
+}
+
+.text-activity:hover {
+  color: rgba(85, 85, 85);
 }
 
 /* -----  Media Queries  ----- */
 
 @media only screen and (max-width: 836px){
-  .main {
+  .main-left {
     width: 60%;
   }
 }
 
 @media only screen and (max-width: 567px){
   .main {
+    flex-direction: column;
+  }
+  .main-left {
     width: 80%;
   }
 }
 
 @media only screen and (max-width: 411px){
-  .main {
+  .main-left {
     width: 100%;
   }
 }
