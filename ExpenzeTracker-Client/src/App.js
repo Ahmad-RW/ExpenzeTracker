@@ -10,6 +10,11 @@ import Category from './components/Category'
 import Settings from './components/Settings'
 import {getUserData} from './store/actions'
 import {connect} from 'react-redux'
+import LandingPage from './components/LandingPage';
+import Register from './components/account/Register';
+import Login from './components/account/Login';
+import Logout from './components/account/Logout';
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -24,6 +29,10 @@ class App extends Component {
       <BrowserRouter>
         <Navbar />
         <Switch>
+          <Route exact path={urls.landingPage} component = {LandingPage} />
+          <Route exact path={urls.register} component = {Register} />
+          <Route exact path={urls.login} component={Login} />
+          <Route exact path={urls.logout} component={Logout}/>
           <Route exact path={urls.home} component={Home} />
           <Route exact path={urls.userActions} component={UserActions} />
           <Route exact path={urls.category} component={Category} />

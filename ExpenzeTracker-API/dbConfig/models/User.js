@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const UserSchema = new Schema({
     name: String,
-    password: String,
-    email: String,
+    password: {type:String},
+    email: {type:String, index:{unique:true}},
     monthlyIncome : {
         amount : {type:Number, default:0},
         payrollDate : String,

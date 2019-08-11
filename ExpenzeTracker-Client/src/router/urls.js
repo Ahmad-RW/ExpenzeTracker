@@ -1,5 +1,9 @@
 const urls = {
-    home : "/",
+    landingPage : '/',
+    login : '/account/login',
+    logout : '/account/logout',
+    register : '/account/register',
+    home : "/home",
     userActions : '/home/userActions',
     category : '/category/categoryDetails',
     settings : '/settings'
