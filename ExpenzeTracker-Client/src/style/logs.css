@@ -1,0 +1,36 @@
+.logs-container {
+    /* border: 1px solid black; */
+    justify-content: center;
+    padding: 4px;
+}
+
+.logs {
+    /* border: 1px solid red; */
+    width: 100%;
+    margin: auto;
+    padding: 4px;
+}
+
+.log {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom: 0.6px solid #ccc;
+    margin: 0.4em 0;
+    padding: 0.4em;
+    text-align: end;
+}
+
+.action-icon {
+    height: 20px;
+    widows: 20px;
+}
+
+.log-amount {
+    flex: 1;
+    font-size: 14pt;
+}
+
+.log-category {
+    flex: 3;
+}

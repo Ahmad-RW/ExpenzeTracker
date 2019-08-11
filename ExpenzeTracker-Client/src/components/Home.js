@@ -4,21 +4,14 @@ import MainHeader from './MainHeader'
 import CategoryList from './CategoryList'
 import CategoryForm from './CategoryForm';
 import Logs from './Logs'
+import { Modal } from 'semantic-ui-react';
 class Home extends Component {
 
-    state = {
-        logView : false
-    }
-    changeView = () =>{
-        this.setState({logView:!this.state.logView})
-    }
     render() {
         return (
             <React.Fragment>
-                <MainHeader changeView = {this.changeView} />
-                
-
-                {this.state.logView ? (<Logs />) : (<CategoryList />)}
+                <MainHeader />        
+                <CategoryList />
             </React.Fragment>
         )
     }

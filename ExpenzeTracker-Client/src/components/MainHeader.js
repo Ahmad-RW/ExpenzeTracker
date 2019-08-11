@@ -4,10 +4,11 @@ import add from "../img/add.png";
 import { connect } from "react-redux";
 import { setMonthlyIncome } from "../store/actions";
 import AddIncome from "./AddIncome";
-import { Modal, Form, Tab } from "semantic-ui-react";
+import { Modal, Form, Tab, Icon } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import RegisterExpense from "./RegisterExpense";
 import Transfer from "./Transfer";
+import Logs from "./Logs";
 const panes = [
   {menuItem: "Income",
     render: () => (
@@ -33,11 +34,11 @@ class MainHeader extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>
         <div class="main">
+        <div class="main-left">
           <div class="main-balance">
             <span>Balance: </span>
-            <span class="">{this.props.userData.balance}</span>
+            <span class="">{this.props.userData.balance.toLocaleString()}</span>
           </div>
           <div class="monthly-income">
             <span>Monthly Income: </span>
@@ -49,7 +50,8 @@ class MainHeader extends Component {
           </div>
 
           <Modal
-            trigger={<img class="add" src={add} alt="add" />}
+          // <img class="add" src={add} alt="add" />
+            trigger={<Icon name="add" />}
             centered={false}
             size="tiny"
           >
@@ -60,7 +62,9 @@ class MainHeader extends Component {
             </Modal.Content>
           </Modal>
         </div>
-        <button onClick={this.props.changeView} >change it </button>
+        <Modal centered={false} size="small" trigger={ <span class="text-activity">Activities</span>}>
+          <Modal.Content scrolling><Logs /></Modal.Content>
+        </Modal>
         </div>
       </React.Fragment>
     );

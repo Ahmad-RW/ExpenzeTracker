@@ -2,9 +2,9 @@
 
 .navbar {
   display: flex;
+  align-items: center;
   background: rgb(99, 216, 158);
-  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
-  padding: 2px;
+  padding: 4px;
   color: #222;
 }
 
@@ -23,33 +23,32 @@
 
 /* -----  Actions  ----- */
 
-.home {
+.home.icon {
+  font-size: 2em;
   margin-left: 8px;
-  height: 26px;
-  width: 26px;
   padding: 2px;
   transition: 100ms;
 }
 
-.categories {
+.th.icon {
+  font-size: 2em;
   margin-left: 18px;
-  height: 26px;
-  width: 26px;
-  padding: 2px;
   transition: 100ms;
 }
 
-.settings {
+.cog.icon {
+  font-size: 2em;
   margin-left: 18px;
-  height: 26px;
-  width: 26px;
-  padding: 2px;
   transition: 100ms;
+}
+
+#title {
+  font-weight: 900;
 }
 
 /* -----  Hover  ----- */
 
-.home:hover {
+/* .home:hover {
   padding: 0;
 }
 
@@ -59,17 +58,16 @@
 
 .settings:hover {
   padding: 0;
-}
+} */
 
 /* -----  User  ----- */
 
-.avatar {
-  margin-left: 10px;
-  margin-right: 12px;
-  height: 26px;
+.user.icon {
+  font-size: 2em;
+  /* height: 26px;
   width: 26px;
   background-size: cover;
-  vertical-align: middle;
+  vertical-align: middle; */
 }
 
 .welcome {

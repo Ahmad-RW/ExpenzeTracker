@@ -16,27 +16,27 @@ class CategoryList extends Component {
           return
         }
         return (
-          <div class="cat">
-            <div class="cat-name">
-              <Modal trigger={
-                <Link
-                  onClick={() => {
-                    this.props.setContext(cat);
-                  }}
-                >
-                  {cat.name}
-                </Link>}>
-                <Modal.Header>cateogry</Modal.Header>
-                <Modal.Content >
-                  <Category />
-                </Modal.Content>
-              </Modal>
-            </div>
-            <div class="cat-balance">
-              {cat.balance.toFixed(2)}
-            </div>
-            <div class="cat-share">{cat.share}%</div>
-          </div>
+
+          <Modal class="my-modal" size="small" centered={false}
+            trigger={
+              <Link
+                onClick={() => {
+                  this.props.setContext(cat);
+                }}
+              >
+                <div class="cat">
+                  <div class="cat-name">
+                    {cat.name}
+                  </div>
+                  <div class="cat-balance">
+                    {cat.balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                  </div>
+                  <div class="cat-share">{cat.share}%</div>
+                </div>
+              </Link>}>
+            <Category />
+          </Modal>
+
         );
       })
     ) : (
