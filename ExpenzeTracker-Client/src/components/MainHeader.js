@@ -37,11 +37,11 @@ class MainHeader extends Component {
         <div class="main">
         <div class="main-left">
           <div class="main-balance">
-            <span>Balance: </span>
-            <span class="">{this.props.userData.balance.toLocaleString()}</span>
+            <span>Balance </span>
+            <span class="balance">{this.props.userData.balance.toLocaleString()}</span>
           </div>
-          <div class="monthly-income">
-            <span>Monthly Income: </span>
+        <div class="monthly-income">
+             <span>Monthly Income: </span>
             <span>
               {this.props.userData.monthlyIncome.amount
                 ? this.props.userData.monthlyIncome.amount
@@ -51,7 +51,7 @@ class MainHeader extends Component {
 
           <Modal
           // <img class="add" src={add} alt="add" />
-            trigger={<Icon name="add" />}
+            trigger={<Icon name="add"/>}
             centered={false}
             size="tiny"
           >

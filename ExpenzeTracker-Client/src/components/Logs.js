@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { getCategory } from './helpers'
 import { connect } from 'react-redux'
 import '../style/logs.css'
+import { Icon } from 'semantic-ui-react';
 import expense from '../img/expenze.png'
 import income from '../img/income.png'
 import transfer from '../img/transfer.png'
@@ -48,11 +49,11 @@ class Logs extends Component {
     logAction = (action) => {
         switch (action) {
             case "INCOME":
-                return <span><img class="action-icon" src={income} /></span>
+                return <span><Icon name="arrow up" color="green"/></span>
             case "EXPENSE":
-                return <span><img class="action-icon" src={expense} /></span>
+                return <span><Icon name="arrow down" color="red"/></span>
             case "TRANSFER":
-                return <span><img class="action-icon" src={transfer} /></span>
+                return <span><Icon name="arrow right" color="yellow"/></span>
         }
     }
 

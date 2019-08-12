@@ -3,7 +3,7 @@ import CategoryHeader from './CategoryHeader'
 import { connect } from 'react-redux'
 import Logs from './Logs';
 import { Modal } from 'semantic-ui-react'
-import '../style/categorypage.css';
+import '../style/category.css';
 
 class Category extends Component {
 

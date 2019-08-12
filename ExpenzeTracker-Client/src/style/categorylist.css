@@ -47,6 +47,10 @@ a {
   font-weight: 600;
 }
 
+.decimal {
+  font-size: 0.8em;
+}
+
 /* -----  Actions  ----- */
 
 .cat:hover {
