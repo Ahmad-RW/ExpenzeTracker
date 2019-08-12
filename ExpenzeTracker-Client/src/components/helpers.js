@@ -27,7 +27,7 @@ export const getFeedbackMessage = (component, header, content, status) => {
       feedbackMessage: (
         <div class={`ui ${status} message`}>
           <div class="content">
-            <div class="header">
+            <div>
               {header}
             </div>
             <p>{content}</p>

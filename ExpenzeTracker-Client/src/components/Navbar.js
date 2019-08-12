@@ -23,7 +23,7 @@ class Navbar extends Component {
             </Link>
             <Modal
             // <img class="categories" src={categories} alt="categories" />
-              trigger={<Link><Icon name="th" /></Link>}
+              trigger={<Icon name="th" />}
               centered={false}
               size="tiny"
             >
@@ -44,7 +44,7 @@ class Navbar extends Component {
           <div class="nav-right">
             {/* <img class="avatar" src={avatar} alt="avatar" /> */}
             <span>{this.props.userData.name}</span>
-            <Link><Icon name="user" /></Link>
+            <Icon name="user" />
           </div>
         </nav>
       </React.Fragment>

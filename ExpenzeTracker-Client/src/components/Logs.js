@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { getCategory } from './helpers'
 import { connect } from 'react-redux'
 import '../style/logs.css'
+import { Icon } from 'semantic-ui-react';
 import expense from '../img/expenze.png'
 import income from '../img/income.png'
 import transfer from '../img/transfer.png'
@@ -26,7 +27,7 @@ class Logs extends Component {
         return this.props.logs.map(log => {
             return (
                 <div class="log">
-                    {this.logAction(log.action)} <span class="log-amount">{log.amount}</span> <span class="log-category">{log.category_id === null ? (<span>all categories</span>) : (getCategory(log.category_id, this.props.userData.category).name)}</span>
+                    {this.logAction(log.action)} <span class="log-amount">{log.amount}</span> <span class="time">12:45 - 27/7/2077</span><span class="log-category">{log.category_id === null ? (<span>all categories</span>) : (getCategory(log.category_id, this.props.userData.category).name)}</span>
                 </div>
             )
         })
@@ -38,7 +39,7 @@ class Logs extends Component {
             if (category_id === log.category_id || category_id === log.to || category_id === log.from) {
                 return (
                 <div class="log">
-                    {this.logAction(log.action)}<span class="log-amount">{log.amount}</span> <span class="log-category"></span>
+                    <span class="action-icon">{this.logAction(log.action)}</span><span class="log-amount">{log.amount}</span><span class="time">12:45 27/7/2077</span><span class="log-category"></span>
                 </div>
                 )
             }
@@ -48,11 +49,11 @@ class Logs extends Component {
     logAction = (action) => {
         switch (action) {
             case "INCOME":
-                return <span><img class="action-icon" src={income} /></span>
+                return <span class="action-icon"><Icon name="arrow up" color="green"/></span>
             case "EXPENSE":
-                return <span><img class="action-icon" src={expense} /></span>
+                return <span class="action-icon"><Icon name="arrow down" color="red"/></span>
             case "TRANSFER":
-                return <span><img class="action-icon" src={transfer} /></span>
+                return <span class="action-icon"><Icon name="arrow right" color="yellow"/></span>
         }
     }
 

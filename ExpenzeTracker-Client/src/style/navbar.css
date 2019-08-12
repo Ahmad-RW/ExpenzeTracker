@@ -3,9 +3,9 @@
 .navbar {
   display: flex;
   align-items: center;
-  background: rgb(99, 216, 158);
+  background: #253c78;
   padding: 4px;
-  color: #222;
+  color: #fff;
 }
 
 .nav-left {
@@ -28,22 +28,29 @@
   margin-left: 8px;
   padding: 2px;
   transition: 100ms;
+  
+  color: #eee;
 }
 
 .th.icon {
   font-size: 2em;
   margin-left: 18px;
   transition: 100ms;
+  
+  color: #eee;
 }
 
 .cog.icon {
   font-size: 2em;
   margin-left: 18px;
   transition: 100ms;
+  
+  color: #eee;
 }
 
 #title {
   font-weight: 900;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* -----  Hover  ----- */
@@ -64,6 +71,8 @@
 
 .user.icon {
   font-size: 2em;
+  
+  color: #ccc;
   /* height: 26px;
   width: 26px;
   background-size: cover;
