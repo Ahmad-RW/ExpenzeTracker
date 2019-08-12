@@ -6,6 +6,7 @@ import { setContext } from "../store/actions";
 import Category from "./Category";
 import { Modal } from 'semantic-ui-react'
 class CategoryList extends Component {
+  
   state = {
     renderSuccessMessage: false
   };
@@ -15,6 +16,7 @@ class CategoryList extends Component {
         if (cat.deleted) {
           return
         }
+        const balance = cat.balance.toLocaleString(undefined, { minimumFractionDigits: 2 }).split(".");
         return (
 
           <Modal class="my-modal" size="small" centered={false}
@@ -29,7 +31,7 @@ class CategoryList extends Component {
                     {cat.name}
                   </div>
                   <div class="cat-balance">
-                    {cat.balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                    {balance[0]}<span class="decimal">.{balance[1]}</span>
                   </div>
                   <div class="cat-share">{cat.share}%</div>
                 </div>

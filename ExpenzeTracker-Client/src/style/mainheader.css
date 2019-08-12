@@ -1,27 +1,32 @@
 /* -----  Container  ----- */
 .main {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  color: #eee;
 }
 
 .main-left {
   width: 40%;
   padding: 4px;
-  /* border-right: 1px solid rgba(34, 36, 38, 0.15); */
-  /* border-bottom: 1px solid rgba(34, 36, 38, 0.15); */
   border-bottom-right-radius: 8px;
   display: flex;
   align-items: center;
-  color: #555;
-  background: rgba(152, 245, 198, 0.5);
+  /* background: #98f5c6; */
+  background: #60719c;
 }
 
 /* -----  balance-income display  ----- */
 
 .main-balance {
   flex: 1;
-  padding: 2px;
-  font-size: 14pt;
+  margin-left: 8px;
+  font-size: 12pt;
+}
+
+.balance {
+  font-size: 1.5em;
+  margin-left: 4px; 
 }
 
 .monthly-income {
@@ -45,7 +50,7 @@
 .text-activity {
   color: rgba(85, 85, 85, 0.6);
   text-decoration: underline;
-  margin: 8px;
+  margin: 6px 0 0 12px;
 }
 
 .text-activity:hover {

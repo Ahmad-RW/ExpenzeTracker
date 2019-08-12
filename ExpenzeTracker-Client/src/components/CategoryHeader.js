@@ -10,7 +10,7 @@ class CategoryHeader extends Component {
 
    state={
         newName : this.props.context.newName,
-       
+        rename : false
     }
     handleNewName = (e) =>{
         this.setState({
@@ -30,12 +30,21 @@ class CategoryHeader extends Component {
 
     }
 
+    toggleRename = () => {
+        this.state.rename = !this.state.rename;
+    }
+
     render() {
         return (
             <React.Fragment>
                 {this.state.feedbackMessage}
-                <Input type="text" id="categoryName" onBlur={this.handleRename} onChange={this.handleNewName} placeholder={this.props.categoryName}  disabled />
-                <Button icon onClick={this.handleRename}><Icon name="edit" /></Button>
+                <div class="cat-header-container">
+                    {this.state.rename === false ?
+                    (<span class="cat-header-name">{this.props.categoryName}</span>):( 
+                    <Input type="text" id="categoryName" onBlur={this.handleRename} 
+                    onChange={this.handleNewName} placeholder={this.props.categoryName} />)}
+                    <Icon class="rename" onClick={() => {this.setState({ rename: !this.state.rename});}} name="edit" />
+                </div>
             </React.Fragment>
         )
     }
