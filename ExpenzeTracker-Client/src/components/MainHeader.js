@@ -44,8 +44,9 @@ class MainHeader extends Component {
           <div class="monthly-income">
             <span>Monthly Income: </span>
             <span>
-              {this.props.userData.monthlyIncome.amount
-              }
+              {this.props.userData.monthlyIncome.amount === null
+                ? this.props.userData.monthlyIncome.amount
+                : "Loading..."}
             </span>
           </div>
 
