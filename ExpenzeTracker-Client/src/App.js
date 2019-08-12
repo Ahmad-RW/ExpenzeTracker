@@ -30,12 +30,13 @@ class App extends Component {
     return (
 
       <BrowserRouter>
-        <Navbar />
+       
         <Switch>
           <Route exact path={urls.landingPage} component = {LandingPage} />
           <Route exact path={urls.register} component = {Register} />
           <Route exact path={urls.login} component={Login} />
           <Route exact path={urls.logout} component={Logout}/>
+          <Navbar />
           <Route exact path={urls.home} component={Home} />
           <Route exact path={urls.userActions} component={UserActions} />
           <Route exact path={urls.category} component={Category} />
