@@ -9,6 +9,7 @@ import "semantic-ui-css/semantic.min.css";
 import CategoryForm from "./CategoryForm";
 import { Link } from "react-router-dom";
 import urls from "../router/urls";
+import { connect } from "react-redux";
 
 class Navbar extends Component {
   render() {
@@ -32,6 +33,9 @@ class Navbar extends Component {
               {/* <img class="settings" src={settings} alt="settings" /> */}
               <Icon name="cog" class="settings" />
             </Link>
+            <a href="#" onClick={this.props.logout}>
+              Log out
+            </a>
           </div>
           
 
@@ -39,6 +43,7 @@ class Navbar extends Component {
 
           <div class="nav-right">
             {/* <img class="avatar" src={avatar} alt="avatar" /> */}
+            <span>{this.props.userData.name}</span>
             <Icon name="user" />
           </div>
         </nav>
@@ -46,5 +51,14 @@ class Navbar extends Component {
     );
   }
 }
-
-export default Navbar;
+const mapDispatchToProps = dispatch =>{
+  return {
+    logout : () =>{dispatch({type:"LOGOUT"})}
+  }
+}
+const mapStateToProps = state =>{
+  return {
+    userData : state.userData
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

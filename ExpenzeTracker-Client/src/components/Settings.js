@@ -4,6 +4,7 @@ import '../style/settings.css'
 import { Accordion, Header, Icon } from "semantic-ui-react"
 import {connect} from 'react-redux'
 import Logs from './Logs'
+import Navbar from './Navbar';
 
 
 
@@ -24,6 +25,7 @@ class Settings extends Component {
 
     return (
       <React.Fragment>
+        <Navbar />
         <div class="settings-container">
           <div class="settings-profile">
             <Header as="h2" icon textAlign="center">

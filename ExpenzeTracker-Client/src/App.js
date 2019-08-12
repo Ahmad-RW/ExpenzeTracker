@@ -8,55 +8,49 @@ import NotFound from './components/NotFound.js'
 import Navbar from './components/Navbar'
 import Category from './components/Category'
 import Settings from './components/Settings'
-import {getUserData} from './store/actions'
-import {connect} from 'react-redux'
+import { getUserData } from './store/actions'
+import { connect } from 'react-redux'
 import LandingPage from './components/LandingPage';
 import Register from './components/account/Register';
 import Login from './components/account/Login';
 import Logout from './components/account/Logout';
-import { stat } from 'fs';
+import requireAuth from './components/account/RequireAuthHOC';
 
 class App extends Component {
-  constructor(props){
-    
-    super(props)
-  console.log(this.props)
-    const payload ={
-      email : "dummy@dummy.com"
-    }
-    this.props.getUserData(payload)
-  }
+  // constructor(props){
+  //   super(props)
+  //   if(this.props.auth){
+
+  //   }
+  // }
   render() {
     return (
-
       <BrowserRouter>
-      <Navbar />
-       
         <Switch>
-
-          <Route exact path={urls.landingPage} component = {LandingPage} />
-          <Route exact path={urls.register} component = {Register} />
+          <Route exact path={urls.landingPage} component={LandingPage} />
+          <Route exact path={urls.register} component={Register} />
           <Route exact path={urls.login} component={Login} />
-          <Route exact path={urls.logout} component={Logout}/>
-          <Route exact path={urls.home} component={Home} />
-          <Route exact path={urls.userActions} component={UserActions} />
-          <Route exact path={urls.category} component={Category} />
-          <Route exact path={urls.settings} component={Settings} />
-          <Route  component={NotFound} />
+          <Route exact path={urls.logout} component={Logout} />
+          <Route exact path={urls.home} component={requireAuth(Home)} />
+          <Route exact path={urls.userActions} component={requireAuth(UserActions)} />
+          <Route exact path={urls.category} component={requireAuth(Category)} />
+          <Route exact path={urls.settings} component={requireAuth(Settings)} />
+          <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
     )
   }
 }
 
-const mapStateToProps = state =>{
-  return{
-    userData : state.userData
+const mapStateToProps = state => {
+  return {
+    userData: state.userData,
+    auth: state.auth
   }
 }
-const mapDispatchToProps = dispatch =>{
+const mapDispatchToProps = dispatch => {
   return {
-    getUserData : (payload) => {dispatch(getUserData(payload))}
+    getUserData: (payload) => { dispatch(getUserData(payload)) }
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

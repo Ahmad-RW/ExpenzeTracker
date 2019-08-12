@@ -17,7 +17,7 @@ class Register extends Component {
     postRegister= () =>{
         const payload = {
             email : this.state.email,
-            passwrod : this.state.password,
+            password : this.state.password,
             username : this.state.username,
             
         }

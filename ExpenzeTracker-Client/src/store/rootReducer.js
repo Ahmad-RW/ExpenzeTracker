@@ -25,12 +25,17 @@ const rootReducer = (state = initState, action) => {
     switch (action.type) {
 
         case "AUTH_USER":
-             state = {
+            state = {
                 userData: action.payload.userData,
                 logs: action.payload.userData.logs,
                 auth: true,
                 context: null
             }
+            console.log(state)
+            return state
+        case "LOGOUT":
+            console.log("hey")
+            state = {...initState}
             console.log(state)
             return state
         case "SET_USER_DATA":
@@ -41,6 +46,7 @@ const rootReducer = (state = initState, action) => {
                     userData: action.res.data,
                     context: null,
                     logs: action.res.data.logs,
+                    auth: true
                 }
             }
             else {//dont lose the context.
@@ -49,7 +55,9 @@ const rootReducer = (state = initState, action) => {
                         state = {
                             userData: action.res.data,
                             logs: action.res.data.logs,
-                            context: { ...elem }
+                            context: { ...elem },
+                            auth: true
+
                         }
                     }
                 })
@@ -94,6 +102,7 @@ const rootReducer = (state = initState, action) => {
             }
             console.log(state)
             return state
+        
         default:
             return state
     }
