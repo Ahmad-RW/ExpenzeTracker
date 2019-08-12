@@ -15,7 +15,7 @@ import Register from './components/account/Register';
 import Login from './components/account/Login';
 import Logout from './components/account/Logout';
 import requireAuth from './components/account/RequireAuthHOC';
-
+import EmailConfirmed from './components/account/EmailConfirmed'
 class App extends Component {
   // constructor(props){
   //   super(props)
@@ -35,6 +35,7 @@ class App extends Component {
           <Route exact path={urls.userActions} component={requireAuth(UserActions)} />
           <Route exact path={urls.category} component={requireAuth(Category)} />
           <Route exact path={urls.settings} component={requireAuth(Settings)} />
+          <Route exact path="/account/emailConfirmed" component={EmailConfirmed} />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>

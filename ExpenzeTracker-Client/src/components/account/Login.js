@@ -12,7 +12,8 @@ class Login extends Component{
     state = {
         email : "",
         password : "",
-        authError : false
+        authError : false,
+        confirmationError : false
     }
     handleChange = (e)=>{
         this.setState({
@@ -35,23 +36,37 @@ class Login extends Component{
                 this.props.history.push('/home')
                 return
             }
+            if(res.status === 403){
+                
+            }
           
         }).catch(err=>{
+            console.log(err.response)
+            if(err.response.status === 403){
+                this.setState({confirmationError : true})
+            }
+            if(err.response.status === 401){
             this.setState({authError : true})
+            }
         })
     }
 
-    raiseAuthError = () =>{
+    raiseError = () =>{
+        if(this.state.confirmationError){
+            return <h1>you have to confirm your email buddy. my names jim buddy</h1>
+        }
         if(this.state.authError){
             return <h1>password and/or email is wrooong</h1>
         }
+        
     }
 
    
     render(){
         return(
             <React.Fragment>
-                {this.raiseAuthError()}
+                {this.raiseError()}
+             
                 <input onChange={this.handleChange} type="text" id ="email" />
                 <input onChange={this.handleChange} type="text" id ="password" />
                 <button onClick={this.postLogin}>log in</button>

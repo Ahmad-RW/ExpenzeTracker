@@ -12,12 +12,11 @@ class LandingPage extends Component{
     renderSuccessfulLoginMessage = () =>{
         if(typeof this.props.location.state !== 'undefined'){
             if(this.props.location.state.registerSuccess){
-            return <h1>yay you can sign in now</h1>
+            return <p>a confirmation message was sent to your mail please confirm your email</p>
             }
         }
     }
     render(){
-        console.log(this.props)
         return (
             <React.Fragment>
                 {this.renderSuccessfulLoginMessage()}

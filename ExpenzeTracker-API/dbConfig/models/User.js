@@ -1,8 +1,11 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const uuid = require('uuid')
 const UserSchema = new Schema({
     name: String,
     password:String,
+    emailConfirmed : {type:Boolean, default : false},
+    confirmationCode : {type:String, default : uuid() },
     email: {type:String, index:{unique:true}},
     monthlyIncome : {
         amount : {type:Number, default:0},
