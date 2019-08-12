@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Logs from './Logs';
 import { Modal } from 'semantic-ui-react'
 import '../style/categorypage.css';
+import Navbar from './Navbar';
 
 class Category extends Component {
 
@@ -23,6 +24,7 @@ class Category extends Component {
     render() {
         return (
             <React.Fragment>
+                <Navbar />
                 <Modal.Header><CategoryHeader categoryName={this.props.context.name} /></Modal.Header>
                 <Modal.Content>
                 <Logs category_id={this.props.context._id} />

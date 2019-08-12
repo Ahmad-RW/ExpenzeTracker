@@ -32,6 +32,7 @@ const panes = [
 
 class MainHeader extends Component {
   render() {
+    console.log(this.props.userData, " hi")
     return (
       <React.Fragment>
         <div class="main">
@@ -44,8 +45,7 @@ class MainHeader extends Component {
             <span>Monthly Income: </span>
             <span>
               {this.props.userData.monthlyIncome.amount
-                ? this.props.userData.monthlyIncome.amount
-                : "Loading..."}
+              }
             </span>
           </div>
 
