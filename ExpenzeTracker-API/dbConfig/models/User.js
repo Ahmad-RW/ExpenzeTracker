@@ -6,9 +6,9 @@ const UserSchema = new Schema({
     email: {type:String, index:{unique:true}},
     monthlyIncome : {
         amount : {type:Number, default:0},
-        payrollDate : String,
+        payrollDate : {type :String, default:"1"},
     },
-    balance : Number,
+    balance : {type:Number, default:0},
     category: [{
         name: String,
         deleted : {type:Boolean, default:false},
