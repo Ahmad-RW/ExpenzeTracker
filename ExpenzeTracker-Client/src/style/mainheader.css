@@ -1,6 +1,7 @@
 /* -----  Container  ----- */
 .main {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   color: #eee;
 }
@@ -19,7 +20,7 @@
 
 .main-balance {
   flex: 1;
-  padding: 2px;
+  margin-left: 8px;
   font-size: 12pt;
 }
 
@@ -49,7 +50,7 @@
 .text-activity {
   color: rgba(85, 85, 85, 0.6);
   text-decoration: underline;
-  margin: 8px;
+  margin: 6px 0 0 12px;
 }
 
 .text-activity:hover {

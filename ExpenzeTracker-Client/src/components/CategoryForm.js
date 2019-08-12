@@ -90,7 +90,7 @@ class CategoryForm extends Component {
               return (
                 <li>
                   <div>{cat.name}</div> <div>{cat.share}% </div>
-                  <div>{cat.balance.toFixed(2)}</div>
+                  <div>{cat.balance.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
                 </li>
               );
             })}

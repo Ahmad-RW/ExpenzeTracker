@@ -17,7 +17,6 @@ class CategoryList extends Component {
           return
         }
         const balance = cat.balance.toLocaleString(undefined, { minimumFractionDigits: 2 }).split(".");
-        console.log(balance);
         return (
 
           <Modal class="my-modal" size="small" centered={false}

@@ -44,7 +44,7 @@ class MainHeader extends Component {
              <span>Monthly Income: </span>
             <span>
               {this.props.userData.monthlyIncome.amount
-                ? this.props.userData.monthlyIncome.amount
+                ? this.props.userData.monthlyIncome.amount.toLocaleString()
                 : "Loading..."}
             </span>
           </div>

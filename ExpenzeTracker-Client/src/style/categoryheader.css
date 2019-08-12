@@ -1,0 +1,26 @@
+.cat-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+}
+
+.ui.modal > .header {
+    font-size: 1em ;
+    padding: 21px;
+    border: 0;
+}
+
+.cat-header-name {
+    margin: 12px;
+    font-size: 20px;
+}
+
+#categoryName {
+    height: 38px;
+}
+
+.rename {
+    color: lightgray;
+}
