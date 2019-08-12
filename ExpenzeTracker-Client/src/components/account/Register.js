@@ -4,7 +4,9 @@ import {withRouter } from 'react-router-dom'
 import urls from '../../router/urls'
 class Register extends Component {
     state = {
-        registerFailed : ""
+        registerFailed : "",
+        confirmPassword : "",
+        raiseValidationError : false
     }
     handleChange = (e) =>{
         this.setState({
@@ -16,7 +18,8 @@ class Register extends Component {
         const payload = {
             email : this.state.email,
             passwrod : this.state.password,
-            username : this.state.username
+            username : this.state.username,
+            
         }
         axios.post('http://localhost:5000/account/register', {payload}).then(res=>{
             console.log(res)
@@ -31,22 +34,42 @@ class Register extends Component {
         
         })
     }
+
+
     renderDuplicationMessage = () =>{
         if(this.state.registerFailed){
             return <h1>email is being used</h1>
         }
     }
+
+    checkEquality = (e) =>{
+        this.setState({
+            confirmPassword : e.target.value,
+            raiseValidationError : this.state.password !== e.target.value
+        })
+        console.log(this.state)
+    }
+
+    raiseValidationError = () =>{
+        if(this.state.raiseValidationError){
+            return<h2>passwords are not the same</h2>
+        }
+    }
+
+
     render() {
         return (
             <React.Fragment>
             {this.renderDuplicationMessage()}
+            {this.raiseValidationError()}
            <input onChange={this.handleChange} placeholder="email" id="email" />
            <br/>
            <input onChange={this.handleChange} placeholder="username" id="username" />
            <br/>
 
            <input onChange={this.handleChange} placeholder="password" id="password"/>
-           <button onClick={this.postRegister}>Go!</button>
+           <input onChange={this.checkEquality} placeholder="confirmPassword" id ="confirmPassword"/>
+           {this.state.raiseValidationError ? (<button onClick={this.postRegister} disabled>Go!</button>) : (<button onClick={this.postRegister}>Go!</button>)}
            </React.Fragment>
         )
     }

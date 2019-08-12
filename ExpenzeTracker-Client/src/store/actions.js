@@ -11,6 +11,7 @@ export const getUserData = payload => {
         })
     }
 }
+
 export const createCategory = (payload) => {
     return (dispatch) => {
         axios.post('http://localhost:5000/newCategory', { payload: payload }).then((res) => {

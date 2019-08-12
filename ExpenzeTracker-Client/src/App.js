@@ -14,10 +14,13 @@ import LandingPage from './components/LandingPage';
 import Register from './components/account/Register';
 import Login from './components/account/Login';
 import Logout from './components/account/Logout';
+import { stat } from 'fs';
 
 class App extends Component {
   constructor(props){
+    
     super(props)
+  console.log(this.props)
     const payload ={
       email : "dummy@dummy.com"
     }
@@ -43,12 +46,18 @@ class App extends Component {
     )
   }
 }
+
+const mapStateToProps = state =>{
+  return{
+    userData : state.userData
+  }
+}
 const mapDispatchToProps = dispatch =>{
   return {
     getUserData : (payload) => {dispatch(getUserData(payload))}
   }
 }
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 //some documentation:
 // switch tag will iterate over the routes until it finds a match to url. if it finds a match it'll load the component
