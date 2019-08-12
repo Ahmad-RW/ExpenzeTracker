@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import CategoryHeader from './CategoryHeader'
 import { connect } from 'react-redux'
 import Logs from './Logs';
+import { Modal } from 'semantic-ui-react'
+import '../style/categorypage.css';
 
 class Category extends Component {
 
@@ -21,9 +23,10 @@ class Category extends Component {
     render() {
         return (
             <React.Fragment>
-                <CategoryHeader />
-                <h1 >this cat's name is {this.props.context.name}</h1>
+                <Modal.Header><CategoryHeader categoryName={this.props.context.name} /></Modal.Header>
+                <Modal.Content>
                 <Logs category_id={this.props.context._id} />
+                </Modal.Content>
             </React.Fragment>
         )
     }
