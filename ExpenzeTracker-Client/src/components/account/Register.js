@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {withRouter } from 'react-router-dom'
 import urls from '../../router/urls'
+import bcryptjs from 'bcryptjs'
 class Register extends Component {
     state = {
         registerFailed : "",
@@ -17,7 +18,7 @@ class Register extends Component {
     postRegister= () =>{
         const payload = {
             email : this.state.email,
-            password : this.state.password,
+            password : bcryptjs.hashSync(this.state.password, 10),
             username : this.state.username,
             
         }
