@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import SetMonthlyIncome from './SetMonthlyIncome'
 import '../style/settings.css'
-import { Accordion, Header, Icon } from "semantic-ui-react"
+import { Header, Icon } from "semantic-ui-react"
 import {connect} from 'react-redux'
-import Logs from './Logs'
 import Navbar from './Navbar';
 
 

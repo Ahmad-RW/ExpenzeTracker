@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
+import '../../style/userform.css'
+import { Input, Button, Icon, Label } from 'semantic-ui-react'
 
 
 class Login extends Component{
@@ -65,11 +67,19 @@ class Login extends Component{
     render(){
         return(
             <React.Fragment>
-                {this.raiseError()}
-             
-                <input onChange={this.handleChange} type="text" id ="email" />
-                <input onChange={this.handleChange} type="text" id ="password" />
-                <button onClick={this.postLogin}>log in</button>
+                <div class="user-form login">
+                    <h1>Log in</h1>
+                    {this.raiseError()}
+                    <div>
+                        <label>Email</label>
+                        <Input onChange={this.handleChange} type="text" id ="email" placeholder="Email" />
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <Input onChange={this.handleChange} type="text" id ="password" placeholder="Password" />
+                    </div>
+                    <Button onClick={this.postLogin}>log in</Button>
+                </div>
             </React.Fragment>
         )
     }
