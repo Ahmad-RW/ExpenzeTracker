@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../style/navbar.css";
-import { Modal, Icon } from "semantic-ui-react";
+import { Modal, Icon, Confirm } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import CategoryForm from "./CategoryForm";
 import { Link } from "react-router-dom";
@@ -8,6 +8,10 @@ import urls from "../router/urls";
 import { connect } from "react-redux";
 
 class Navbar extends Component {
+  state = { open: false }
+  open = () => this.setState({ open: true })
+  close = () => this.setState({ open: false })
+  
   render() {
     return (
       <React.Fragment>
@@ -33,7 +37,8 @@ class Navbar extends Component {
 
           <div class="nav-right">
             {/* <span>{this.props.userData.name}</span> */}
-            <Icon onClick={this.props.logout} name="logout" size="large"/>
+            <Icon onClick={this.open} name="logout" size="large"/>
+            <Confirm size="tiny" open={this.state.open} onCancel={this.close} onConfirm={this.props.logout} />
           </div>
         </nav>
       </React.Fragment>
