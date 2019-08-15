@@ -5,9 +5,9 @@
 }
 
 #root {
-  display: flex;
+  /* display: flex; */
   height: 100%;
-  background: linear-gradient(65deg, #253d78 45%, #29b99a 95%), linear-gradient(-40deg,  #42c5a4 15%, #60719c 45%);
+  background: linear-gradient(65deg, #253d780e 45%, #29b99a0e 95%), linear-gradient(-40deg,  #42c5a40e 15%, #60719c0e 45%);
 }
 
 body {

@@ -46,6 +46,10 @@
   margin-bottom: 12px;
 }
 
+.transfer {
+  margin: 8px 0;
+}
+
 /* ---- Semantic component ---- */
 
 button.ui.button {

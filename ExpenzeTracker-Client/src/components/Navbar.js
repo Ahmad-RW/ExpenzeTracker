@@ -26,17 +26,14 @@ class Navbar extends Component {
             <Link to={{ pathname: `/settings` }}>
               <Icon name="cog" class="settings" />
             </Link>
-            <a href="#" onClick={this.props.logout}>
-              Log out
-            </a>
           </div>
           
 
           <div class="nav-center"> <h1 id="title">Expenze</h1> </div>
 
           <div class="nav-right">
-            <span>{this.props.userData.name}</span>
-            <Icon name="user" />
+            {/* <span>{this.props.userData.name}</span> */}
+            <Icon onClick={this.props.logout} name="logout" size="large"/>
           </div>
         </nav>
       </React.Fragment>

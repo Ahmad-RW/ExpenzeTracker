@@ -18,6 +18,7 @@
 
 .nav-right {
   flex:1;  
+  padding-right: 8px; 
   text-align: end;
 }
 
