@@ -4,6 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 import urls from '../../router/urls'
 import '../../style/userform.css'
 import { Input, Button, Icon, Label } from 'semantic-ui-react'
+import bcryptjs from 'bcryptjs'
 class Register extends Component {
     state = {
         registerFailed : "",
@@ -20,7 +21,7 @@ class Register extends Component {
     postRegister= () =>{
         const payload = {
             email : this.state.email,
-            password : this.state.password,
+            password : bcryptjs.hashSync(this.state.password, 10),
             username : this.state.username,
             
         }

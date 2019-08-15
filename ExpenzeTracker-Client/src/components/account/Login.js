@@ -23,10 +23,12 @@ class Login extends Component{
         })
     }
     postLogin = () =>{
-        const payload = {
+        let payload = {
             email : this.state.email,
             password : this.state.password
         }
+
+      
         console.log(payload)
         axios.post('http://localhost:5000/account/login', {payload}).then(res=>{
             if(res.status === 200){
