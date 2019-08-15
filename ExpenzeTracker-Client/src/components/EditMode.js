@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { editCategories, deleteCategory } from '../store/actions'
 import { Input, Form, Button, Icon, Label, Progress } from 'semantic-ui-react'
-import { CircularProgressbar } from "react-circular-progressbar";
 import '../style/forms.css'
 import 'react-circular-progressbar/dist/styles.css';
 import { checkIfInputIsNotNumber } from './helpers'

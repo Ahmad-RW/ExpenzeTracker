@@ -3,9 +3,6 @@ import { getCategory } from './helpers'
 import { connect } from 'react-redux'
 import '../style/logs.css'
 import { Icon } from 'semantic-ui-react';
-import expense from '../img/expenze.png'
-import income from '../img/income.png'
-import transfer from '../img/transfer.png'
 
 class Logs extends Component {
     state = {

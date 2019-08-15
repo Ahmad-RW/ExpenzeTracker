@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../style/mainheader.css";
-import add from "../img/add.png";
 import { connect } from "react-redux";
 import { setMonthlyIncome } from "../store/actions";
 import AddIncome from "./AddIncome";

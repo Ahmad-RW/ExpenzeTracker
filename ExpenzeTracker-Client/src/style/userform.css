@@ -1,0 +1,45 @@
+.user-form {
+    width: 80%;
+    flex: 1;
+    align-self: auto;
+    margin: auto 150px;
+    padding: 24px;
+    background: rgba(248, 248, 248);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+}
+
+.login {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.user-form	> div {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: 6px;
+    margin: 4px;
+}
+.user-form > div > label {
+    width: 35%;
+    margin: 8px;
+    font-size: 1.1em; 
+}
+.user-form > div > .ui.input {
+    width: 60%;
+    padding-left: 12px;
+}
+
+.user-form > .ui.button {
+    width: 95%;
+    height: 35px;
+    text-align: center;
+    margin: 12px;
+}
