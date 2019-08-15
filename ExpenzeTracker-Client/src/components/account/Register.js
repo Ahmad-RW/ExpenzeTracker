@@ -77,11 +77,11 @@ class Register extends Component {
                 </div>
                 <div>
                     <label>Password</label>
-                    <Input onChange={this.handleChange} placeholder="password" id="password"/>
+                    <Input onChange={this.handleChange} type="password" placeholder="password" id="password"/>
                 </div>
                 <div>
                     <label>Confirm</label>
-                    <Input onChange={this.checkEquality} placeholder="confirmPassword" id ="confirmPassword"/>
+                    <Input onChange={this.checkEquality} type="password" placeholder="confirmPassword" id ="confirmPassword"/>
                 </div>
                 {this.state.raiseValidationError ? (<Button onClick={this.postRegister} disabled>Sign Up</Button>) : (<Button onClick={this.postRegister}>Sign Up</Button>)}
                 <span>Already have an account? <Link to={{ pathname: urls.login  }}><span>sign in</span></Link></span>

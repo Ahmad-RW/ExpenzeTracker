@@ -14,7 +14,10 @@
 }
 
 .login {
-    margin: auto 250px;
+    width: 60%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .user-form	> div {

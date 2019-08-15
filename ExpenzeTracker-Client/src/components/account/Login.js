@@ -67,18 +67,20 @@ class Login extends Component{
     render(){
         return(
             <React.Fragment>
-                <div class="user-form login">
-                    <h1>Log in</h1>
-                    {this.raiseError()}
-                    <div>
-                        <label>Email</label>
-                        <Input onChange={this.handleChange} type="text" id ="email" placeholder="Email" />
+                <div class="login">
+                    <div class="user-form">
+                        <h1>Log in</h1>
+                        {this.raiseError()}
+                        <div>
+                            <label>Email</label>
+                            <Input onChange={this.handleChange} type="text" id ="email" placeholder="Email" />
+                        </div>
+                        <div>
+                            <label>Password</label>
+                            <Input onChange={this.handleChange} type="password" id ="password" placeholder="Password"  />
+                        </div>
+                        <Button onClick={this.postLogin}>log in</Button>
                     </div>
-                    <div>
-                        <label>Password</label>
-                        <Input onChange={this.handleChange} type="text" id ="password" placeholder="Password" />
-                    </div>
-                    <Button onClick={this.postLogin}>log in</Button>
                 </div>
             </React.Fragment>
         )

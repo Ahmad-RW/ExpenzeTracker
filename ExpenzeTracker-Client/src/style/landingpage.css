@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center; 
-    background: linear-gradient(65deg, #253d78 45%, #29b99a 95%), linear-gradient(-40deg,  #42c5a4 15%, #60719c 45%);
+    background: linear-gradient(65deg, #253d78 45%, #29b99a 95%) no-repeat, linear-gradient(-40deg,  #42c5a4 15%, #60719c 45%) no-repeat;
     height: 100vh;
     width: 100vw;
 }
