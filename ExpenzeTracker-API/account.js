@@ -45,7 +45,6 @@ account.post("/login", function (req, res) {
     }
    var result = bcrypt.compareSync(req.body.payload.password, record.password)
    if(result){
-    console.log(getUserDto(record))
     res.status(200).send(getUserDto(record))
    }
    else{
