@@ -6,6 +6,7 @@
     "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "mathjs": "^6.0.4",
     "node-pre-gyp": "^0.13.0",
     "react": "^16.8.6",
     "react-circular-progressbar": "^2.0.1",

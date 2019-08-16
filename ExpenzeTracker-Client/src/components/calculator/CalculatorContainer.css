@@ -1,0 +1,10 @@
+.calculator-wrapper {
+    width: 80%;
+    max-width: 300px;
+    box-shadow: rgba(0,0,0,.2) 0px 0px 10px 5px;
+  }
+  
+  .row {
+    display: flex;
+    width: 100%;
+  }
