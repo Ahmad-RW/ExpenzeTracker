@@ -18,6 +18,7 @@
 
 .nav-right {
   flex:1;  
+  padding-right: 8px; 
   text-align: end;
 }
 
@@ -71,12 +72,7 @@
 
 .user.icon {
   font-size: 2em;
-  
   color: #ccc;
-  /* height: 26px;
-  width: 26px;
-  background-size: cover;
-  vertical-align: middle; */
 }
 
 .welcome {

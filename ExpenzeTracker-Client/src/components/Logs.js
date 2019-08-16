@@ -3,9 +3,6 @@ import { getCategory } from './helpers'
 import { connect } from 'react-redux'
 import '../style/logs.css'
 import { Icon } from 'semantic-ui-react';
-import expense from '../img/expenze.png'
-import income from '../img/income.png'
-import transfer from '../img/transfer.png'
 
 class Logs extends Component {
     state = {
@@ -27,7 +24,7 @@ class Logs extends Component {
         return this.props.logs.map(log => {
             return (
                 <div class="log">
-                    {this.logAction(log.action)} <span class="log-amount">{log.amount}</span> <span class="time">12:45 - 27/7/2077</span><span class="log-category">{log.category_id === null ? (<span>all categories</span>) : (getCategory(log.category_id, this.props.userData.category).name)}</span>
+                    {this.logAction(log.action)} <span class="log-amount">{log.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span> <span class="time">12:45 - 27/7/2077</span><span class="log-category">{log.category_id === null ? (<span>all categories</span>) : (getCategory(log.category_id, this.props.userData.category).name)}</span>
                 </div>
             )
         })

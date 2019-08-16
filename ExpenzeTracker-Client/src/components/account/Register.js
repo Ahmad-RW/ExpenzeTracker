@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import urls from '../../router/urls'
+import '../../style/userform.css'
+import { Input, Button, Icon, Label } from 'semantic-ui-react'
 import bcryptjs from 'bcryptjs'
 class Register extends Component {
     state = {
         registerFailed : "",
         confirmPassword : "",
-        raiseValidationError : false
+        raiseValidationError : false,
+        login: false 
     }
     handleChange = (e) =>{
         this.setState({
@@ -61,16 +64,29 @@ class Register extends Component {
     render() {
         return (
             <React.Fragment>
-            {this.renderDuplicationMessage()}
-            {this.raiseValidationError()}
-           <input onChange={this.handleChange} placeholder="email" id="email" />
-           <br/>
-           <input onChange={this.handleChange} placeholder="username" id="username" />
-           <br/>
-
-           <input onChange={this.handleChange} placeholder="password" id="password"/>
-           <input onChange={this.checkEquality} placeholder="confirmPassword" id ="confirmPassword"/>
-           {this.state.raiseValidationError ? (<button onClick={this.postRegister} disabled>Go!</button>) : (<button onClick={this.postRegister}>Go!</button>)}
+            <div class="user-form">
+                <h1>Sign Up</h1>
+                {this.renderDuplicationMessage()}
+                {this.raiseValidationError()}
+                <div>
+                    <label>Email</label>
+                    <Input onChange={this.handleChange} placeholder="email" id="email" />
+                </div>
+                <div>
+                    <label>Username</label>
+                    <Input onChange={this.handleChange} placeholder="username" id="username" />
+                </div>
+                <div>
+                    <label>Password</label>
+                    <Input onChange={this.handleChange} type="password" placeholder="password" id="password"/>
+                </div>
+                <div>
+                    <label>Confirm</label>
+                    <Input onChange={this.checkEquality} type="password" placeholder="confirmPassword" id ="confirmPassword"/>
+                </div>
+                {this.state.raiseValidationError ? (<Button onClick={this.postRegister} disabled>Sign Up</Button>) : (<Button onClick={this.postRegister}>Sign Up</Button>)}
+                <span>Already have an account? <Link to={{ pathname: urls.login  }}><span>sign in</span></Link></span>
+            </div>
            </React.Fragment>
         )
     }

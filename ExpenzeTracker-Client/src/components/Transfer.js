@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { checkIfInputIsNotNumber,getFeedbackMessage, getCategory } from './helpers'
 import { connect } from 'react-redux'
 import { transfer} from '../store/actions'
+import { Button } from 'semantic-ui-react'
+import '../style/forms.css'
 class Transfer extends Component {
     state = {
         to: null,
@@ -59,16 +61,22 @@ class Transfer extends Component {
         return (
             <React.Fragment>
                 {this.state.feedbackMessage}
+                <div class="transfer">
                 <select onChange={this.handleOptionChange} id="to">
                     <option value={null}>To</option>
                     {optionList}
                 </select>
+                </div>
+                <div class="transfer">
                 <select onChange={this.handleOptionChange} id="from">
                     <option value={null}>From</option>
                     {optionList}
                 </select>
+                </div>
+                <div class="transfer">
                 <input type="text" id="amount" onChange={this.handleAmountChange} />
-                <button onClick={this.submitTransfer}>Submit</button>
+                </div>
+                <Button onClick={this.submitTransfer}>Submit</Button>
             </React.Fragment>
         )
     }

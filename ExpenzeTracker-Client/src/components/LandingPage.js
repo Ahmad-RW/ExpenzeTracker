@@ -1,4 +1,8 @@
 import React,{Component} from 'react'
+import '../style/landingpage.css'
+import Register from './account/Register'
+import Login from './account/Login'
+import { Icon } from 'semantic-ui-react';
 
 
 
@@ -6,7 +10,7 @@ import React,{Component} from 'react'
 class LandingPage extends Component{
 
     state = {
-
+        
     }
 
     renderSuccessfulLoginMessage = () =>{
@@ -19,9 +23,19 @@ class LandingPage extends Component{
     render(){
         return (
             <React.Fragment>
-                {this.renderSuccessfulLoginMessage()}
-            <h1>landing</h1>
-            <h2>page</h2>
+            <div class="landing-page-container">
+                <div class="links">
+                    <Icon name="github" size="big" /> <Icon name="envelope" size="big" /> <Icon name="question" size="big" />
+                </div>
+                <div class="landing-page">
+                    <div class="welcome">
+                        {this.renderSuccessfulLoginMessage()}
+                        <h1>Expenze</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, labore.</p>
+                    </div>
+                    <Register />
+                </div>
+            </div>
             </React.Fragment>
         )
     }

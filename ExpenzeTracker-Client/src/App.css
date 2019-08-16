@@ -5,13 +5,10 @@
 }
 
 #root {
+  /* display: flex; */
   height: 100%;
-  background: rgba(248, 248, 248, 0.5);
+  background: linear-gradient(65deg, #253d780e 45%, #29b99a0e 95%), linear-gradient(-40deg,  #42c5a40e 15%, #60719c0e 45%);
 }
-
-/* @font-face {
-
-} */
 
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
