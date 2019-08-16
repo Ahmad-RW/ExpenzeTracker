@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('./dbConfig/dbCon')
 const User = require('./dbConfig/models/User')
 const account = require('./account')
+const getUserDto = require('./dbConfig/models/UserDto')
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -41,7 +42,7 @@ app.get('/', function (req, res) {
 app.get('/getUserData', function (req, res) {
     console.log("getting user data....")
     User.findOne({ email: req.query.email }).then((record) => {
-        res.status(200).send(record)
+        res.status(200).send(getUserDto(record))
     }).catch((err) => {
         console.log(err)
         res.status(500).send(err)
