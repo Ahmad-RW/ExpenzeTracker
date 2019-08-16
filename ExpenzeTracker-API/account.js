@@ -6,6 +6,7 @@ const SG_API_KEY = "SG.pWB6H8VUTgOkr23_XxV_UA.elBgt_xFtn3RSAD-2rH-_ZeqR8Me9G20GY
 const mailClient = require('@sendgrid/mail')
 const nodemailer = require('nodemailer')
 const bcrypt = require('bcryptjs')
+const getUserDto = require('./dbConfig/models/UserDto')
 mailClient.setApiKey(SG_API_KEY)
 
 account.post("/register", function (req, res) {
@@ -44,7 +45,8 @@ account.post("/login", function (req, res) {
     }
    var result = bcrypt.compareSync(req.body.payload.password, record.password)
    if(result){
-    res.status(200).send(record)
+    console.log(getUserDto(record))
+    res.status(200).send(getUserDto(record))
    }
    else{
     res.status(401).send()
