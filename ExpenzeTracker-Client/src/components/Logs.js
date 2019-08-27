@@ -22,6 +22,13 @@ class Logs extends Component {
 
     listAllLogs = () => {
         return this.props.logs.map(log => {
+            if(log.action === "TRANSFER"){
+                return(
+                    <div class="log">
+                    {this.logAction(log.action)} <span class="log-amount">{log.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span> <span class="time">12:45 - 27/7/2077</span><span class="log-category">from {(getCategory(log.from, this.props.userData.category)).name} to {(getCategory(log.to, this.props.userData.category)).name}</span>
+                </div>
+                )
+            }
             return (
                 <div class="log">
                     {this.logAction(log.action)} <span class="log-amount">{log.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span> <span class="time">12:45 - 27/7/2077</span><span class="log-category">{log.category_id === null ? (<span>all categories</span>) : (getCategory(log.category_id, this.props.userData.category).name)}</span>
@@ -50,6 +57,7 @@ class Logs extends Component {
             case "EXPENSE":
                 return <span class="action-icon"><Icon name="arrow down" color="red"/></span>
             case "TRANSFER":
+
                 return <span class="action-icon"><Icon name="arrow right" color="yellow"/></span>
         }
     }
