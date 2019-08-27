@@ -8,6 +8,7 @@ import "semantic-ui-css/semantic.min.css";
 import RegisterExpense from "./RegisterExpense";
 import Transfer from "./Transfer";
 import Logs from "./Logs";
+import CalculatorContainer from './calculator/CalculatorContainer';
 const panes = [
   {menuItem: "Income",
     render: () => (
@@ -50,7 +51,6 @@ class MainHeader extends Component {
           </div>
 
           <Modal
-          // <img class="add" src={add} alt="add" />
             trigger={<Icon name="add"/>}
             centered={false}
             size="tiny"
@@ -60,6 +60,10 @@ class MainHeader extends Component {
                 <Tab panes={panes} />
               </Form>
             </Modal.Content>
+          </Modal>
+          <Modal size="tiny" trigger={<Icon name="calculator" />}>
+                <CalculatorContainer />
+
           </Modal>
         </div>
         <Modal centered={false} size="small" trigger={ <span class="text-activity">Activities</span>}>

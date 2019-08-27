@@ -24,7 +24,6 @@ class Category extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navbar />
                 <Modal.Header><CategoryHeader categoryName={this.props.context.name} /></Modal.Header>
                 <Modal.Content>
                 <Logs category_id={this.props.context._id} />

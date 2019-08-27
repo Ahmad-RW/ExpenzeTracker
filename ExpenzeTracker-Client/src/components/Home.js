@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import MainHeader from './MainHeader'
 import CategoryList from './CategoryList'
 import Navbar from './Navbar'
-import CalculatorContainer from './calculator/CalculatorContainer';
-import { Modal } from 'semantic-ui-react';
 class Home extends Component {
     constructor(props) {
         super(props)
@@ -14,10 +12,7 @@ class Home extends Component {
         return (
             <React.Fragment>
                 <Navbar />
-                <Modal trigger={<a>catch-ulator</a>}>
-                <CalculatorContainer />
-
-                </Modal>
+                
                 <MainHeader />
                 <CategoryList />
             </React.Fragment>

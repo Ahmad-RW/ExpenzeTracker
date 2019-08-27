@@ -38,7 +38,7 @@
 
 /* -----  Icon  ----- */
 
-.add.icon {
+.add.icon, .calculator.icon {
   font-size: 1.8em;
   margin: 4px;
   align-self: flex-end;
