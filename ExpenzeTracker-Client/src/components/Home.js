@@ -12,7 +12,6 @@ class Home extends Component {
         return (
             <React.Fragment>
                 <Navbar />
-                
                 <MainHeader />
                 <CategoryList />
             </React.Fragment>

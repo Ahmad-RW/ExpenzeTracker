@@ -15,6 +15,7 @@
 
 .login {
     width: 60%;
+    height: 100%;
     margin: auto;
     display: flex;
     justify-content: center;

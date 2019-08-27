@@ -61,9 +61,8 @@ class MainHeader extends Component {
               </Form>
             </Modal.Content>
           </Modal>
-          <Modal size="tiny" trigger={<Icon name="calculator" />}>
-                <CalculatorContainer />
-
+          <Modal basic centered={true} size="tiny" trigger={<Icon name="calculator" />}>
+            <CalculatorContainer />
           </Modal>
         </div>
         <Modal centered={false} size="small" trigger={ <span class="text-activity">Activities</span>}>
