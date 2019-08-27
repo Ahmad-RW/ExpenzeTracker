@@ -9,9 +9,7 @@ class Logs extends Component {
         category_id: this.props.category_id
     }
     listLogs = () => {
-        console.log(typeof this.props.category_id === 'undefined')
         if (typeof this.props.category_id === 'undefined') {
-            console.log("hellp")
             return this.listAllLogs()
         }
         else {
@@ -32,7 +30,6 @@ class Logs extends Component {
 
     listLogsForCategory = (category_id) => {
         return this.props.logs.map(log => {
-            console.log(log)
             if (category_id === log.category_id || category_id === log.to || category_id === log.from) {
                 return (
                 <div class="log">

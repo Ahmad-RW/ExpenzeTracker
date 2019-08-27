@@ -46,23 +46,18 @@ class SetMonthlyIncome extends Component {
         payrollMonth : ""
     }
     handleDayInput = e => {
-        console.log(e.target)
         this.setState({
            payrollDay: e.target.innerText
         })
-        console.log(this.state)
     }
     handleChange = e => {
-        console.log(e.target)
         this.setState({
             [e.target.id]: e.target.value
         })
-        console.log(this.state)
     }
     handleSetMonthlyInput = e => {
         e.preventDefault()
         const date = `${this.state.payrollDay}`
-        console.log(date)
         const payload = {
             userData: this.props.userData,
             amount: this.state.amount,

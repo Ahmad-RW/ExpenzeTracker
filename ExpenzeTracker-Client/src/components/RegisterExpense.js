@@ -72,7 +72,6 @@ class RegisterExpense extends Component {
             return elem._id === payload.category_id
         })
         if (payload.amount > categoryInContext.balance) {
-            console.log("displaying error...")
             getFeedbackMessage(this, "transaction terminated", "amount of expense is grater than the current balance of the category", "error")
             return
         }

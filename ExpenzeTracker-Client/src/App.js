@@ -3,9 +3,7 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import urls from './router/urls'
 import Home from './components/Home'
-import UserActions from './components/UserActions'
 import NotFound from './components/NotFound.js'
-import Navbar from './components/Navbar'
 import Category from './components/Category'
 import Settings from './components/Settings'
 import { getUserData } from './store/actions'
@@ -13,7 +11,6 @@ import { connect } from 'react-redux'
 import LandingPage from './components/LandingPage';
 import Register from './components/account/Register';
 import Login from './components/account/Login';
-import Logout from './components/account/Logout';
 import requireAuth from './components/account/RequireAuthHOC';
 import EmailConfirmed from './components/account/EmailConfirmed'
 class App extends Component {
@@ -30,9 +27,7 @@ class App extends Component {
           <Route exact path={urls.landingPage} component={LandingPage} />
           <Route exact path={urls.register} component={Register} />
           <Route exact path={urls.login} component={Login} />
-          <Route exact path={urls.logout} component={Logout} />
           <Route exact path={urls.home} component={requireAuth(Home)} />
-          <Route exact path={urls.userActions} component={requireAuth(UserActions)} />
           <Route exact path={urls.category} component={requireAuth(Category)} />
           <Route exact path={urls.settings} component={requireAuth(Settings)} />
           <Route exact path="/account/emailConfirmed" component={EmailConfirmed} />

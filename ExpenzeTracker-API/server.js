@@ -87,15 +87,13 @@ app.post('/addIncome', function (req, res) {
     newCategoryList.forEach(elem=>{
         if(elem.deleted){return}
         let log = getLog("INCOME", elem._id, ((req.body.payload.income*elem.share)/100))
-        console.log(log)
         logs.push(log)
 
 
     })
 
     User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $inc: { "balance": req.body.payload.income }, $push: { "logs":{$each:logs} }}, { new: true, runValidators: true }).then(record => {
-        //{ $push: { scores: { $each: [ 90, 92, 85 ] } } }
-      //  console.log(record)
+
         res.status(200).send(record)
     }).catch(err => {
         console.log(err)
@@ -124,14 +122,12 @@ app.post('/editCategories', function (req, res) {
 
 app.post('/deleteCategory', function (req, res) {
     console.log("editing categories...")
-    console.log(req.body)
     let newCategoryList = req.body.payload.userData.category.map(element => {
         if (element._id === req.body.payload.category._id) {
             element.deleted = true;
         }
         return element
     })
-    console.log(newCategoryList)
 
     newCategoryList = addIncomeToCategories(newCategoryList, req.body.payload.category.balance)
 
@@ -144,9 +140,7 @@ app.post('/deleteCategory', function (req, res) {
 })
 
 app.post('/handleRename', function (req, res) {
-    console.log(req.body)
     User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category.$[elem].name": req.body.payload.newName } }, { new: true, arrayFilters: [{ "elem._id": mongoose.Types.ObjectId(req.body.payload.categoryId) }] }).then(function (record) {
-        console.log(record)
         res.status(200).send(record)
     }).catch(function (err) {
         res.status(500).send(err)
@@ -174,7 +168,6 @@ app.post('/handleTransfer', function (req, res) {
     let log = getLog("TRANSFER", null, req.body.payload.amount)
     log.to = req.body.payload.to
     log.from = req.body.payload.from
-    console.log(log)
     User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $inc: { "category.$[to].balance": req.body.payload.amount, "category.$[from].balance": -req.body.payload.amount }, $push: { "logs": log } }, { new: true, arrayFilters: [{ "to._id": mongoose.Types.ObjectId(req.body.payload.to) }, { "from._id": mongoose.Types.ObjectId(req.body.payload.from) }] }).then(function (record) {
         res.status(200).send(record)
     }).catch(function (err) {

@@ -12,9 +12,7 @@ mailClient.setApiKey(SG_API_KEY)
 account.post("/register", function (req, res) {
   const user = { email: req.body.payload.email, password: req.body.payload.password, name: req.body.payload.username }
   Users.create(user).then(function (record) {
-    console.log(req.protocol, req.get('host'))
     var callbackUrl = `${req.protocol}://${req.get('host')}/account/confirmEmail?code=${record.confirmationCode}&user=${record.email}`;
-    console.log(callbackUrl)
 
 
     const confrimationMessage = {
@@ -36,7 +34,6 @@ account.post("/register", function (req, res) {
 
 account.post("/login", function (req, res) {
   Users.findOne({ "email": req.body.payload.email }).then(function (record) {
-    console.log(record)
     if (record === null) {
       res.status(401).send()
     }
@@ -58,7 +55,6 @@ account.post("/login", function (req, res) {
 account.get('/test', function (req, res) {
 
   var callbackUrl = `${req.protocol}://${req.get('host')}/account/confirmEmail?code=1&user=1`;
-  console.log(callbackUrl)
   const confrimationMessage = {
     to: "ahmed-rw@outlook.com",
     from: "expenzeTracker@hello.com",

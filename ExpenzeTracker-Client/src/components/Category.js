@@ -13,7 +13,6 @@ class Category extends Component {
         this.state = {
 
         }
-        console.log(this.props.logs)
         if (this.props.context === null) {
             this.props.history.push("/NotFound")
         }

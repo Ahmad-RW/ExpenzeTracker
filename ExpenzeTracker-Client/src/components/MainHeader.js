@@ -32,7 +32,6 @@ const panes = [
 
 class MainHeader extends Component {
   render() {
-    console.log(this.props.userData, " hi")
     return (
       <React.Fragment>
         <div class="main">
