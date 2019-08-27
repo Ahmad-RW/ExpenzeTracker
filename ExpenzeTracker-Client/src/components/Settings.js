@@ -4,6 +4,7 @@ import '../style/settings.css'
 import { Header, Icon } from "semantic-ui-react"
 import {connect} from 'react-redux'
 import Navbar from './Navbar';
+import ChangePassword from './ChangePassword';
 
 
 
@@ -34,6 +35,7 @@ class Settings extends Component {
           </div>
           <div class="settings-list">
                 <SetMonthlyIncome />
+                <ChangePassword/>
           </div>
         </div>
       </React.Fragment>

@@ -37,10 +37,6 @@ class Login extends Component{
                 this.props.history.push('/home')
                 return
             }
-            if(res.status === 403){
-                
-            }
-          
         }).catch(err=>{
             if(err.response.status === 403){
                 this.setState({confirmationError : true})

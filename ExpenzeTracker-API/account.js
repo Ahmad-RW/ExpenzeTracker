@@ -1,12 +1,11 @@
 const express = require('express')
 const account = express.Router()
-const passport = require('passport')
 const Users = require('./dbConfig/models/User')
 const SG_API_KEY = "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"
 const mailClient = require('@sendgrid/mail')
-const nodemailer = require('nodemailer')
 const bcrypt = require('bcryptjs')
 const getUserDto = require('./dbConfig/models/UserDto')
+const bcryptjs = require('bcryptjs')
 mailClient.setApiKey(SG_API_KEY)
 
 account.post("/register", function (req, res) {
@@ -49,6 +48,25 @@ account.post("/login", function (req, res) {
    }
   }).catch(function (err) {
     console.log(err)
+  })
+})
+
+account.post("/changepassword", function(req,res){
+  Users.findOne({"email": req.body.payload.userData.email}).then(function(record){
+    if(record === null){
+      res.status(404).send()
+    }
+    if( bcrypt.compareSync(req.body.payload.password, record.password)){
+      Users.findOneAndUpdate({"email": req.body.payload.userData.email}, {$set:{password:bcryptjs.hashSync(req.body.payload.newPassword, 10)}}).then(function(record){
+        res.status(204).send()
+      })
+    }
+    else{
+      res.status(401).send()
+    }
+  }).catch(function(err){
+    console.log(err)
+    res.status(500).send()
   })
 })
 
