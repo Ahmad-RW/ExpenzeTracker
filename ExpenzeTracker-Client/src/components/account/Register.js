@@ -16,7 +16,6 @@ class Register extends Component {
         this.setState({
             [e.target.id] : e.target.value
         })
-        console.log(this.state)
     }
     postRegister= () =>{
         const payload = {
@@ -26,7 +25,6 @@ class Register extends Component {
             
         }
         axios.post('http://localhost:5000/account/register', {payload}).then(res=>{
-            console.log(res)
             if(res.status === 201){
                 this.props.history.push(urls.landingPage, {registerSuccess : true})
             }
@@ -51,7 +49,6 @@ class Register extends Component {
             confirmPassword : e.target.value,
             raiseValidationError : this.state.password !== e.target.value
         })
-        console.log(this.state)
     }
 
     raiseValidationError = () =>{

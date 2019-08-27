@@ -4,7 +4,6 @@ import {getFeedbackMessage } from '../components/helpers';
 export const getUserData = payload => {
     return dispatch => {
         axios.get(`http://localhost:5000/getUserData?email=${payload.email}`).then(res => {
-            console.log("setting user data to reducer...")
             dispatch({ type: "SET_USER_DATA", res })
         }).catch(err => {
             console.log(err)

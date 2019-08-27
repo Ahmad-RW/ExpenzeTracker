@@ -8,7 +8,6 @@ import { Modal } from 'semantic-ui-react';
 class Home extends Component {
     constructor(props) {
         super(props)
-        console.log(props, "im in  home")
     }
     render() {
         return (

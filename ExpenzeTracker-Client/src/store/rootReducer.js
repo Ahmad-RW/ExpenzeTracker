@@ -31,15 +31,11 @@ const rootReducer = (state = initState, action) => {
                 auth: true,
                 context: null
             }
-            console.log(state)
             return state
         case "LOGOUT":
-            console.log("hey")
             state = {...initState}
-            console.log(state)
             return state
         case "SET_USER_DATA":
-            console.log(state)
             if (state.context === null) {
 
                 return state = {
@@ -65,7 +61,6 @@ const rootReducer = (state = initState, action) => {
                 return state
             }
         case "UPDATE_STORE":
-            console.log(state)
             if (state.context === null) {
                 return state = {
                     userData: action.res.data,
@@ -74,7 +69,6 @@ const rootReducer = (state = initState, action) => {
                 }
             }
             else {//this is to handel update to the caterogry that is the context.
-                console.log(state.context)
                 action.res.data.category.forEach(elem => {
                     if (elem._id === state.context._id) {
                         state = {
@@ -92,15 +86,12 @@ const rootReducer = (state = initState, action) => {
                 logs: action.res.data.logs,
                 context: null
             }
-            console.log(state)
             return state
         case "SET_CONTEXT":
-            console.log(state, action)
             state = {
                 ...state,
                 context: action.context
             }
-            console.log(state)
             return state
         
         default:

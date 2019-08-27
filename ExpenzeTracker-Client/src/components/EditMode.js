@@ -77,7 +77,6 @@ class EditMode extends Component{
   }
       
   handleDelete = category => {
-    console.log(category)
     const payload = {
       userData: this.props.userData,
       category
