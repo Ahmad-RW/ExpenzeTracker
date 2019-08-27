@@ -63,6 +63,7 @@ const rootReducer = (state = initState, action) => {
         case "UPDATE_STORE":
             if (state.context === null) {
                 return state = {
+                    ...state,//this is to maintain auth status
                     userData: action.res.data,
                     context: null,
                     logs: action.res.data.logs,
@@ -72,6 +73,7 @@ const rootReducer = (state = initState, action) => {
                 action.res.data.category.forEach(elem => {
                     if (elem._id === state.context._id) {
                         state = {
+                            ...state,//this is to maintain auth status
                             userData: action.res.data,
                             logs: action.res.data.logs,
                             context: { ...elem }
@@ -82,6 +84,7 @@ const rootReducer = (state = initState, action) => {
             }
         case "DELETE_CATEGORY":
             state = {
+                ...state,//maintain auth status
                 userData: action.res.data,
                 logs: action.res.data.logs,
                 context: null
