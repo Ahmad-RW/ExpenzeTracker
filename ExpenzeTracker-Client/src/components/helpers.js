@@ -62,3 +62,4 @@ export const getCategory = (id, categories) => {
 
   return result
 }
+
