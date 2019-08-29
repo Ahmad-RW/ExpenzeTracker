@@ -1,5 +1,6 @@
  function getUserDto(userInfo){
      const UserDto = {
+         _id : userInfo._id,
          name : userInfo.name,
          email : userInfo.email,
          category : userInfo.category,

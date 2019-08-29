@@ -91,7 +91,7 @@ app.post('/addIncome', function (req, res) {
 
 
     })
-
+    console.log(req.body)
     User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $inc: { "balance": req.body.payload.income }, $push: { "logs":{$each:logs} }}, { new: true, runValidators: true }).then(record => {
 
         res.status(200).send(record)

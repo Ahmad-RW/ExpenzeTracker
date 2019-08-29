@@ -103,3 +103,9 @@
   }
 }
 
+@media only screen and (max-width: 683px){
+  .nav-left{
+    flex: 3;
+  }
+}
+
