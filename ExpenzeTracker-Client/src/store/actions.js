@@ -15,6 +15,7 @@ export const createCategory = (payload) => {
     return (dispatch) => {
         axios.post('http://localhost:5000/newCategory', { payload: payload }).then((res) => {
             dispatch({ type: "UPDATE_STORE", res })
+            getFeedbackMessage(null, "category created", "category created", "success")
         }).catch((err) => {
             console.log(err)
         })

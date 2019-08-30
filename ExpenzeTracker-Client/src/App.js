@@ -13,6 +13,7 @@ import Register from './components/account/Register';
 import Login from './components/account/Login';
 import requireAuth from './components/account/RequireAuthHOC';
 import EmailConfirmed from './components/account/EmailConfirmed'
+import Notifications from 'react-notify-toast'
 class App extends Component {
   // constructor(props){
   //   super(props)
@@ -23,6 +24,8 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+      
+      <Notifications options={{zIndex:600, top:"180px"}} />
         <Switch>
           <Route exact path={urls.landingPage} component={LandingPage} />
           <Route exact path={urls.register} component={Register} />
