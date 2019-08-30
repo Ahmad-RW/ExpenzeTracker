@@ -1,25 +1,8 @@
 import React from 'react'
-
+import {notify} from 'react-notify-toast'
 export const getFeedbackMessage = (component, header, content, status) => {
-  component.setState(
-    {
-      feedbackMessage: (
-        <div class={`ui ${status} message`}>
-          <div class="content">
-            <div>
-              {header}
-            </div>
-            <p>{content}</p>
-          </div>
-        </div>
-      )
-    },
-    () => {
-      setTimeout(() => {
-        component.setState({ feedbackMessage: null });
-      }, 5000);
-    }
-  );
+  let myColor = { background: '#0E1717', text: "#FFFFFF" };
+  notify.show(header, status,5000, myColor)
 };
 export const checkIfInputIsNotNumber = e => {
   if (isNaN(e.target.value)) {
