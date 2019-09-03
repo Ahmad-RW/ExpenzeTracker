@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
+import { Link } from "react-router-dom";
+import urls from "../../router/urls";
 import '../../style/userform.css'
 import { Input, Button, Icon, Label } from 'semantic-ui-react'
 
@@ -63,7 +65,9 @@ class Login extends Component{
             <React.Fragment>
                 <div class="login">
                     <div class="user-form">
-                        <h1>Log in</h1>
+                    <Link to={{ pathname: urls.landingPage  }}>
+                        <Icon name="arrow left" />
+                    </Link>
                         {this.raiseError()}
                         <div>
                             <label>Email</label>
@@ -73,7 +77,7 @@ class Login extends Component{
                             <label>Password</label>
                             <Input onChange={this.handleChange} type="password" id ="password" placeholder="Password"  />
                         </div>
-                        <Button onClick={this.postLogin}>log in</Button>
+                        <Button onClick={this.postLogin}>Sign in</Button>
                     </div>
                 </div>
             </React.Fragment>

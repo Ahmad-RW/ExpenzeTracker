@@ -47,6 +47,16 @@
 }
 
 .transfer {
+  display: flex;
+  vertical-align: middle;
+  margin: 8px 0;
+}
+
+.transfer label {
+  width: 40%;
+}
+
+.expense {
   margin: 8px 0;
 }
 

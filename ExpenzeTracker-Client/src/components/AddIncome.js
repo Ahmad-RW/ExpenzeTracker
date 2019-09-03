@@ -46,7 +46,7 @@ class AddIncome extends Component {
         return (
             <React.Fragment>
                 <Form.Group widths="equal">
-                <Input type="text" id="incomeValue" onChange={this.handleChange} />
+                <Input placeholder="amount" type="text" id="incomeValue" onChange={this.handleChange} />
                {
                    this.state.incomeValue === 0? ( <Button disabled onClick={this.handleAddIncome}>Add</Button>) :( <Button onClick={this.handleAddIncome}>Add</Button>)
                }
