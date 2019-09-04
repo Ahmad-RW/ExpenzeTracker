@@ -24,7 +24,7 @@ class Register extends Component {
             username : this.state.username,
             
         }
-        axios.post('http://localhost:5000/account/register', {payload}).then(res=>{
+        axios.post('/account/register', {payload}).then(res=>{
             if(res.status === 201){
                 this.props.history.push(urls.landingPage, {registerSuccess : true})
             }

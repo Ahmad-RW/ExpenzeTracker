@@ -28,7 +28,7 @@ class ChangePassword extends React.Component{
             password : this.state.password,
             userData: this.props.userData
         }
-        axios.post("http://localhost:5000/account/changePassword", {payload}).then(res=>{
+        axios.post("/account/changePassword", {payload}).then(res=>{
             console.log(res)
             getFeedbackMessage(this, "password changed", "password changed successfully", "success")
         }).catch(err=>{
