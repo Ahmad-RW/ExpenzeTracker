@@ -213,7 +213,7 @@ if(process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'ExpenzeTracker-Client/build')));
   //
   app.get('*', (req, res) => {
-    res.sendfile(path.join(__dirname = 'ExpenzeTracker-Client/build/index.html'));
+    res.sendfile(path.join(__dirname,"ExpenzeTracker-Client/build/index.html"));
   })
 }
 
