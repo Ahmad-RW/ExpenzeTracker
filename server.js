@@ -14,7 +14,8 @@ app.use(function (req, res, next) {
     next();
 
 });
-app.use(cors())
+
+app.use(express.static('public'));
 app.use(bodyParser.json());// post request body parser
 app.use("/account", account)
 
@@ -37,10 +38,6 @@ setInterval(() => {//this executes every 5 mins(300000 millieseconds).
     })
 }, 86400000)
 
-app.use(express.static(path.join(__dirname, 'ExpenzeTracker-Client/build')))// Anything that doesn't match the above, send back index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/ExpenzeTracker-Client/build/index.html'))
-})
 
 app.get('/getUserData', function (req, res) {
     console.log("getting user data....")
@@ -209,3 +206,18 @@ function getLog(action, category_id, amount) {
     return log
 }
 
+app.use(express.static(path.join(__dirname, 'ExpenzeTracker-Client/build')));
+
+//production mode
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'ExpenzeTracker-Client/build')));
+  //
+  app.get('*', (req, res) => {
+    res.sendfile(path.join(__dirname = 'ExpenzeTracker-Client/build/index.html'));
+  })
+}
+
+//build mode
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/ExpenzeTracker-Client/public/index.html'));
+})
