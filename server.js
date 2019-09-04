@@ -36,7 +36,7 @@ setInterval(() => {//this executes every 5 mins(300000 millieseconds).
     })
 }, 86400000)
 
-app.use(express.static(path.join(__dirname, 'ExpenzeTracker-Client')))// Anything that doesn't match the above, send back index.html
+app.use(express.static(path.join(__dirname, 'ExpenzeTracker-Client/build')))// Anything that doesn't match the above, send back index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/ExpenzeTracker-Client/build/index.html'))
 })
