@@ -208,16 +208,7 @@ function getLog(action, category_id, amount) {
 
 app.use(express.static(path.join(__dirname, 'ExpenzeTracker-Client/build')));
 
-//production mode
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'ExpenzeTracker-Client/build')));
-  //
+
   app.get('*', (req, res) => {
     res.sendfile(path.join(__dirname,"ExpenzeTracker-Client/build/index.html"));
   })
-}
-
-//build mode
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/ExpenzeTracker-Client/public/index.html'));
-})
