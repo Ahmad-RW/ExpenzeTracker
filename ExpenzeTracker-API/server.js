@@ -157,7 +157,7 @@ app.post('/submitExpense', function (req, res) {
         return (element)
     })
 
-    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $push: { "logs": getLog("EXPENSE", req.body.payload.category_id, req.body.payload.amount) } }, { new: true, runValidators: true }).then(record => {
+    User.findByIdAndUpdate({ _id: req.body.payload.userData._id }, { $set: { "category": newCategoryList }, $inc:{"balance" : -req.body.payload.amount}, $push: { "logs": getLog("EXPENSE", req.body.payload.category_id, req.body.payload.amount) } }, { new: true, runValidators: true }).then(record => {
         res.status(200).send(record)
     }).catch(err => {
         res.status(500).send(err)
