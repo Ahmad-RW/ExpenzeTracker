@@ -40,6 +40,7 @@ class CategoryHeader extends Component {
                 {this.state.feedbackMessage}
                 <div class="cat-header-container">
                     {this.state.rename === false ?
+ 
                     (<span class="cat-header-name">{this.props.categoryName}</span>):( 
                     <Input type="text" id="categoryName" onBlur={this.handleRename} 
                     onChange={this.handleNewName} placeholder={this.props.categoryName} />)}
