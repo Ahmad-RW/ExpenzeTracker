@@ -206,10 +206,9 @@ function getLog(action, category_id, amount) {
     return log
 }
 
-app.use(express.static(path.join(__dirname, 'ExpenzeTracker-Client/build')));
+app.use(express.static(path.join(__dirname, 'ExpenzeTracker-Client/build')))// Anything that doesn't match the above, send back index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/ExpenzeTracker-Client/build/index.html'))
+})
 
 
-  app.get('*', (req, res) => {
-      console.log("sending react app...")
-    res.sendfile(path.join(__dirname + "/ExpenzeTracker-Client/build/index.html"));
-  })
