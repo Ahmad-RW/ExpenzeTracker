@@ -28,7 +28,7 @@ class Login extends Component{
         }
 
       
-        axios.post('http://localhost:5000/account/login', {payload}).then(res=>{
+        axios.post('/account/login', {payload}).then(res=>{
             if(res.status === 200){
                 const payload = {
                     userData : res.data
