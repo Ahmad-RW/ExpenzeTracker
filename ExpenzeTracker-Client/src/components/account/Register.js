@@ -70,8 +70,8 @@ class Register extends Component {
                     <Input onChange={this.handleChange} placeholder="email" id="email" />
                 </div>
                 <div>
-                    <label>Username</label>
-                    <Input onChange={this.handleChange} placeholder="username" id="username" />
+                    <label>name</label>
+                    <Input onChange={this.handleChange} placeholder="name" id="username" />
                 </div>
                 <div>
                     <label>Password</label>
