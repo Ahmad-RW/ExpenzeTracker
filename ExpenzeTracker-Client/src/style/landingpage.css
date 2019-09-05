@@ -36,3 +36,11 @@
 .welcome > p {
     font-size: 0.6em;
 }
+
+@media only screen and (max-width: 955px){
+    .landing-page{
+      flex-direction: column;
+      padding: 24px 0;
+    }
+}
+  
