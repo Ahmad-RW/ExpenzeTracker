@@ -74,7 +74,6 @@ class Logs extends Component {
             case "EXPENSE":
                 return <span class="action-icon"><Icon name="arrow down" color="red" /></span>
             case "TRANSFER":
-
                 return <span class="action-icon"><Icon name="arrow right" color="yellow" /></span>
         }
     }

@@ -4,6 +4,7 @@ import { checkIfInputIsNotNumber } from "./helpers";
 import { Input, Button } from "semantic-ui-react";
 import { submitExpense } from "../store/actions";
 import { getFeedbackMessage } from './helpers'
+import '../style/forms.css'
 class RegisterExpense extends Component {
 
 
@@ -47,9 +48,10 @@ class RegisterExpense extends Component {
         const submitButton = this.state.amount === 0 ? (<Button disabled onClick={this.submitExpense}>Submit</Button>) : (<Button onClick={this.submitExpense}>Submit</Button>)
         return (
             <React.Fragment>
-                <h5>Enter amount</h5>
-                <Input type="text" onChange={this.handleAmount} />
+                <div class="expense">
+                <Input placeholder="amount" type="text" onChange={this.handleAmount} />
                 {submitButton}
+                </div>
             </React.Fragment>
         )
     }

@@ -1,6 +1,9 @@
 /* -----  Container  ----- */
 .main {
+  position: fixed;
   display: flex;
+  width: 100%;
+  top: 45px;
   flex-direction: column;
   justify-content: space-between;
   color: #eee;

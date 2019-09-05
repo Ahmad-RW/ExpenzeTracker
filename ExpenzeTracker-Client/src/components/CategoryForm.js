@@ -113,9 +113,6 @@ class CategoryForm extends Component {
               onChange={this.handleNameChange}
               labelPosition="left"
             >
-              <Label basic for="category-name">
-                Create new category
-              </Label>
               <input />
             </Input>
             {this.state.categoryName === "" ? ( //disabled button if category name === ""

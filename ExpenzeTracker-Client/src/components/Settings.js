@@ -34,9 +34,20 @@ class Settings extends Component {
             </Header>
           </div>
           <div class="settings-list">
-                <SetMonthlyIncome />
-                <ChangePassword/>
-          </div>
+            <div class="settings-item">
+              <span class="settings-label"> Monthly Income : 
+              {this.props.userData.monthlyIncome.amount !== null
+                ? this.props.userData.monthlyIncome.amount.toLocaleString()
+                : "Loading..."}
+              </span>
+              <SetMonthlyIncome />
+            </div>
+            <div class="settings-item">
+              <span class="settings-label">Change Password</span>
+              <ChangePassword/>
+            </div>
+              <span class="settings-label">Inspiration from -> <a href="https://www.daveramsey.com/blog/envelope-system-explained">Dave Ramsey's envelope system for budgeting.</a></span>
+            </div>
         </div>
       </React.Fragment>
     );
