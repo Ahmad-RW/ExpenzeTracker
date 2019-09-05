@@ -30,7 +30,7 @@ class Settings extends Component {
           <div class="settings-profile">
             <Header as="h2" icon textAlign="center">
               <Icon name="user" circular />
-              <Header.Content>John Doe</Header.Content>
+              <Header.Content>{this.props.userData.name}</Header.Content>
             </Header>
           </div>
           <div class="settings-list">
