@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { getFeedbackMessage } from './helpers';
 import { connect } from 'react-redux';
-import { Input, Button } from 'semantic-ui-react'
+import { Input, Button, Form } from 'semantic-ui-react'
 
 class ChangePassword extends React.Component{
     state = {
@@ -43,10 +43,14 @@ class ChangePassword extends React.Component{
         return (
             <React.Fragment>
                 {this.state.feedbackMessage}
-                <Input onChange={this.handleChange} type="text" placeholder="password" id="password"/> <br />
-                <Input onChange={this.handleChange} type="text" placeholder="new password" id="newPassword" /><br />
-                <Input onChange={this.handleChange} type="text" placeholder="re enter new password" id="reNewPassword" /><br />
-                <Button onClick={this.postNewPassword}>change password</Button>
+                <Form>
+                <Form.Group widths='equal'>
+                    <Form.Input onChange={this.handleChange} type="text" placeholder="password" id="password"/>
+                    <Form.Input onChange={this.handleChange} type="text" placeholder="new password" id="newPassword" />
+                    <Form.Input onChange={this.handleChange} type="text" placeholder="re enter new password" id="reNewPassword" />
+                    <Button onClick={this.postNewPassword}>save</Button>
+                </Form.Group>
+                </Form>
             </React.Fragment>
         )
     }

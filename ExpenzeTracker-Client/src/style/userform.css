@@ -15,7 +15,7 @@
 
 .login {
     width: 60%;
-    height: 100%;
+    height: 100vh;
     margin: auto;
     display: flex;
     justify-content: center;
@@ -43,4 +43,10 @@
     height: 35px;
     text-align: center;
     margin: 12px;
+}
+
+@media only screen and (max-width: 955px){
+    .user-form {
+        width: 95vw;
+    }
 }

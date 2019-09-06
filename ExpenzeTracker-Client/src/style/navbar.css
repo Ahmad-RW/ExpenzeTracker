@@ -2,6 +2,9 @@
 
 .navbar {
   display: flex;
+  position: fixed;
+  width: 100%;
+  height: 45px;
   align-items: center;
   background: #253c78;
   padding: 4px;
@@ -54,29 +57,11 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-/* -----  Hover  ----- */
-
-/* .home:hover {
-  padding: 0;
-}
-
-.categories:hover {
-  padding: 0;
-}
-
-.settings:hover {
-  padding: 0;
-} */
-
 /* -----  User  ----- */
 
 .user.icon {
   font-size: 2em;
   color: #ccc;
-}
-
-.welcome {
-  vertical-align: middle;
 }
 
 /* -----  Logo  ----- */
@@ -90,10 +75,6 @@
 /* -----  Media Queries  ----- */
 
 @media only screen and (max-width: 683px){
-  .welcome {
-    display: none;
-  }
-
   .nav-center h1 {
     display: none;
   }

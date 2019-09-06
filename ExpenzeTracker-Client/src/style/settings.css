@@ -5,6 +5,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
+    padding: 60px 42px;
 }
 
 .settings-profile{
@@ -18,14 +19,26 @@
 }
 
 .settings-list {
-    flex: 3;
     width: 60%;
+}
+
+.settings-item {
+    border-bottom: 1px solid #0000001a;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.settings-label {
+    margin: 0 0 6px 2px;
 }
 
 
 @media only screen and (max-width: 768px) {
     .settings-list {
-        width: 80%;
+        width: 90%;
     }
 
 }

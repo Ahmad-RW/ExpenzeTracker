@@ -36,7 +36,6 @@ class Navbar extends Component {
           <div class="nav-center"> <h1 id="title">Expenze</h1> </div>
 
           <div class="nav-right">
-            {/* <span>{this.props.userData.name}</span> */}
             <Icon onClick={this.open} name="logout" size="large"/>
             <Confirm size="tiny" open={this.state.open} onCancel={this.close} onConfirm={this.props.logout} />
           </div>

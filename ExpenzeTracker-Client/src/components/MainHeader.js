@@ -40,14 +40,14 @@ class MainHeader extends Component {
             <span>Balance </span>
             <span class="balance">{this.props.userData.balance.toLocaleString()}</span>
           </div>
-        <div class="monthly-income">
+        {/* <div class="monthly-income">
              <span>Monthly Income </span>
             <span>
               {this.props.userData.monthlyIncome.amount !== null
                 ? this.props.userData.monthlyIncome.amount.toLocaleString()
                 : "Loading..."}
             </span>
-          </div>
+          </div> */}
 
           <Modal
             trigger={<Icon name="add"/>}
