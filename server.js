@@ -8,6 +8,7 @@ const getUserDto = require('./dbConfig/models/UserDto')
 const path = require('path')
 const port = process.env.PORT || 5000
 const cors = require('cors')
+const nodemailer = require('nodemailer')
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -187,6 +188,35 @@ app.get('/testingMongoDB', function (req, res) {
     })
 })
 
+app.get('/testMail',function(){
+    let transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            user:"expenzetracker@gmail.com", // generated ethereal user
+            pass: "expenze123123123" // generated ethereal password
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+
+    // send mail with defined transport object
+    let info =  transporter.sendMail({
+        from: '"Fred Foo 👻" <expenzetracker@gmail.com>', // sender address
+        to: 'ahmed-rw@outlook.com', // list of receivers
+        subject: 'Hello ✔', // Subject line
+        text: 'Hello world?', // plain text body
+        html: '<b>Hello world?</b>' // html body
+    }).then(function(){
+        console.log("sent")
+    }).catch(function(err){
+        console.log(err)
+    })
+ 
+
+})
 
 function addIncomeToCategories(newCategoryList, amount) {
      newCategoryList.forEach(cat => {

@@ -6,6 +6,7 @@ const mailClient = require('@sendgrid/mail')
 const bcrypt = require('bcryptjs')
 const getUserDto = require('./dbConfig/models/UserDto')
 const bcryptjs = require('bcryptjs')
+const nodemailer = require('nodemailer')
 mailClient.setApiKey(SG_API_KEY)
 
 account.post("/register", function (req, res) {
@@ -14,17 +15,42 @@ account.post("/register", function (req, res) {
     var callbackUrl = `${req.protocol}://${req.get('host')}/account/confirmEmail?code=${record.confirmationCode}&user=${record.email}`;
 
 
-    const confrimationMessage = {
-      to: user.email,
-      from: "expenzeTracker@hello.com",
-      subject: "please confirm your email with expenze tracker",
-      text: "hi hi hi hih ihihih i",
-      html: ` <b> hello please confirm your email by clicking <a href=${callbackUrl}>here</a> </b>`
-    }
+    // const confrimationMessage = {
+    //   to: user.email,
+    //   from: "expenzeTracker@hello.com",
+    //   subject: "please confirm your email with expenze tracker",
+    //   text: "hi hi hi hih ihihih i",
+    //   html: ` <b> hello please confirm your email by clicking <a href=${callbackUrl}>here</a> </b>`
+    // }
 
-    mailClient.send(confrimationMessage).then(function () {
-      res.status(201).send()
-    })
+    // mailClient.send(confrimationMessage).then(function () {
+    //   res.status(201).send()
+    // })
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+          user:"expenzetracker@gmail.com", // generated ethereal user
+          pass: "expenze123123123" // generated ethereal password
+      },
+      tls: {
+          rejectUnauthorized: false
+      }
+  });
+
+  // send mail with defined transport object
+  let info =  transporter.sendMail({
+      from: '"Expenze Tracker" <expenzetracker@gmail.com>', // sender address
+      to: user.email, // list of receivers
+      subject: "Email Confirmation", // Subject line
+      text: '', // plain text body
+      html: `<b> hello please confirm your email by clicking <a href=${callbackUrl}>here</a> </b>` // html body
+  }).then(function(){
+    res.status(201).send()
+  }).catch(function(err){
+      console.log(err)
+  })
   }).catch(function (err) {
     console.log(err)
     res.status(409).send(err)
